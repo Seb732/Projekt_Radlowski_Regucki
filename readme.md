@@ -1,4 +1,4 @@
-# Szablon projektu Java
+# System wypożyczalni samochodów
 
 Szablonowy projekt do użycia w środowisku IntelliJ.
 
