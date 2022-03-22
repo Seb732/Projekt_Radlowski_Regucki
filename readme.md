@@ -14,5 +14,5 @@ Projekt korzysta z:
 # Wskazówki
 * Aby uruchomić projekt w terminalu należy wpisać komendę `mvn spring:boot:run`.
 
-* Możesz uruchomić `mvn -Dtest=projektjavaApplicationTest test` na terminalu, aby uruchomić testy za pomocą gradle z opakowaniem gradle (więc nie musisz ręcznie instalować gradle - lokalnie).
+* Możesz uruchomić `mvn test` na terminalu, aby uruchomić testy za pomocą gradle z opakowaniem gradle (więc nie musisz ręcznie instalować gradle - lokalnie).
 
