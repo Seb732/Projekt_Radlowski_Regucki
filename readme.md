@@ -12,6 +12,6 @@ Projekt korzysta z:
 
 
 # Wskazówki
-* Aby uruchomić projekt w terminalu należy wpisać komendę `mvn spring:boot:run`.
+* Aby uruchomić projekt w terminalu należy wpisać komendę `mvn spring:boot:run` a następnie w przeglądarce wejść pod adres `localhost:8080`.
 
 * Możesz uruchomić `mvn test` na terminalu, aby uruchomić testy przy uzyciu Maven
