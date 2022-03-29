@@ -45,6 +45,10 @@ body {
   justify-content: center;
   align-items: center;
 }
+#main_text{
+  font-size: 40px;
+}
+
 .screen-1 .email {
   background: white;
   box-shadow: 0 0 2em #e6e9f9;
@@ -145,6 +149,7 @@ button {
 <div class="screen-1">
   <div class="logo">
     <i class="fa-solid fa-car-side"></i>
+    <h1 id="main_text">Rentaly</h1>
   </div>
   <form class="form" name="f" th:action="@{/login}" method="post">
     <div>
