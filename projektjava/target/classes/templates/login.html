@@ -1,35 +1,177 @@
 <!DOCTYPE html>
-<html xmlns:th:="https://thymeleaf.org">
+<html lang="en" >
 <head>
-    <title>Login</title>
+  <meta charset="UTF-8">
+  <title>Rentaly</title>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<script src="https://kit.fontawesome.com/742ec404dd.js" crossorigin="anonymous"></script>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap'>
+<style>
+  * {
+  font-family: "Poppins";
+}
+
+body {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  overflow-y: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #dde5f4;
+  height: 100vh;
+}
+
+.screen-1 {
+  background: #f1f7fe;
+  padding: 2em;
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+  border-radius: 30px;
+  box-shadow: 0 0 2em #e6e9f9;
+  gap: 0.5em;
+  height: 80%;
+  width: 300px;
+}
+.screen-1 .logo {
+  height: 30%;
+  color: #3e4684;
+  font-size: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.screen-1 .email {
+  background: white;
+  box-shadow: 0 0 2em #e6e9f9;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  border-radius: 20px;
+  color: #4d4d4d;
+}
+.screen-1 .email input {
+  outline: none;
+  border: none;
+}
+.screen-1 .email input::-moz-placeholder {
+  color: black;
+  font-size: 0.9em;
+}
+.screen-1 .email input:-ms-input-placeholder {
+  color: black;
+  font-size: 0.9em;
+}
+.screen-1 .email input::placeholder {
+  color: black;
+  font-size: 0.9em;
+}
+.screen-1 .email ion-icon {
+  color: #4d4d4d;
+  margin-bottom: -0.2em;
+}
+.screen-1 .password {
+  background: white;
+  box-shadow: 0 0 2em #e6e9f9;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  border-radius: 20px;
+  color: #4d4d4d;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+.screen-1 .password input {
+  outline: none;
+  border: none;
+}
+.screen-1 .password input::-moz-placeholder {
+  color: black;
+  font-size: 0.9em;
+}
+.screen-1 .password input:-ms-input-placeholder {
+  color: black;
+  font-size: 0.9em;
+}
+.screen-1 .password input::placeholder {
+  color: black;
+  font-size: 0.9em;
+}
+.screen-1 .password ion-icon {
+  color: #4d4d4d;
+  margin-bottom: -0.2em;
+}
+
+.screen-1 .form .login {
+  padding: 1em;
+  background: #3e4684;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  width: 100%;
+}
+button {
+  cursor: pointer;
+}
+.screen-1 .form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 70%;
+}
+
+.error{
+  background: rgb(243, 59, 59);
+  box-shadow: 0 0 2em #e6e9f9;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  border-radius: 20px;
+  color: #4d4d4d;
+  margin-bottom: 1em;
+}
+</style>
+
 </head>
 <body>
-    <form name="f" th:action="@{/login}" method="post">
-        <h1>Zaloguj sie</h1>
-        <div class="login_container">
-            <input type="text" id="username" name="username"/>
-            <input type="password" id="password" name="password"/>
-        </div>
-        <div class="login_btn_container">
-            <button class="login_btn" type="submit">Zaloguj sie</button>
-        </div>
-        
-        <!-- <fieldset>
-            <legend>Please Login</legend>
-            <div th:if="${param.error}" class="alert alert-error">
-                Invalid username and password
-            </div>
-            <div th:if="${param.logout}" class="alert alert-error">
-                You have been logged out
-            </div>
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username"/>
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password"/>
-            <div class="form-actions">
-                <button type="submit" class="btn">Log in</button>
-            </div>
-        </fieldset> -->
-    </form>
+<div class="screen-1">
+  <div class="logo">
+    <i class="fa-solid fa-car-side"></i>
+  </div>
+  <form class="form" name="f" th:action="@{/login}" method="post">
+    <div>
+      <div th:if="${param.error}" class="error">
+        Invalid username and password
+    </div>
+    <div th:if="${param.logout}" class="error">
+        You have been logged out
+    </div>
+    </div>
+  <div class="email">
+    <label for="email">Nazwa uzytkownika</label>
+    <div class="sec-2">
+      <ion-icon name="mail-outline"></ion-icon>
+      <input type="text" name="username" placeholder="Nazwa uzytkownika"/>
+    </div>
+  </div>
+  <div class="password">
+    <label for="password">Password</label>
+    <div class="sec-2">
+      <ion-icon name="lock-closed-outline"></ion-icon>
+      <input class="pas" type="password" name="password" placeholder="············"/>
+    </div>
+  </div>
+  <button type="submit" class="login">Login </button>
+  </form>
+</div>
+
 </body>
 </html>
