@@ -14,9 +14,8 @@ public class AppController {
 
 
     @GetMapping("/")
-    public String hello()
+    public String mainPage()
     {
         return "index";
-    }
-    
+    }    
 }
