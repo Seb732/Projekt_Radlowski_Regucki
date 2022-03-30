@@ -5,12 +5,120 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+<script src="https://kit.fontawesome.com/742ec404dd.js" crossorigin="anonymous"></script>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap'>
+<style>
+    * {
+  font-family: "Poppins";
+}
+    body{
+        background-color: #dde5f4;
+        margin: 0;
+        height: 100vh;
+    }
+    .header{
+        position: sticky;
+        background-color: #3e4684;
+        height: 70px;
+        margin: 0;
+        display: flex;
+        justify-content: space-between;
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    .header *{
+        color:#e6e9f9;
+    }
+
+    .navbar_menu{
+        display: flex;
+         justify-content: space-between;
+         align-items: center;
+         list-style: none;
+         width: auto;
+         padding: 0;
+         height: 2.5rem;
+         width: 40%;
+    }
+
+    #navbar_logo_normal{
+        display: flex;
+        text-align: center;
+        align-items: center;
+        font-size: 2.5rem;
+        text-decoration: none;
+    }
+
+    .navbar_btn{
+        height: 100%;
+        width: 20%;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        background-color: #6c78cf;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .button{
+        text-decoration: none;
+    }
+
+    #setting{
+        width: 20%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .setting_div{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        height: 100%;
+    }
+
+
+    .setting_btn{
+        width: 70%;
+        height: 2.5rem;
+        background-color: #3e4684;
+        border: 1px solid white;
+        border-radius: 10px;
+    }
+
+</style>
 </head>
 <body>
+    <header class="header">
+        <a href="#home" id="navbar_logo_normal"><b><i class="fa-solid fa-car-side"></i>Rentaly</b></a>
+        <ul class="navbar_menu">
+            <li class="navbar_btn">
+                <a href="#home" class="button" >Home</a>
+            </li>
+            <li class="navbar_btn">
+                <a href="#introduction" class="button" >About</a>
+            </li>
+            <li class="navbar_btn">
+                <a href="#winetypes" class="button" >Work</a>
+            </li>
+            <li class="navbar_btn">
+                <a href="#winefood" class="button" >Contact</a>
+            </li>
+        </ul>
+        <div id="setting">
+            <div class="setting_div">
+                <button class="setting_btn">Ustawienia</button>
+            </div>
+            <form class="setting_div" id="logout_form" th:action="@{/logout}" method="post">
+                <button class="setting_btn" id="logout_btn" type="submit">Wyloguj się</button>
+            </form>
+        </div>
+        </header>
     <h1>Welcome home my friend</h1>
-    <form th:action="@{/logout}" method="post">
-        <button type="submit">Log out</button>
-    </form>
 
      <!-- <fieldset>
             <legend>Please Login</legend>
