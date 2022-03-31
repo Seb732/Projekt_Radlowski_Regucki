@@ -1,5 +1,6 @@
 package pl.agh.projektjava.Entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,12 +15,13 @@ public class Car {
 
     public enum Status{available, unavailable, hired}
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    String brand;
-    String prodYear;
     String VIN;
+    String brand;
+    @Column(name="prod")
+    String prodYear;
+    @Column(name="regist")
     String registNumb;
+    @Column(name="price")
     double priceRate;
     String status;
     double longitude;
@@ -42,14 +44,6 @@ public class Car {
     }
 
     // getters and setters
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getBrand() {
         return this.brand;
     }
