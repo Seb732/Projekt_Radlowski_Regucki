@@ -3,7 +3,6 @@ package pl.agh.projektjava.Entities;
 import pl.agh.projektjava.Exceptions.ExceptionWrongEmail;
 import pl.agh.projektjava.Exceptions.ExceptionWrongTeleNumb;
 
-import javax.persistence.Entity;
 
 
 public abstract class Client {

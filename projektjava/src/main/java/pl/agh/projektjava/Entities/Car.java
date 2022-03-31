@@ -1,37 +1,79 @@
 package pl.agh.projektjava.Entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import pl.agh.projektjava.Exceptions.ExceptionWrongProdYear;
 import pl.agh.projektjava.Exceptions.ExceptionWrongRegistNumb;
 import pl.agh.projektjava.Exceptions.ExceptionWrongVIN;
 
+@Entity
 public class Car {
 
     public enum Status{available, unavailable, hired}
-
-    static Long id = 0L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
     String brand;
     String prodYear;
     String VIN;
     String registNumb;
     double priceRate;
-    Status status;
+    String status;
+    double longitude;
+    double latitude;
 
     public Car(){}
-    public Car(String brand, String prodYear, String VIN, String registNumb, double priceRate, Status status){
-        setId();setBrand(brand);setPriceRate(priceRate);
+    
+    public Car(String brand, String prodYear, String VIN, String registNumb, double priceRate, String status){
+        setBrand(brand);
+        setPriceRate(priceRate);
         try{
-            setProdYear(prodYear);setVIN(VIN);setRegistNumb(registNumb);setStatus(status);
+            setProdYear(prodYear);
+            setVIN(VIN);
+            setRegistNumb(registNumb);
+            setStatus(status);
         }
         catch (ExceptionWrongProdYear | ExceptionWrongVIN | ExceptionWrongRegistNumb e){
             assert true; // do skonczenia
         }
     }
 
-    public void setId(){id++;}
-    public Long getId(){return id;}
+    // getters and setters
+    public Long getId() {
+        return this.id;
+    }
 
-    public void setBrand(String brand){this.brand = brand;}
-    public String getBrand(){return this.brand;}
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getBrand() {
+        return this.brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public double getLongitude() {
+        return this.longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public double getLatitude() {
+        return this.latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+    
 
     public void setProdYear(String prodYear) throws ExceptionWrongProdYear {
         if (Validation.ValProdYear(prodYear)) {
@@ -62,10 +104,21 @@ public class Car {
     }
     public String getRegistNumb(){return this.registNumb;}
 
-    public void setPriceRate(double priceRate){this.priceRate = priceRate;}
-    public double getPriceRate(){return this.priceRate;}
+    public double getPriceRate() {
+        return this.priceRate;
+    }
 
-    public void setStatus(Status status){this.status = status;}
-    public Status getStatus(){return this.status;}
+    public void setPriceRate(double priceRate) {
+        this.priceRate = priceRate;
+    }
+
+    public String getStatus() {
+        return this.status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
 
 }
