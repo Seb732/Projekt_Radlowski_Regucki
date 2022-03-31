@@ -3,7 +3,6 @@ package pl.agh.projektjava.Entities;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import pl.agh.projektjava.Entities.Car.Status;

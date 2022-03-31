@@ -1,8 +1,6 @@
 package pl.agh.projektjava.Entities;
 
-import org.hibernate.hql.internal.ast.SqlASTFactory;
 import pl.agh.projektjava.Exceptions.ExceptionWrongNIP;
-import pl.agh.projektjava.Exceptions.ExceptionWrongPesel;
 import pl.agh.projektjava.Exceptions.ExceptionWrongRegon;
 
 public class CompanyClient extends Client{

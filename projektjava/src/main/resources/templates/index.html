@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -89,7 +89,12 @@
         border: 1px solid white;
         border-radius: 10px;
     }
-
+    #map {
+        height: 400px;
+        /* The height is 400 pixels */
+        width: 100%;
+        /* The width is the width of the web page */
+    }
 </style>
 </head>
 <body>
@@ -119,22 +124,33 @@
         </div>
         </header>
     <h1>Welcome home my friend</h1>
+    <div id="map"></div>
+    <script th:inline="javascript">
+        function initMap() {
+            // Map options
+            var options={
+                zoom:15,
+                center:{lat:50.049683,lng:19.944544}
+            }
 
-     <!-- <fieldset>
-            <legend>Please Login</legend>
-            <div th:if="${param.error}" class="alert alert-error">
-                Invalid username and password
-            </div>
-            <div th:if="${param.logout}" class="alert alert-error">
-                You have been logged out
-            </div>
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username"/>
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password"/>
-            <div class="form-actions">
-                <button type="submit" class="btn">Log in</button>
-            </div>
-        </fieldset> -->
+            //new map
+            var map=new google.maps.Map(document.getElementById('map'),options);
+
+            //markers
+
+
+
+                /*[# th:each="car : ${cars}"]*/
+                    var marker= new google.maps.Marker({
+                    position:{lat:/*[[${car.latitude}]]*/,lng:/*[[${car.longitude}]]*/},map:map})
+                /*[/]*/
+
+        }
+    </script>
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUcs6WNxzNLK5FoGrglvf7ln2m7N2VPpQ&callback=initMap&v=weekly"
+      async
+    ></script>
 </body>
 </html>
