@@ -1,11 +1,13 @@
 package pl.agh.projektjava.Entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import pl.agh.projektjava.Exceptions.ExceptionWrongProdYear;
+
 import pl.agh.projektjava.Exceptions.ExceptionWrongRegistNumb;
 import pl.agh.projektjava.Exceptions.ExceptionWrongVIN;
 
@@ -14,11 +16,10 @@ public class Car {
 
     public enum Status{available, unavailable, hired}
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    String brand;
-    String prodYear;
     String VIN;
+    String brand;
+    String model;
+    String prodYear;
     String registNumb;
     double priceRate;
     String status;
@@ -27,9 +28,10 @@ public class Car {
 
     public Car(){}
     
-    public Car(String brand, String prodYear, String VIN, String registNumb, double priceRate, String status){
+    public Car(String brand, String prodYear, String VIN, String model,String registNumb, double priceRate, String status){
         setBrand(brand);
         setPriceRate(priceRate);
+        setModel(model);
         try{
             setProdYear(prodYear);
             setVIN(VIN);
@@ -42,14 +44,6 @@ public class Car {
     }
 
     // getters and setters
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getBrand() {
         return this.brand;
     }
@@ -118,6 +112,14 @@ public class Car {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getModel() {
+        return this.model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
     }
     
 

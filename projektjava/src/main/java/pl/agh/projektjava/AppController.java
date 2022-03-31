@@ -27,7 +27,8 @@ public class AppController {
     @GetMapping("/")
     public String mainPage(Model model)
     {
-        model.addAttribute("cars",carServices.getAll());
+        model.addAttribute("cars",carServices.getAllHired());
         return "index";
     }    
 }
+
