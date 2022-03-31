@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import pl.agh.projektjava.Exceptions.ExceptionWrongProdYear;
+
 import pl.agh.projektjava.Exceptions.ExceptionWrongRegistNumb;
 import pl.agh.projektjava.Exceptions.ExceptionWrongVIN;
 
@@ -17,11 +18,9 @@ public class Car {
     @Id
     String VIN;
     String brand;
-    @Column(name="prod")
+    String model;
     String prodYear;
-    @Column(name="regist")
     String registNumb;
-    @Column(name="price")
     double priceRate;
     String status;
     double longitude;
@@ -29,9 +28,10 @@ public class Car {
 
     public Car(){}
     
-    public Car(String brand, String prodYear, String VIN, String registNumb, double priceRate, String status){
+    public Car(String brand, String prodYear, String VIN, String model,String registNumb, double priceRate, String status){
         setBrand(brand);
         setPriceRate(priceRate);
+        setModel(model);
         try{
             setProdYear(prodYear);
             setVIN(VIN);
@@ -112,6 +112,14 @@ public class Car {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getModel() {
+        return this.model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
     }
     
 

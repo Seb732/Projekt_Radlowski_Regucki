@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -125,38 +125,22 @@
         </header>
     <h1>Welcome home my friend</h1>
     <div id="map"></div>
-    <script th:inline="javascript">
+    
+    <script>
         function initMap() {
-            // Map options
-            var options={
-                zoom:10,
-                center:{lat:50.049683,lng:19.944544}
-            }
-
-            //new map
-            var map=new google.maps.Map(document.getElementById('map'),options);
-
-            //markers
-
-                    var iconlink=/*[[@{/icons/car-icon-map.png}]]*/'';
-
-
-                /*[# th:each="car : ${cars}"]*/
-                    var marker= new google.maps.Marker({
-                    position:{lat:/*[[${car.latitude}]]*/,lng:/*[[${car.longitude}]]*/},
-                    icon: {
-                        labelOrigin: new google.maps.Point(25,0),
-                        url: iconlink
-                    },
-                    label: {
-                        text: [[${car.registNumb}]],
-                        color: "black",
-                        fontWeight: "bold"
-                    },
-                    map:map
-                })
-                /*[/]*/
-        }
+  // The location of Uluru
+  const uluru = { lat: -25.344, lng: 131.036 };
+  // The map, centered at Uluru
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 4,
+    center: uluru,
+  });
+  // The marker, positioned at Uluru
+  const marker = new google.maps.Marker({
+    position: uluru,
+    map: map,
+  });
+}
     </script>
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
     <script

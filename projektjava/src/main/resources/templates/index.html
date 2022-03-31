@@ -138,11 +138,23 @@
 
             //markers
 
+                    var iconlink=/*[[@{/icons/car-icon-map.png}]]*/'';
 
 
                 /*[# th:each="car : ${cars}"]*/
                     var marker= new google.maps.Marker({
-                    position:{lat:/*[[${car.latitude}]]*/,lng:/*[[${car.longitude}]]*/},map:map})
+                    position:{lat:/*[[${car.latitude}]]*/,lng:/*[[${car.longitude}]]*/},
+                    icon: {
+                        labelOrigin: new google.maps.Point(25,0),
+                        url: iconlink
+                    },
+                    label: {
+                        text: [[${car.registNumb}]],
+                        color: "black",
+                        fontWeight: "bold"
+                    },
+                    map:map
+                })
                 /*[/]*/
         }
     </script>
