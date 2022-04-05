@@ -33,11 +33,14 @@ public class Address
     @OneToMany(mappedBy = "address")
     Set<User> users;
 
-    @OneToMany(mappedBy="address")
-    Set<CompanyClient> companyClients;
-    
     @OneToMany(mappedBy = "address")
-    Set<PersonalClient> personalClients;
+    Set<Client> clients;
+    
+    // @OneToMany(mappedBy="address")
+    // Set<CompanyClient> companyClients;
+    
+    // @OneToMany(mappedBy = "address")
+    // Set<PersonalClient> personalClients;
 
     // Constructors
 
