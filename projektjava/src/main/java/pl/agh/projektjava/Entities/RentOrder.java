@@ -3,9 +3,11 @@ package pl.agh.projektjava.Entities;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -22,16 +24,21 @@ public class RentOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+
     @ManyToOne
     @JoinColumn(name = "client_id")
     Client client;
+
     @ManyToOne
     @JoinColumn(name = "car_vin")
     Car car;
+
     LocalDate rentStartDate;
     LocalDate rentEndDate;
+
     @Enumerated(EnumType.STRING)
     Status status;
+
     double totalCost;
 
 
@@ -59,11 +66,17 @@ public class RentOrder {
     public void setRentStartDate(String rentStartDate) {
         this.rentStartDate = LocalDate.parse(rentStartDate, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
     }
+
+    @Column
+    @Access(AccessType.PROPERTY)
     public LocalDate getRentStartDate() {return rentStartDate;}
 
     public void setRentEndDate(String rentEndDate) {
         this.rentEndDate = LocalDate.parse(rentEndDate, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
     }
+    
+    @Column
+    @Access(AccessType.PROPERTY)
     public LocalDate getRentEndDate() {return rentEndDate;}
 
     public void setStatus(Status status) {this.status = status;}
