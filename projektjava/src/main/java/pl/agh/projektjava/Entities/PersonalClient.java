@@ -1,5 +1,8 @@
 package pl.agh.projektjava.Entities;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 
@@ -10,10 +13,16 @@ public class PersonalClient extends Client{
     // @ManyToOne
     // @JoinColumn(name = "address_id")
     // Address address;
-    
+    @Column
+    @Access(AccessType.FIELD)
     String firstName;
+    @Column
+    @Access(AccessType.FIELD)
     String lastName;
+    @Column
+    @Access(AccessType.FIELD)
     String idCard;
+    
     String pesel;
 
     // constructors
@@ -56,5 +65,6 @@ public class PersonalClient extends Client{
             throw new ExceptionWrongPesel("Incorrect pesel");
         }
     }
+    @Column
     public String getPesel(){return this.pesel;}
 }

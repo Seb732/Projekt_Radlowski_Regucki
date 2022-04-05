@@ -33,6 +33,7 @@ public class Car {
     @OneToMany(mappedBy = "car")
     Set<Damage> damages;
 
+
     public Car(){}
     
     public Car(String brand, String prodYear, String VIN, String model,String registNumb, double priceRate, Status status){

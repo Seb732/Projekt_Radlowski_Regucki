@@ -3,20 +3,37 @@ package pl.agh.projektjava.Entities;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
+
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import pl.agh.projektjava.Entities.Car.Status;
 
+@Entity
 public class RentOrder {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+    @ManyToOne
+    @JoinColumn(name = "client_id")
     Client client;
+    @ManyToOne
+    @JoinColumn(name = "car_vin")
     Car car;
     LocalDate rentStartDate;
     LocalDate rentEndDate;
+    @Enumerated(EnumType.STRING)
     Status status;
     double totalCost;
-    // ?list
+
 
     // constructors
     public RentOrder(){}
