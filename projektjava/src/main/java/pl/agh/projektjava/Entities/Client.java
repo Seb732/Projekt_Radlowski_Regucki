@@ -1,21 +1,24 @@
 package pl.agh.projektjava.Entities;
 
+import javax.persistence.Id;
+
+import javax.persistence.MappedSuperclass;
+
 import pl.agh.projektjava.Exceptions.ExceptionWrongEmail;
 import pl.agh.projektjava.Exceptions.ExceptionWrongTeleNumb;
 
 
-
+@MappedSuperclass
 public abstract class Client {
 
-    static Long id = 0L;
-    Address address;
+    @Id
+    Long id;
     String teleNumb;
     String email;
 
     public Client() {}
 
-    public Client(Address address, String teleNumb, String email) {
-        setId();setAddress(address);
+    public Client( String teleNumb, String email) {
         try{
             setTeleNumb(teleNumb);setEmail(email);
         }
@@ -24,11 +27,13 @@ public abstract class Client {
         }
     }
 
-    public void setId(){id++;}
+    public void setId(Long id)
+    {
+        this.id=id;
+    }
+
     public Long getId(){return id;}
 
-    public void setAddress(Address address){this.address = address;}
-    public Address getAddress(){return this.address;}
 
     public void setTeleNumb(String teleNumb) throws ExceptionWrongTeleNumb {
         if (Validation.ValTeleNumb(teleNumb)){

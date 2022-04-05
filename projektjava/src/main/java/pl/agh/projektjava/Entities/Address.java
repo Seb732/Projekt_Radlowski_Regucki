@@ -16,16 +16,28 @@ public class Address
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+
     String city;
+
     @Column(name = "postal_code")
     String postalCode;
+
     String street;
+
     @Column(name = "building_numb")
     String buildingNumb;
+
     @Column(name = "local_numb")
     String localNumb;
+
     @OneToMany(mappedBy = "address")
     Set<User> users;
+
+    @OneToMany(mappedBy="address")
+    Set<CompanyClient> companyClients;
+    
+    @OneToMany(mappedBy = "address")
+    Set<PersonalClient> personalClients;
 
     // Constructors
 

@@ -3,20 +3,36 @@ package pl.agh.projektjava.Entities;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+
+@Entity
 public class Damage {
 
-    static Long id = 0L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
     String description;
+    @ManyToOne
+    @JoinColumn(name = "car_id")
     Car car;
     LocalDate date;
     double price;
 
     public Damage(){}
     public Damage(String description, Car car, String date, double price){
-        setId();setDescription(description);setCar(car);setDate(date);setPrice(price);
+        setDescription(description);
+        setCar(car);
+        setDate(date);
+        setPrice(price);
     }
 
-    public void setId() {id++;}
+    public void setId(Long id) {this.id=id;}
     public Long getId() {return id;}
 
     public void setDescription(String description) {this.description = description;}

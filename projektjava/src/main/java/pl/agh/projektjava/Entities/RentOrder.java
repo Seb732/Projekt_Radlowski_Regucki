@@ -9,7 +9,7 @@ import pl.agh.projektjava.Entities.Car.Status;
 
 public class RentOrder {
 
-    static Long id = 0L;
+    Long id;
     Client client;
     Car car;
     LocalDate rentStartDate;
@@ -18,12 +18,19 @@ public class RentOrder {
     double totalCost;
     // ?list
 
+    // constructors
     public RentOrder(){}
     public RentOrder(Client client, Car car, String rentStartDate, String rentEndDate, Status status){
-        setId();setClient(client);setCar(car);setRentStartDate(rentStartDate);setRentEndDate(rentEndDate);setStatus(status);
+        setClient(client);
+        setCar(car);
+        setRentStartDate(rentStartDate);
+        setRentEndDate(rentEndDate);
+        setStatus(status);
     }
 
-    public void setId(){id++;}
+    // getters and setters
+    
+    public void setId(Long id){this.id=id;}
     public Long getId() {return id;}
 
     public void setClient(Client client) {this.client = client;}
