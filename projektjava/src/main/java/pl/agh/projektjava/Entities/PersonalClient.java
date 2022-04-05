@@ -1,8 +1,7 @@
 package pl.agh.projektjava.Entities;
 
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+
 
 import pl.agh.projektjava.Exceptions.ExceptionWrongPesel;
 
