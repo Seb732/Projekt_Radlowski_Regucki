@@ -1,17 +1,27 @@
 package pl.agh.projektjava.Entities;
 
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 import pl.agh.projektjava.Exceptions.ExceptionWrongNIP;
 import pl.agh.projektjava.Exceptions.ExceptionWrongRegon;
 
+@Entity
 public class CompanyClient extends Client{
-
+    @ManyToOne
+    @JoinColumn(name = "address_id")
+    Address address;
+    
     String name;
     String NIP;
     String REGON;
 
+    //constructors
+    
     public CompanyClient(){super();}
     public CompanyClient(Address address, String teleNumb, String email, String name, String NIP, String REGON){
-        super(address, teleNumb, email);
+        super(teleNumb, email);
         setName(name);
         try{
             setNIP(NIP);setREGON(REGON);
@@ -19,6 +29,16 @@ public class CompanyClient extends Client{
         catch (ExceptionWrongNIP | ExceptionWrongRegon e){
             assert true; // do zrobienia
         }
+    }
+
+    //getters and setters
+
+    public Address getAddress() {
+        return this.address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public void setName(String name){this.name = name;}

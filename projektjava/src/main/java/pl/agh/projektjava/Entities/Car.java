@@ -1,10 +1,19 @@
 package pl.agh.projektjava.Entities;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import org.springframework.jmx.export.annotation.ManagedAttribute;
 
 import pl.agh.projektjava.Exceptions.ExceptionWrongProdYear;
 
@@ -22,13 +31,16 @@ public class Car {
     String prodYear;
     String registNumb;
     double priceRate;
-    String status;
+    @Enumerated(EnumType.STRING)
+    Status status;
     double longitude;
     double latitude;
+    @OneToMany(mappedBy = "car")
+    Set<Damage> damages;
 
     public Car(){}
     
-    public Car(String brand, String prodYear, String VIN, String model,String registNumb, double priceRate, String status){
+    public Car(String brand, String prodYear, String VIN, String model,String registNumb, double priceRate, Status status){
         setBrand(brand);
         setPriceRate(priceRate);
         setModel(model);
@@ -106,11 +118,11 @@ public class Car {
         this.priceRate = priceRate;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return this.status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 

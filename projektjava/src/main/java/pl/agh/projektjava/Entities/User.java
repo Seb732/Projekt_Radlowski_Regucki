@@ -14,20 +14,28 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+
     @Column(name = "first_name")
     String firstName;
+
     @Column(name = "last_name")
     String lastName;
+
     @ManyToOne
     @JoinColumn(name = "address_id")
     Address address;
+
     @Column(name = "tele_numb")
     String teleNumb;
+
     String email;
+
     @Column(nullable = false)
     String username;
+
     @Column(nullable = false)
     String role;
+    
     @Column(nullable = false)
     String password;
     
