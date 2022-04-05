@@ -1,6 +1,10 @@
 package pl.agh.projektjava.Entities;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+
 
 import pl.agh.projektjava.Exceptions.ExceptionWrongNIP;
 import pl.agh.projektjava.Exceptions.ExceptionWrongRegon;
@@ -10,7 +14,8 @@ public class CompanyClient extends Client{
     // @ManyToOne
     // @JoinColumn(name = "address_id")
     // Address address;
-    
+    @Column
+    @Access(AccessType.FIELD)
     String name;
     String NIP;
     String REGON;
@@ -50,6 +55,7 @@ public class CompanyClient extends Client{
             throw new ExceptionWrongNIP("Incorrect NIP");
         }
     }
+    @Column
     public String getNIP(){return this.NIP;}
 
     public void setREGON(String REGON) throws ExceptionWrongRegon {
@@ -60,6 +66,7 @@ public class CompanyClient extends Client{
             throw new ExceptionWrongRegon("Incorrect REGON");
         }
     }
+    @Column
     public String getREGON(){return this.REGON;}
 
 }

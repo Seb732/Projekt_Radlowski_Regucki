@@ -23,6 +23,9 @@ public class Damage {
     Car car;
     LocalDate date;
     double price;
+    @ManyToOne
+    @JoinColumn(name="rent_id")
+    RentOrder rentOrder;
 
     public Damage(){}
     public Damage(String description, Car car, String date, double price){

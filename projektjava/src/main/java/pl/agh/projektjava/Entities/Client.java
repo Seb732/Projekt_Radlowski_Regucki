@@ -1,11 +1,19 @@
 package pl.agh.projektjava.Entities;
 
+
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+
 
 import pl.agh.projektjava.Exceptions.ExceptionWrongEmail;
 import pl.agh.projektjava.Exceptions.ExceptionWrongTeleNumb;
@@ -16,12 +24,18 @@ import pl.agh.projektjava.Exceptions.ExceptionWrongTeleNumb;
 public abstract class Client {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Access(javax.persistence.AccessType.FIELD)
     Long id;
     @ManyToOne
     @JoinColumn(name = "address_id")
+    @Access(javax.persistence.AccessType.FIELD)
     Address address;
     String teleNumb;
     String email;
+    @Column
+    @Access(AccessType.FIELD)
+    double balance;
 
     // constructors
 
@@ -65,6 +79,7 @@ public abstract class Client {
         }
 
     }
+    @Column
     public String getTeleNumb(){return this.teleNumb;}
 
     public void setEmail(String email) throws ExceptionWrongEmail {
@@ -75,5 +90,14 @@ public abstract class Client {
             throw new ExceptionWrongEmail("Incorrect email");
         }
     }
+    @Column
     public String getEmail(){return this.email;}
+
+    public double getBalance() {
+        return this.balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
 }
