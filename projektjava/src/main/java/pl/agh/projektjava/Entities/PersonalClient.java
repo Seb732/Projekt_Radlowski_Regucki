@@ -8,9 +8,9 @@ import pl.agh.projektjava.Exceptions.ExceptionWrongPesel;
 
 @Entity
 public class PersonalClient extends Client{
-    @ManyToOne
-    @JoinColumn(name = "address_id")
-    Address address;
+    // @ManyToOne
+    // @JoinColumn(name = "address_id")
+    // Address address;
     
     String firstName;
     String lastName;
@@ -20,8 +20,8 @@ public class PersonalClient extends Client{
     // constructors
 
     public PersonalClient(){super();}
-    public PersonalClient(Address address, String teleNumb, String email, String firstName, String lastName, String idCard, String pesel){
-        super(teleNumb, email);
+    public PersonalClient(Address address,String teleNumb, String email, String firstName, String lastName, String idCard, String pesel){
+        super(address ,teleNumb, email);
         setFirstName(firstName);setLastName(lastName);setIdCard(idCard);
         try{
             setPesel(pesel);
@@ -32,13 +32,13 @@ public class PersonalClient extends Client{
     }
 
     // getters and setters
-    public Address getAddress() {
-        return this.address;
-    }
+    // public Address getAddress() {
+    //     return this.address;
+    // }
 
-    public void setAddress(Address address) {
-        this.address = address;
-    }
+    // public void setAddress(Address address) {
+    //     this.address = address;
+    // }
 
     public void setFirstName(String firstName){this.firstName = firstName;}
     public String getFirstName(){return this.firstName;}

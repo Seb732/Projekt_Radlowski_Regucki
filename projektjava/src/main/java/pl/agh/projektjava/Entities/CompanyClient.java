@@ -9,9 +9,9 @@ import pl.agh.projektjava.Exceptions.ExceptionWrongRegon;
 
 @Entity
 public class CompanyClient extends Client{
-    @ManyToOne
-    @JoinColumn(name = "address_id")
-    Address address;
+    // @ManyToOne
+    // @JoinColumn(name = "address_id")
+    // Address address;
     
     String name;
     String NIP;
@@ -21,7 +21,7 @@ public class CompanyClient extends Client{
     
     public CompanyClient(){super();}
     public CompanyClient(Address address, String teleNumb, String email, String name, String NIP, String REGON){
-        super(teleNumb, email);
+        super(address,teleNumb, email);
         setName(name);
         try{
             setNIP(NIP);setREGON(REGON);
@@ -33,13 +33,13 @@ public class CompanyClient extends Client{
 
     //getters and setters
 
-    public Address getAddress() {
-        return this.address;
-    }
+    // public Address getAddress() {
+    //     return this.address;
+    // }
 
-    public void setAddress(Address address) {
-        this.address = address;
-    }
+    // public void setAddress(Address address) {
+    //     this.address = address;
+    // }
 
     public void setName(String name){this.name = name;}
     public String getName(){return this.name;}

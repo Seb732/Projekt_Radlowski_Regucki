@@ -1,31 +1,53 @@
 package pl.agh.projektjava.Entities;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
-
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 
 import pl.agh.projektjava.Exceptions.ExceptionWrongEmail;
 import pl.agh.projektjava.Exceptions.ExceptionWrongTeleNumb;
 
 
-@MappedSuperclass
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Client {
 
     @Id
     Long id;
+    @ManyToOne
+    @JoinColumn(name = "address_id")
+    Address address;
     String teleNumb;
     String email;
 
+    // constructors
+
     public Client() {}
 
-    public Client( String teleNumb, String email) {
+    public Client(Address address, String teleNumb, String email) {
         try{
-            setTeleNumb(teleNumb);setEmail(email);
+            setAddress(address);
+            setTeleNumb(teleNumb);
+            setEmail(email);
         }
         catch (ExceptionWrongTeleNumb | ExceptionWrongEmail e){
             assert true; // do zrobienia
         }
     }
+
+    // getters and setters
+    public Address getAddress() {
+        return this.address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
 
     public void setId(Long id)
     {
