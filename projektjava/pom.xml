@@ -58,6 +58,17 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<!-- GOOGLE CLOUD  -->
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>appengine-maven-plugin</artifactId>
+				<version>2.2.0</version>
+				<configuration>
+				  <version>1</version>
+				  <projectId>rentaly-backend</projectId>
+				</configuration>
+			  </plugin>
+			  <!-- GOOGLE CLOUD -->
 		</plugins>
 	</build>
 
