@@ -1,2 +1,2 @@
 runtime: java11
-instance_class: automatic_scaling
+instance_class: F4
