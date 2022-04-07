@@ -145,33 +145,38 @@
         </div>
         </header>
     <div class="container">
-        <form class="form" th:action="@{/cars}" th:object="${student}" method="POST">
-            <h1 style="text-align: center">Utwórz samochód</h1>
-            <div class="input">
-                <label>VIN</label>
-                <input type="text" name="VIN" th:field="*{VIN}" placeholder="VIN">
-            </div>
-            <div class="input">
-                <label>Marka</label>
-                <input type="text" name="brand" th:field="*{brand}" placeholder="Marka">
-            </div>
-            <div class="input">
-                <label>Model</label>
-                <input type="text" name="model" th:field="*{model}" placeholder="Model">
-            </div>
-            <div class="input">
-                <label>Rok produkcji</label>
-                <input type="text" name="prodYear" th:field="*{prodYear}" placeholder="Rok produkcji">
-            </div>
-            <div class="input">
-                <label>Nr. Rejestracyjny</label>
-                <input type="text" name="registNumb" th:field="*{registNumb}" placeholder="Nr. Rejestracyjny">
-            </div>
-            <div class="input">
-                <label>Stawka</label>
-                <input type="double" name="priceRate" th:field="*{priceRate}" placeholder="Stawka">
-            </div>
-        </form>
+        <div class="form">
+            <h1 style="width: 100%;text-align:center">Nowy samochod</h1>
+            <form th:action="@{/cars}" th:object="${car}" method="POST">
+                <div class="input">
+                    <label>VIN</label>
+                    <input type="text" name="VIN" th:field="*{VIN}" placeholder="VIN">
+                </div>
+                <div class="input">
+                    <label>Marka</label>
+                    <input type="text" name="brand" th:field="*{brand}" placeholder="Marka">
+                </div>
+                <div class="input">
+                    <label>Model</label>
+                    <input type="text" name="model" th:field="*{model}" placeholder="Model">
+                </div>
+                <div class="input">
+                    <label>Rok produkcji</label>
+                    <input type="text" name="prodYear" th:field="*{prodYear}" placeholder="Rok produkcji">
+                </div>
+                <div class="input">
+                    <label>Nr. Rejestracyjny</label>
+                    <input type="text" name="registNumb" th:field="*{registNumb}" placeholder="Nr. Rejestracyjny">
+                </div>
+                <div class="input">
+                    <label>Stawka</label>
+                    <input type="double" name="priceRate" th:field="*{priceRate}" placeholder="Stawka">
+                </div>
+                <div id="sub_cont">
+                    <button type="submit">Zapisz</button>
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 </html>
