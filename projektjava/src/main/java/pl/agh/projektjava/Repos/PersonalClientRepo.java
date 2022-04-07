@@ -11,7 +11,9 @@ import pl.agh.projektjava.Entities.PersonalClient;
 @Repository
 public interface PersonalClientRepo extends ClientRepo<PersonalClient>
 {
-    
     @Query("SELECT c FROM PersonalClient c WHERE c.pesel=:pesel")
     public Optional<PersonalClient> getByPesel(@Param("pesel") String pesel);
+
+    @Query("SELECT c FROM PersonalClient c WHERE c.pesel like %:query% OR c.firstName like %:query% OR c.lastName like %:query% OR c.idCard like %:query%")
+    public Iterable<PersonalClient> getByQuery(@Param("query") String query);
 }

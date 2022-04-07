@@ -26,7 +26,7 @@ class RentOrderTest {
                 "KR-XY67", 200, Car.Status.available));
         rentOrder.setRentStartDate("01-02-2022");
         rentOrder.setRentEndDate("09-02-2022");
-        rentOrder.setStatus(Car.Status.hired); // chyba do zmiany
+        rentOrder.setStatus(rentOrder.status.active); // chyba do zmiany
         rentOrder.setTotalCost();
 
         Assertions.assertEquals(1L, rentOrder.getId());
