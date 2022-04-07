@@ -23,8 +23,8 @@ public class CompanyClient extends Client{
     //constructors
     
     public CompanyClient(){super();}
-    public CompanyClient(Address address, String teleNumb, String email, String name, String NIP, String REGON){
-        super(address,teleNumb, email);
+    public CompanyClient(Long id, Address address, String teleNumb, String email, String name, String NIP, String REGON){
+        super(id, address,teleNumb, email);
         setName(name);
         try{
             setNIP(NIP);setREGON(REGON);

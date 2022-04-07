@@ -41,7 +41,8 @@ public abstract class Client {
 
     public Client() {}
 
-    public Client(Address address, String teleNumb, String email) {
+    public Client(Long id, Address address, String teleNumb, String email) {
+        setId(id);
         try{
             setAddress(address);
             setTeleNumb(teleNumb);

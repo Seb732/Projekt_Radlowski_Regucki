@@ -17,7 +17,7 @@ public class PersonalClientTest {
 
     Address test_address = new Address(1L, "Krakow", "31-152", "Warszawska",
                                                 "153A", "12");
-    PersonalClient test_personalClient = new PersonalClient(test_address, "902-321-321",
+    PersonalClient test_personalClient = new PersonalClient(1L, test_address, "902-321-321",
             "abcde@gmail.com", "Jan", "Brzechwa", "E213",
             "01234576882");
 

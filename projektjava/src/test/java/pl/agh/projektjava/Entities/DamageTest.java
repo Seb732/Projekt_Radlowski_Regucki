@@ -21,14 +21,14 @@ class DamageTest {
         damage.setId(1L);
         damage.setDescription("abcd");
         damage.setCar(new Car("Opel", "2001", "abcd", "SY1SL65848Z411439",
-                "KR-XY67", 200, String.valueOf(Car.Status.available)));
+                "KR-XY67", 200, Car.Status.available));
         damage.setDate("09-02-2022");
         damage.setPrice(10000);
 
         Assertions.assertEquals(1L, damage.getId());
         Assertions.assertEquals("abcd", damage.getDescription());
         assertThat(new Car("Opel", "2001", "abcd", "SY1SL65848Z411439",
-                "KR-XY67", 200, String.valueOf(Car.Status.available)),
+                "KR-XY67", 200, Car.Status.available),
                 samePropertyValuesAs(damage.getCar()));
         assertThat(LocalDate.of(2022, 2, 9), samePropertyValuesAs(damage.getDate()));
         Assertions.assertEquals(10000, damage.getPrice());

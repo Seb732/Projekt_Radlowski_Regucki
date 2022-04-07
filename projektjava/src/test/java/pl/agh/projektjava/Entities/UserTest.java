@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserTest {
 
     @Test
-    public void RegisterNewUser_FieldsGiven_ShouldCreateNewUser(){
+    public void RegisterNewUser_FieldsGiven_ShouldCreateNewUser() {
         User user = new User();
         user.setId(1L);
         user.setFirstName("Jan");
@@ -24,14 +24,9 @@ class UserTest {
         user.setAddress(new Address(1L, "Krakow", "31-152", "Warszawska",
                 "153A", "12"));
         user.setRole("admin");
-        try {
-            user.setTeleNumb("509-231-312");
-            user.setEmail("abcde@gmail.com");
-            user.setPassword("Kdsada123");
-        }
-        catch (ExceptionWrongTeleNumb | ExceptionWrongEmail | ExceptionWrongPassword e){
-            assert true;
-        }
+        user.setTeleNumb("509-231-312");
+        user.setEmail("abcde@gmail.com");
+        user.setPassword("Kdsada123");
 
         Assertions.assertEquals(1L, user.getId());
         Assertions.assertEquals("Jan", user.getFirstName());

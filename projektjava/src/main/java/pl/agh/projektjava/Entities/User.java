@@ -45,14 +45,8 @@ public class User {
     }
 
     public User(Long id, String firstName, String lastName, Address address, String teleNumb, String email, String role, String password) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-        this.teleNumb = teleNumb;
-        this.email = email;
-        this.role = role;
-        this.password = password;
+        setId(id);setFirstName(firstName);setLastName(lastName);setAddress(address);setTeleNumb(teleNumb);setEmail(email);
+        setRole(role);setPassword(password);
     }
 
     // getters and setters

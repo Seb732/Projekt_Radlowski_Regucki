@@ -23,7 +23,7 @@ class CarTest {
             car.setProdYear("2001");
             car.setVIN("SY1SL65848Z411439");
             car.setRegistNumb("KR-XY67");
-            car.setStatus(String.valueOf(Car.Status.available));
+            car.setStatus(Car.Status.available);
         }
         catch (ExceptionWrongProdYear | ExceptionWrongVIN | ExceptionWrongRegistNumb e){
             assert true;
@@ -35,7 +35,7 @@ class CarTest {
         Assertions.assertEquals("2001", car.getProdYear());
         Assertions.assertEquals("SY1SL65848Z411439", car.getVIN());
         Assertions.assertEquals("KR-XY67", car.getRegistNumb());
-        Assertions.assertEquals(String.valueOf(Car.Status.available), car.getStatus());
+        Assertions.assertEquals(Car.Status.available, car.getStatus());
     }
 
 

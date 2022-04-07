@@ -48,12 +48,8 @@ public class Address
     }
 
     public Address(Long id, String city, String postalCode, String street, String buildingNumb, String localNumb) {
-        this.id = id;
-        this.city = city;
-        this.postalCode = postalCode;
-        this.street = street;
-        this.buildingNumb = buildingNumb;
-        this.localNumb = localNumb;
+        setId(id);setCity(city);setPostalCode(postalCode);setStreet(street);setBuildingNumb(buildingNumb);setLocalNumb(localNumb);
+
     }
 
 

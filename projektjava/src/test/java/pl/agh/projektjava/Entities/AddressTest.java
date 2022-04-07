@@ -14,12 +14,7 @@ class AddressTest {
         Address address = new Address();
         address.setId(1L);
         address.setCity("Krakow");
-        try{
-            address.setPostalCode("31-152");
-        }
-        catch (ExceptionWrongPostalCode e){
-            assert true;
-        }
+        address.setPostalCode("31-152");
         address.setStreet("Warszawska");
         address.setBuildingNumb("153A");
         address.setLocalNumb("12");

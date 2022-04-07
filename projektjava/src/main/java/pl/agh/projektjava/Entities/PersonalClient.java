@@ -28,8 +28,8 @@ public class PersonalClient extends Client{
     // constructors
 
     public PersonalClient(){super();}
-    public PersonalClient(Address address,String teleNumb, String email, String firstName, String lastName, String idCard, String pesel){
-        super(address ,teleNumb, email);
+    public PersonalClient(Long id, Address address,String teleNumb, String email, String firstName, String lastName, String idCard, String pesel){
+        super(id, address ,teleNumb, email);
         setFirstName(firstName);setLastName(lastName);setIdCard(idCard);
         try{
             setPesel(pesel);

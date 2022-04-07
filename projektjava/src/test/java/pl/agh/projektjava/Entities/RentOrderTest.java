@@ -26,7 +26,7 @@ class RentOrderTest {
         rentOrder.setClient(new PersonalClient(1L, new Address(1L, "Krakow", "31-152", "Warszawska",
                 "153A", "12"),"592-321-132", "dsadsa@gmail.com", "Jan",  "Kdsaas", "KDSA129", "01221090552"));
         rentOrder.setCar(new Car("Opel", "2001", "abcd", "SY1SL65848Z411439",
-                "KR-XY67", 200, String.valueOf(Car.Status.available)));
+                "KR-XY67", 200, Car.Status.available));
         rentOrder.setRentStartDate("01-02-2022");
         rentOrder.setRentEndDate("09-02-2022");
         rentOrder.setStatus(Car.Status.hired); // chyba do zmiany
@@ -36,7 +36,7 @@ class RentOrderTest {
         assertThat(new PersonalClient(1L, new Address(1L, "Krakow", "31-152", "Warszawska",
                 "153A", "12"),"592-321-132", "dsadsa@gmail.com", "Jan",  "Kdsaas", "KDSA129", "01221090552"), samePropertyValuesAs(rentOrder.getClient()));
         assertThat(new Car("Opel", "2001", "abcd", "SY1SL65848Z411439",
-                "KR-XY67", 200, String.valueOf(Car.Status.available)), samePropertyValuesAs(rentOrder.getCar()));
+                "KR-XY67", 200, Car.Status.available), samePropertyValuesAs(rentOrder.getCar()));
         assertThat(LocalDate.of(2022, 2, 1), samePropertyValuesAs(rentOrder.getRentStartDate()));
         assertThat(LocalDate.of(2022, 2, 9), samePropertyValuesAs(rentOrder.getRentEndDate()));
         Assertions.assertEquals(Car.Status.hired, rentOrder.getStatus());
