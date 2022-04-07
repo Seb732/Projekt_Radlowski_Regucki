@@ -1,12 +1,175 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <script src="https://kit.fontawesome.com/742ec404dd.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/8a53eb5bc5.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap">
+    <title>Samochody</title>
+    <style>
+        * {
+            font-family: "Poppins";
+        }
+        body{
+            background-color: #dde5f4;
+            margin: 0;
+            height: 100vh;
+        }
+        .header{
+            position: sticky;
+            background-color: #3e4684;
+            height: 70px;
+            margin: 0;
+            display: flex;
+            justify-content: space-between;
+            padding-right: 10px;
+            padding-left: 10px;
+        }
+
+        .header *{
+            color:#e6e9f9;
+        }
+
+        #navbar_logo_normal{
+            display: flex;
+            text-align: center;
+            align-items: center;
+            font-size: 2.5rem;
+            text-decoration: none;
+        }
+        .container_main{
+            width: 60vw;
+            height: 80vh;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .container{
+            background-color: #f1f7fe;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: 1fr;
+            grid-column-gap: 0;
+            grid-row-gap: 0;
+            border: solid 1px gray;
+            margin-top: 5%;
+            margin-right: 5%;
+            border-radius: 10px;
+        }
+        li{
+            list-style: none;
+        }
+        .main_inf{
+            grid-area: 1 / 1 / 2 / 2;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat(2, 1fr);
+            grid-column-gap: 0;
+            grid-row-gap: 0;
+        }
+        .details{
+            padding-left: 10%;
+            grid-area: 1 / 2 / 2 / 3;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 0.7fr 1fr;
+            grid-column-gap: 0;
+            grid-row-gap: 0;
+
+        }
+        .brand_model_prodYear{
+            grid-area: 1 / 1 / 2 / 2;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat(2, 1fr);
+            grid-column-gap: 0;
+            grid-row-gap: 0;
+        }
+        .brand_model{
+            padding-left: 10%;
+            padding-top: 5%;
+            font-size: 34px;
+            font-weight: bold;
+            grid-area: 1 / 1 / 2 / 2;
+        }
+        .prodYear{
+            padding-left: 10%;
+            grid-area: 2 / 1 / 3 / 2;
+        }
+        .priceRate{
+            padding-top: 10%;
+            padding-left: 25%;
+            font-size: 24px;
+            grid-area: 2 / 1 / 3 / 2;
+        }
+        .status{
+            padding-top: 10%;
+            font-size: 28px;
+            grid-area: 1 / 1 / 2 / 2;
+        }
+        .spec{
+            padding-top: 10%;
+            grid-area: 2 / 1 / 3 / 2;
+        }
+        .info{
+            display: inline-block;
+        }
+
+
+    </style>
 </head>
 <body>
-    
+    <header class="header">
+        <a href="#home" id="navbar_logo_normal"><b><i class="fa-solid fa-car-side"></i>Rentaly</b></a>
+    </header>
+    <div class="container_main">
+        <ul>
+            <li th:each="car: ${cars}">
+                <div class="container">
+                    <div class="main_inf">
+                        <div class="brand_model_prodYear">
+                            <div class="brand_model">
+                                <span th:text="${car.brand}"></span>
+                                <span th:text="${car.model}"></span>
+                            </div>
+                            <div class="prodYear" th:text="${car.prodYear}"></div>
+                        </div>
+                        <div class="priceRate" th:text="${car.priceRate}"></div>
+                    </div>
+                    <div class="details">
+                        <div class="status" th:text="${car.status}"></div>
+                        <div class="spec info">
+                            <a><i class="fa-solid fa-car" ></i>
+                            <p th:text="${car.registNumb}" style="display: inline-block"></p>
+                            </a>
+                            <p id="VIN" th:text="${car.VIN}"></p>
+
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <script>
+        const vin_array = document.querySelectorAll("#VIN");
+        vin_array.forEach(element => {
+            element.innerHTML = '<span style="font-weight: bold">' + "VIN " + '</span>' + element.innerHTML;
+        })
+        const price_array = document.querySelectorAll(".priceRate");
+        price_array.forEach(element => {
+            element.innerHTML += " zł/day";
+        })
+        const av_array = document.querySelectorAll(".status");
+        av_array.forEach(element => {
+            if (element.childNodes[0].nodeValue === "hired"){
+                element.style = 'color: orange';
+            }
+            else{
+                element.style = 'color: green';
+            }
+        })
+
+    </script>
 </body>
 </html>

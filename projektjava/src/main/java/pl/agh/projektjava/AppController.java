@@ -29,6 +29,13 @@ public class AppController {
     {
         model.addAttribute("cars",carServices.getAllHired());
         return "index";
-    }    
+    }
+
+    @GetMapping("/cars")
+    public String clients(Model model){
+        model.addAttribute("cars", carServices.getAll());
+        return "cars";}
+
+
 }
 
