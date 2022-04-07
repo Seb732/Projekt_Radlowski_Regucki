@@ -21,6 +21,6 @@ public interface CompanyClientRepo extends ClientRepo<CompanyClient>
     public Iterable<CompanyClient> getCompanyByName(@Param("name") String name);
 
     // QUERY SEARCH
-    @Query("SELECT C FROM CompanyClient c WHERE c.NIP like %:query% OR c.name like %:query% OR c.REGON like %:query%")
+    @Query("SELECT c FROM CompanyClient c WHERE c.NIP like %:query% OR c.name like %:query% OR c.REGON like %:query%")
     public Iterable<CompanyClient> getByQuery(@Param("query") String query);
 }
