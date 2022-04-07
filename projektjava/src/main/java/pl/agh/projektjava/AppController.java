@@ -29,6 +29,7 @@ public class AppController {
     {
         model.addAttribute("cars",carServices.getAllHired());
         return "index";
-    }    
+    }
+    
 }
 
