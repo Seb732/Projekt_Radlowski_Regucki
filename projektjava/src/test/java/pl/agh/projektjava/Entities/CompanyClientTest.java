@@ -7,11 +7,9 @@ import pl.agh.projektjava.Exceptions.ExceptionWrongEmail;
 import pl.agh.projektjava.Exceptions.ExceptionWrongNIP;
 import pl.agh.projektjava.Exceptions.ExceptionWrongRegon;
 import pl.agh.projektjava.Exceptions.ExceptionWrongTeleNumb;
-import static org.hamcrest.Matchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.samePropertyValuesAs;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class CompanyClientTest {

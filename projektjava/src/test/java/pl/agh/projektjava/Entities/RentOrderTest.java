@@ -1,19 +1,16 @@
 package pl.agh.projektjava.Entities;
 
-import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.event.annotation.BeforeTestMethod;
+
 
 import java.time.LocalDate;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.samePropertyValuesAs;
 
-import static org.junit.jupiter.api.Assertions.*;
+
 
 @SpringBootTest
 class RentOrderTest {
@@ -29,7 +26,7 @@ class RentOrderTest {
                 "KR-XY67", 200, Car.Status.available));
         rentOrder.setRentStartDate("01-02-2022");
         rentOrder.setRentEndDate("09-02-2022");
-        rentOrder.setStatus(Car.Status.hired); // chyba do zmiany
+        rentOrder.setStatus(rentOrder.status.active); // chyba do zmiany
         rentOrder.setTotalCost();
 
         Assertions.assertEquals(1L, rentOrder.getId());

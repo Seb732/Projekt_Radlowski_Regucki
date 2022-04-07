@@ -30,6 +30,7 @@ public class AppController {
         model.addAttribute("cars",carServices.getAllHired());
         return "index";
     }
+<<<<<<< HEAD
 
     @GetMapping("/cars")
     public String clients(Model model){
@@ -37,5 +38,8 @@ public class AppController {
         return "cars";}
 
 
+=======
+    
+>>>>>>> 0c7c7ef2ba6f4820e3b64d9594751273d4e05766
 }
 

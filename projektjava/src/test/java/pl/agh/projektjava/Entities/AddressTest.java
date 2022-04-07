@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import pl.agh.projektjava.Exceptions.ExceptionWrongPostalCode;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class AddressTest {

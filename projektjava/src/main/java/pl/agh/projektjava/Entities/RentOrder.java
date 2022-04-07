@@ -21,6 +21,7 @@ import pl.agh.projektjava.Entities.Car.Status;
 
 @Entity
 public class RentOrder {
+    public enum OrderStatus{active,finished}
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
@@ -37,14 +38,14 @@ public class RentOrder {
     LocalDate rentEndDate;
 
     @Enumerated(EnumType.STRING)
-    Status status;
+    OrderStatus status;
 
     double totalCost;
 
 
     // constructors
     public RentOrder(){}
-    public RentOrder(Client client, Car car, String rentStartDate, String rentEndDate, Status status){
+    public RentOrder(Client client, Car car, String rentStartDate, String rentEndDate, OrderStatus status){
         setClient(client);
         setCar(car);
         setRentStartDate(rentStartDate);
@@ -79,8 +80,8 @@ public class RentOrder {
     @Access(AccessType.PROPERTY)
     public LocalDate getRentEndDate() {return rentEndDate;}
 
-    public void setStatus(Status status) {this.status = status;}
-    public Status getStatus() {return status;}
+    public void setStatus(OrderStatus status) {this.status = status;}
+    public OrderStatus getStatus() {return status;}
 
     public void setTotalCost() {
         this.totalCost = TimeUnit.DAYS.convert(Math.abs(java.util.Date.from(rentEndDate.atStartOfDay()
