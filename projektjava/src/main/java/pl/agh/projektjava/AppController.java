@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import pl.agh.projektjava.Entities.Car;
 import pl.agh.projektjava.Services.CarServices;
 
 @Controller
@@ -31,12 +32,21 @@ public class AppController {
         return "index";
     }
 
+    // CARS CONTROLLERS
 
     @GetMapping("/cars")
-    public String clients(Model model){
+    public String cars(Model model){
         model.addAttribute("cars", carServices.getAll());
         return "cars";}
-
+    
+    @GetMapping("/cars/new")
+    public String newCar(Model model)
+    {
+        Car car=new Car();
+        car.setStatus(Car.Status.unavailable);
+        model.addAttribute("car", car);
+        return "createCar";
+    }
     
 }
 

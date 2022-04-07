@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -135,7 +135,7 @@
 </head>
 <body>
     <header class="header">
-        <a href="#home" id="navbar_logo_normal"><b><i class="fa-solid fa-car-side"></i>Rentaly</b></a>
+        <a href="/" id="navbar_logo_normal"><b><i class="fa-solid fa-car-side"></i>Rentaly</b></a>
         <div id="setting">
             <div class="setting_div">
                 <button class="setting_btn">
@@ -145,31 +145,31 @@
         </div>
         </header>
     <div class="container">
-        <form class="form">
+        <form class="form" th:action="@{/cars}" th:object="${student}" method="POST">
             <h1 style="text-align: center">Utwórz samochód</h1>
             <div class="input">
                 <label>VIN</label>
-                <input placeholder="VIN">
+                <input type="text" name="VIN" th:field="*{VIN}" placeholder="VIN">
             </div>
             <div class="input">
                 <label>Marka</label>
-                <input placeholder="Marka">
+                <input type="text" name="brand" th:field="*{brand}" placeholder="Marka">
             </div>
             <div class="input">
                 <label>Model</label>
-                <input placeholder="Model">
+                <input type="text" name="model" th:field="*{model}" placeholder="Model">
             </div>
             <div class="input">
                 <label>Rok produkcji</label>
-                <input placeholder="Rok produkcji">
+                <input type="text" name="prodYear" th:field="*{prodYear}" placeholder="Rok produkcji">
             </div>
             <div class="input">
                 <label>Nr. Rejestracyjny</label>
-                <input placeholder="Nr. Rejestracyjny">
+                <input type="text" name="registNumb" th:field="*{registNumb}" placeholder="Nr. Rejestracyjny">
             </div>
             <div class="input">
                 <label>Stawka</label>
-                <input placeholder="Stawka">
+                <input type="double" name="priceRate" th:field="*{priceRate}" placeholder="Stawka">
             </div>
         </form>
     </div>
