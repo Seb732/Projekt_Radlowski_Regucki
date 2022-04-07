@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.samePropertyValuesAs;
 
-import static org.junit.jupiter.api.Assertions.*;
+
 
 @SpringBootTest
 class DamageTest {

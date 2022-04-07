@@ -7,7 +7,6 @@ import pl.agh.projektjava.Exceptions.ExceptionWrongProdYear;
 import pl.agh.projektjava.Exceptions.ExceptionWrongRegistNumb;
 import pl.agh.projektjava.Exceptions.ExceptionWrongVIN;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class CarTest {
