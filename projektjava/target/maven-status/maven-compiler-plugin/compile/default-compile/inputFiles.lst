@@ -1,6 +1,7 @@
 /Users/jakubradlowski/Desktop/4 semestr/Java/projekt-22-03-2022-radlowski_regucki/projektjava/src/main/java/pl/agh/projektjava/Exceptions/ExceptionWrongRegon.java
 /Users/jakubradlowski/Desktop/4 semestr/Java/projekt-22-03-2022-radlowski_regucki/projektjava/src/main/java/pl/agh/projektjava/ProjektjavaApplication.java
 /Users/jakubradlowski/Desktop/4 semestr/Java/projekt-22-03-2022-radlowski_regucki/projektjava/src/main/java/pl/agh/projektjava/Repos/DamageRepo.java
+/Users/jakubradlowski/Desktop/4 semestr/Java/projekt-22-03-2022-radlowski_regucki/projektjava/src/main/java/pl/agh/projektjava/Exceptions/ExceptionWrongPassword.java
 /Users/jakubradlowski/Desktop/4 semestr/Java/projekt-22-03-2022-radlowski_regucki/projektjava/src/main/java/pl/agh/projektjava/Entities/CompanyClient.java
 /Users/jakubradlowski/Desktop/4 semestr/Java/projekt-22-03-2022-radlowski_regucki/projektjava/src/main/java/pl/agh/projektjava/Entities/PersonalClient.java
 /Users/jakubradlowski/Desktop/4 semestr/Java/projekt-22-03-2022-radlowski_regucki/projektjava/src/main/java/pl/agh/projektjava/Entities/Client.java
@@ -18,6 +19,7 @@
 /Users/jakubradlowski/Desktop/4 semestr/Java/projekt-22-03-2022-radlowski_regucki/projektjava/src/main/java/pl/agh/projektjava/AppController.java
 /Users/jakubradlowski/Desktop/4 semestr/Java/projekt-22-03-2022-radlowski_regucki/projektjava/src/main/java/pl/agh/projektjava/Entities/User.java
 /Users/jakubradlowski/Desktop/4 semestr/Java/projekt-22-03-2022-radlowski_regucki/projektjava/src/main/java/pl/agh/projektjava/Entities/Damage.java
+/Users/jakubradlowski/Desktop/4 semestr/Java/projekt-22-03-2022-radlowski_regucki/projektjava/src/main/java/pl/agh/projektjava/Exceptions/ExceptionWrongPostalCode.java
 /Users/jakubradlowski/Desktop/4 semestr/Java/projekt-22-03-2022-radlowski_regucki/projektjava/src/main/java/pl/agh/projektjava/Entities/Car.java
 /Users/jakubradlowski/Desktop/4 semestr/Java/projekt-22-03-2022-radlowski_regucki/projektjava/src/main/java/pl/agh/projektjava/Repos/AddressRepo.java
 /Users/jakubradlowski/Desktop/4 semestr/Java/projekt-22-03-2022-radlowski_regucki/projektjava/src/main/java/pl/agh/projektjava/Services/AddressServices.java
