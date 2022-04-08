@@ -79,6 +79,7 @@ public class AppController {
             if(Validation.ValRegistNumb(car.getRegistNumb())){} else {throw new ExceptionWrongRegistNumb("Incorrect  registration number");}
             car.setStatus(Car.Status.unavailable);
             carServices.saveCar(car);
+            model.addAttribute("message", "Car saved");
             return "redirect:/cars";
         } catch (Exception e) {
             model.addAttribute("error",e.getMessage());
