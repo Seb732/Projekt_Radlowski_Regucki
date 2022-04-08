@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import pl.agh.projektjava.Entities.Car;
@@ -12,6 +13,7 @@ import pl.agh.projektjava.Entities.Validation;
 import pl.agh.projektjava.Exceptions.ExceptionWrongProdYear;
 import pl.agh.projektjava.Exceptions.ExceptionWrongRegistNumb;
 import pl.agh.projektjava.Exceptions.ExceptionWrongVIN;
+import pl.agh.projektjava.Repos.CarRepo;
 import pl.agh.projektjava.Services.CarServices;
 
 @Controller
@@ -46,6 +48,11 @@ public class AppController {
         model.addAttribute("cars", carServices.getAll());
         return "cars";}
     
+    /**
+     * Returns form to create new car
+     * @param model
+     * @return
+     */
     @GetMapping("/cars/new")
     public String newCar(Model model)
     {
@@ -56,7 +63,13 @@ public class AppController {
         return "createCar";
     }
     
-    @PostMapping("/cars")
+    /**
+     * Checks if all car info is valid and saves it. If it's not valid then returns error to form.
+     * @param car
+     * @param model
+     * @return
+     */
+    @PostMapping("/cars/new")
     public String saveCar(@ModelAttribute("car") Car car, Model model)
     {
         try {
@@ -71,7 +84,47 @@ public class AppController {
             model.addAttribute("car", car);
             return newCar(model);
         }
+    }
+
+    @GetMapping("/cars/details/{vin}")
+    public String summaryCar(@PathVariable String vin, Model model)
+    {
+        model.addAttribute("car",carServices.getCarByVin(vin).get());
+        return "carDetails";
+    }
+
+    @GetMapping("/cars/edit/{vin}")
+    public String editCarForm(@PathVariable String vin, Model model)
+    {
         
+        model.addAttribute("car", carServices.getCarByVin(vin).get());
+        return "editCar";
+    }
+
+    @PostMapping("/cars/edit/{vin}")
+    public String saveEditedCar(@ModelAttribute("car") Car car, Model model)
+    {
+        try {
+            if(Validation.ValVIN(car.getVIN())){} else {throw new ExceptionWrongVIN("Incorrect VIN");}
+            if(Validation.ValProdYear(car.getProdYear())){} else {throw new ExceptionWrongProdYear("Incorrect roduction year");}
+            if(Validation.ValRegistNumb(car.getRegistNumb())){} else {throw new ExceptionWrongRegistNumb("Incorrect  registration number");}
+            car.setStatus(Car.Status.unavailable);
+            carServices.saveCar(car);
+            model.addAttribute("message", "Car info updated");
+            return cars(model);
+        } catch (Exception e) {
+            model.addAttribute("error",e.getMessage());
+            model.addAttribute("car", car);
+            return editCarForm(car.getVIN(),model);
+        }
+    }
+
+    @PostMapping("/cars/delete/{vin}")
+    public String deleteCar(@PathVariable String vin, Model model)
+    {
+        carServices.deleteCarByVin(vin);
+        model.addAttribute("message", "Car succefully deleted");
+        return cars(model);
     }
 }
 
