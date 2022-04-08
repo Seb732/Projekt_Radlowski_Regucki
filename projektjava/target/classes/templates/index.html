@@ -149,7 +149,7 @@
         </header>
     <div class="container">
         <div class="cont_main" id="others">
-            <h1>Czesc</h1>
+            <h1 th:each="car: ${cars}" th:text="${car.brand}"></h1>
         </div>
         <div class="cont_main" id="map_container">
             <h1 style="height:10%; margin:0;">Wypożyczone samochody</h1>
