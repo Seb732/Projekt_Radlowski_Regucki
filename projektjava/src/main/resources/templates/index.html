@@ -168,15 +168,18 @@
                     //markers
         
                             var iconlink=/*[[@{/icons/car-icon-map.png}]]*/'';
-        
+
         
                         /*[# th:each="car : ${cars}"]*/
+                            var detailsLink='/cars/details/'+/*[[${car.VIN}]]*/;
+
                             var marker= new google.maps.Marker({
                             position:{lat:/*[[${car.latitude}]]*/,lng:/*[[${car.longitude}]]*/},
                             icon: {
                                 labelOrigin: new google.maps.Point(25,0),
                                 url: iconlink
                             },
+                            url: detailsLink,
                             label: {
                                 text: [[${car.registNumb}]],
                                 color: "black",
@@ -184,6 +187,9 @@
                             },
                             map:map
                         })
+                        google.maps.event.addListener(marker, 'click', function() {
+                        window.location.href = this.url;
+                        });
                         /*[/]*/
                 }
             </script>
