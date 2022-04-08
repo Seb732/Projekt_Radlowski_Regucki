@@ -5,6 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/742ec404dd.js" crossorigin="anonymous"></script>
+    <script>
+        setTimeout(() => {
+        const box = document.getElementById('error');
+        box.style.visibility = 'hidden';
+        }, 3000); 
+    </script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap">
     <title>Car</title>
 <style>
@@ -14,7 +20,6 @@
     body{
         background-color: #dde5f4;
         margin: 0;
-        height: 100vh;
     }
     .header{
         position: sticky;
@@ -116,7 +121,7 @@
         margin-left: 5%;
         display: flex;
         flex-direction: column;
-        width: 50%;
+        width: 80%;
     }
 
     input{
@@ -151,37 +156,54 @@
         </div>
         </header>
     <div class="container">
-        <div class="error_cont" style="width: 100%; height:5rem;display: flex; align-items: center; justify-content: flex-end;">
+        <div id="error" style="width: 100%; height:5rem;display: flex; align-items: center; justify-content: flex-end;">
             <div class="error" th:if="${error}" style="background-color: red;height: 70%; width:20%; border: 1px solid black; margin-right: 1%;text-align: center;">
                 <p th:text="${error}"></p>
             </div>
         </div>
-        <div class="form">
+        <div class="form"  style="margin-bottom: 20px;">
             <h1 style="width: 100%;text-align:center">Edytuj dane samochodu</h1>
             <form th:action="@{/cars/edit/{vin}(vin=${car.VIN})}" th:object="${car}" method="POST">
-                <div class="input">
-                    <label><b>VIN</b></label>
-                    <input type="text" name="VIN" th:field="*{VIN}" placeholder="VIN" style="color: gray;" readonly>
-                </div>
-                <div class="input">
-                    <label><b>Marka</b></label>
-                    <input type="text" name="brand" th:field="*{brand}" placeholder="Marka">
-                </div>
-                <div class="input">
-                    <label><b>Model</b></label>
-                    <input type="text" name="model" th:field="*{model}" placeholder="Model">
-                </div>
-                <div class="input">
-                    <label><b>Rok produkcji</b></label>
-                    <input type="text" name="prodYear" th:field="*{prodYear}" placeholder="Rok produkcji">
-                </div>
-                <div class="input">
-                    <label><b>Nr. Rejestracyjny</b></label>
-                    <input type="text" name="registNumb" th:field="*{registNumb}" placeholder="Nr. Rejestracyjny">
-                </div>
-                <div class="input">
-                    <label><b>Stawka</b></label>
-                    <input type="number" name="priceRate" th:field="*{priceRate}" placeholder="Stawka">
+                <div style="display: flex; flex-direction: row;">
+                    <div id="left" style="width: 70%;">
+                        <div class="input">
+                            <label><b>VIN</b></label>
+                            <input type="text" name="VIN" th:field="*{VIN}" placeholder="VIN" style="color: gray;" readonly>
+                        </div>
+                        <div class="input">
+                            <label><b>Marka</b></label>
+                            <input type="text" name="brand" th:field="*{brand}" placeholder="Marka">
+                        </div>
+                        <div class="input">
+                            <label><b>Model</b></label>
+                            <input type="text" name="model" th:field="*{model}" placeholder="Model">
+                        </div>
+                        <div class="input">
+                            <label><b>Rok produkcji</b></label>
+                            <input type="text" name="prodYear" th:field="*{prodYear}" placeholder="Rok produkcji">
+                        </div>
+                        <div class="input">
+                            <label><b>Nr. Rejestracyjny</b></label>
+                            <input type="text" name="registNumb" th:field="*{registNumb}" placeholder="Nr. Rejestracyjny">
+                        </div>
+                        <div class="input">
+                            <label><b>Stawka</b></label>
+                            <input type="number" name="priceRate" th:field="*{priceRate}" placeholder="Stawka">
+                        </div>
+                    </div>
+                    <div id="right" style="width: 30%;" >
+                        <fieldset style=" display: flex; flex-direction: column; margin-right: 10%;">
+                            <legend><b>Status pojazdu</b></legend>
+                            <div th:each="stat: ${T(pl.agh.projektjava.Entities.Car$Status).values()}">
+                                <input type="radio" id="kobieta" name="status"  th:field="*{status}" th:value="${stat}">
+                                <label th:text="${stat}"></label>
+                            </div>
+                            <!-- <input type="radio" id="mezczyzna" name="status" th:field="*{status}" value="hired">
+                            <label for="mezczyzna">Hired</label>
+                            <input type="radio" id="inne" name="status" th:field="*{status}" value="unavailable">
+                            <label for="inne">Unavailable</label> -->
+                        </fieldset>
+                    </div>
                 </div>
                 <div id="sub_cont">
                     <button type="submit">Zapisz</button>
