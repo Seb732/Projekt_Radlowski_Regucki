@@ -14,7 +14,7 @@
         body{
             background-color: #dde5f4;
             margin: 0;
-            height: 100vh;
+            margin-bottom: 2%;
         }
         .header{
             position: sticky;
@@ -93,10 +93,28 @@
 
     .container_main{
             width: 60vw;
-            height: 80vh;
             margin-left: auto;
             margin-right: auto;
         }
+    #map_container{
+        width: 100%;
+        margin-top: 5%;
+        margin-bottom: 5%;
+        border:1px solid grey;
+        border-radius: 10px;
+        background-color: #f1f7fe;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+    }
+
+    #map {
+        height: 30vh;
+        width: 95%;
+    }
+
         .container{
             background-color: #f1f7fe;
             display: grid;
@@ -106,7 +124,6 @@
             grid-row-gap: 0;
             border: solid 1px gray;
             margin-top: 5%;
-            margin-right: 5%;
             border-radius: 10px;
         }
         li{
@@ -192,12 +209,15 @@
             </form>
         </div>
     </header>
+
+
     <div class="btn_cont" style="width:100%; display: flex; align-items: center; justify-content: space-between;">
         <form th:action= "@{/cars/delete/{vin}(vin=${car.VIN})}" method="post" style="margin-top: 1%; margin-left: 2%; height: 100%; cursor: pointer;">
             <button type="submit" style="background-color: rgb(235, 33, 33); border: 1px solid black; border-radius: 5px; color: white; font-size: medium; padding: 0.5rem;">Usuń auto</button>
         </form>
         <a th:href= "@{/cars/edit/{vin}(vin=${car.VIN})}" class="button" style="background-color: rgb(23, 182, 23);text-decoration: none; border-radius: 5px; padding: 0.5rem;color: white; border: 1px solid black; margin-top: 1%; margin-right: 2%;">Edytuj auto</a>
     </div>
+
     <div class="container_main">
             <div class="container">
                 <div class="main_inf">
@@ -219,6 +239,46 @@
                         <p id="VIN" th:text="${car.VIN}"></p>
                     </div>
                 </div>
+            </div>
+            <div id="map_container">
+                <h1 style="height:10%; margin-left: 2%;">Pozycja samochodu</h1>
+                <div id="map"></div>
+                <script th:inline="javascript">
+                    function initMap() {
+                        // Map options
+                        var options={
+                            zoom:12,
+                            center:{lat:/*[[${car.latitude}]]*/,lng:/*[[${car.longitude}]]*/}
+                        }
+            
+                        //new map
+                        var map=new google.maps.Map(document.getElementById('map'),options);
+            
+                        //markers
+            
+                                var iconlink=/*[[@{/icons/car-icon-map.png}]]*/'';
+            
+            
+                                var marker= new google.maps.Marker({
+                                position:{lat:/*[[${car.latitude}]]*/,lng:/*[[${car.longitude}]]*/},
+                                icon: {
+                                    labelOrigin: new google.maps.Point(25,0),
+                                    url: iconlink
+                                },
+                                label: {
+                                    text: [[${car.registNumb}]],
+                                    color: "black",
+                                    fontWeight: "bold"
+                                },
+                                map:map
+                            })
+                    }
+                </script>
+                <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+                <script
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUcs6WNxzNLK5FoGrglvf7ln2m7N2VPpQ&callback=initMap&v=weekly"
+                async
+                ></script>
             </div>
     </div>
     <script>

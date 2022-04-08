@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import pl.agh.projektjava.Entities.Car;
 import pl.agh.projektjava.Entities.Validation;
@@ -51,7 +53,8 @@ public class AppController {
      * @param model
      * @return
      */
-    @GetMapping("/cars/new")
+    // @GetMapping("/cars/new")
+    @RequestMapping(value = "/cars/new", method = RequestMethod.GET)
     public String newCar(Model model)
     {
         if(model.getAttribute("car")==null)
@@ -91,7 +94,8 @@ public class AppController {
         return "carDetails";
     }
 
-    @GetMapping("/cars/edit/{vin}")
+    // @GetMapping("/cars/edit/{vin}")
+    @RequestMapping(value = "/cars/edit/{vin}",method = RequestMethod.GET)
     public String editCarForm(@PathVariable String vin, Model model)
     {
         
