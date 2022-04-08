@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import pl.agh.projektjava.Entities.Car;
+import pl.agh.projektjava.Entities.Validation;
+import pl.agh.projektjava.Exceptions.ExceptionWrongProdYear;
+import pl.agh.projektjava.Exceptions.ExceptionWrongRegistNumb;
 import pl.agh.projektjava.Exceptions.ExceptionWrongVIN;
 import pl.agh.projektjava.Services.CarServices;
 
@@ -46,27 +49,28 @@ public class AppController {
     @GetMapping("/cars/new")
     public String newCar(Model model)
     {
-        try {
+        if(model.getAttribute("car")==null)
+        {
             model.addAttribute("car", new Car());
-            return "createCar";
-        } catch (Exception e) {
-            return "/";
         }
-    }
-
-    @ExceptionHandler(ExceptionWrongVIN.class)
-    public String vinError(Model model)
-    {
-        model.addAttribute("blad", "zly win");
-        return newCar(model);
+        return "createCar";
     }
     
     @PostMapping("/cars")
     public String saveCar(@ModelAttribute("car") Car car, Model model)
     {
-        car.setStatus(Car.Status.unavailable);
-        carServices.saveCar(car);
-        return "redirect:/cars";
+        try {
+            if(Validation.ValVIN(car.getVIN())){} else {throw new ExceptionWrongVIN("Incorrect VIN");}
+            if(Validation.ValProdYear(car.getProdYear())){} else {throw new ExceptionWrongProdYear("Incorrect roduction year");}
+            if(Validation.ValRegistNumb(car.getRegistNumb())){} else {throw new ExceptionWrongRegistNumb("Incorrect  registration number");}
+            car.setStatus(Car.Status.unavailable);
+            carServices.saveCar(car);
+            return "redirect:/cars";
+        } catch (Exception e) {
+            model.addAttribute("error",e.getMessage());
+            model.addAttribute("car", car);
+            return newCar(model);
+        }
         
     }
 }

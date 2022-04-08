@@ -97,8 +97,10 @@
         width: 100vw;
         height: 90%;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
+        justify-content: space-between;
     }
     .form{
         display: flex;
@@ -145,8 +147,10 @@
         </div>
         </header>
     <div class="container">
-        <div class="error" th:if="${blad}" style="background-color: red;">
-            <p>blad</p>
+        <div class="error_cont" style="width: 100%; height:5rem;display: flex; align-items: center; justify-content: flex-end;">
+            <div class="error" th:if="${error}" style="background-color: red;height: 70%; width:20%; border: 1px solid black; margin-right: 1%;text-align: center;">
+                <p th:text="${error}"></p>
+            </div>
         </div>
         <div class="form">
             <h1 style="width: 100%;text-align:center">Nowy samochod</h1>
@@ -173,7 +177,7 @@
                 </div>
                 <div class="input">
                     <label>Stawka</label>
-                    <input type="double" name="priceRate" th:field="*{priceRate}" placeholder="Stawka">
+                    <input type="number" name="priceRate" th:field="*{priceRate}" placeholder="Stawka">
                 </div>
                 <div id="sub_cont">
                     <button type="submit">Zapisz</button>
