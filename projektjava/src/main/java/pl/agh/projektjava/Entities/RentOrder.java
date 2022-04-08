@@ -17,7 +17,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import pl.agh.projektjava.Entities.Car.Status;
 
 @Entity
 public class RentOrder {
