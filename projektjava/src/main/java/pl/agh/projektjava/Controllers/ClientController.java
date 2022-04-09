@@ -19,7 +19,9 @@ public class ClientController {
     @RequestMapping(value = "/clients", method = RequestMethod.GET)
     public String allClients(Model model)
     {
-        model.addAttribute("clients",client.getAllPersonalClients());
+        model.addAttribute("personalClients",client.getAllPersonalClients());
+        model.addAttribute("companyClients", client.getAllCompanyClients());
         return "clients";
     }
+
 }

@@ -74,7 +74,7 @@
             grid-column-gap: 0px;
             grid-row-gap: 0px;
             border: solid 1px rgb(107, 104, 104);
-            margin-top: 5%;
+            margin-top: 2%;
             margin-right: 5%;
             border-radius: 10px;
         }
@@ -151,7 +151,7 @@
         .firstNameLastName {
             grid-area: 1 / 1 / 2 / 2;
             display: grid;
-            grid-template-columns: 1fr 0.5fr repeat(2, 1fr);
+            grid-template-columns: 1fr 0.7fr repeat(2, 1fr);
             grid-template-rows: 1fr;
             grid-column-gap: 0px;
             grid-row-gap: 0px;
@@ -176,7 +176,7 @@
         .teleNumbEmail {
             grid-area: 2 / 1 / 3 / 2;
             display: grid;
-            grid-template-columns: 1fr 0.5fr repeat(2, 1fr);
+            grid-template-columns: 1fr 0.7fr repeat(2, 1fr);
             grid-template-rows: 1fr;
             grid-column-gap: 0px;
             grid-row-gap: 0px;
@@ -201,7 +201,7 @@
         .idCardPesel {
             grid-area: 3 / 1 / 4 / 2;
             display: grid;
-            grid-template-columns: 1fr 0.5fr repeat(2, 1fr);
+            grid-template-columns: 1fr 0.7fr repeat(2, 1fr);
             grid-template-rows: 1fr;
             grid-column-gap: 0px;
             grid-row-gap: 0px;
@@ -236,7 +236,7 @@
         .cityPostalCode {
             grid-area: 1 / 1 / 2 / 2;
             display: grid;
-            grid-template-columns: 1fr 0.5fr repeat(2, 1fr);
+            grid-template-columns: 1fr 0.7fr repeat(2, 1fr);
             grid-template-rows: 1fr;
             grid-column-gap: 0px;
             grid-row-gap: 0px;
@@ -262,7 +262,7 @@
         .streetBuildingNumbLocalNumb{
             grid-area: 2 / 1 / 3 / 2;
             display: grid;
-            grid-template-columns: 1fr 0.5fr repeat(2, 1fr);
+            grid-template-columns: 1fr 0.7fr repeat(2, 1fr);
             grid-template-rows: 1fr;
             grid-column-gap: 0px;
             grid-row-gap: 0px;
@@ -325,6 +325,87 @@
         #listCompany{
             display: none;
         }
+        .companyInfoLabel {
+            grid-area: 1 / 1 / 2 / 2;
+            padding-left: 15%;
+            padding-top: 34%;
+        }
+        .company{
+            text-align: left;
+            grid-area: 1 / 1 / 2 / 2;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat(3, 1fr);
+            grid-column-gap: 0px;
+            grid-row-gap: 10px;
+            border-bottom: solid 2px #6c78cf;
+            padding-bottom: 3%;
+        }
+        .companyNameRow{
+            grid-area: 1 / 1 / 2 / 2;
+            display: grid;
+            grid-template-columns: 1fr 0.7fr repeat(2, 1fr);
+            grid-template-rows: 1fr;
+            grid-column-gap: 0px;
+            grid-row-gap: 0px;
+        }
+        .companyNameLabel {
+            grid-area: 1 / 1 / 2 / 2;
+        }
+
+        .companyName {
+            grid-area: 1 / 2 / 2 / 3;
+        }
+
+        .companyNIPREGON{
+            grid-area: 2 / 1 / 3 / 2;
+            display: grid;
+            grid-template-columns: 1fr 0.7fr repeat(2, 1fr);
+            grid-template-rows: 1fr;
+            grid-column-gap: 0px;
+            grid-row-gap: 0px;
+        }
+        .companyNIPLabel {
+            grid-area: 1 / 1 / 2 / 2;
+        }
+
+        .companyNIP {
+            grid-area: 1 / 2 / 2 / 3;
+        }
+
+        .companyREGONLabel {
+            grid-area: 1 / 3 / 2 / 4;
+        }
+
+        .companyREGON {
+            grid-area: 1 / 4 / 2 / 5;
+        }
+
+        .companyEmailTeleNumb{
+            grid-area: 3 / 1 / 4 / 2;
+            display: grid;
+            grid-template-columns: 1fr 0.7fr repeat(2, 1fr);
+            grid-template-rows: 1fr;
+            grid-column-gap: 0px;
+            grid-row-gap: 0px;
+        }
+
+        .companyEmailLabel {
+            grid-area: 1 / 1 / 2 / 2;
+        }
+
+        .companyEmail {
+            grid-area: 1 / 2 / 2 / 3;
+        }
+
+        .companyTeleNumbLabel {
+            grid-area: 1 / 3 / 2 / 4;
+        }
+
+        .companyTeleNumb {
+            grid-area: 1 / 4 / 2 / 5;
+        }
+
     </style>
 </head>
 <body>
@@ -342,9 +423,9 @@
         </div>
         <div id="listPersonal">
             <ul>
-                <li th:each="client : ${clients}">
+                <li th:each="personalClient : ${personalClients}">
                     <div class="container" >
-                        <div class="id" th:text="${client.id}"></div>
+                        <div class="id" th:text="${personalClient.id}"></div>
                         <div class="labels">
                             <div class="personalInfoLabel">Personal Info</div>
                             <div class="addressLabelMain">Address</div>
@@ -353,37 +434,37 @@
                             <div class="personal">
                                 <div class="firstNameLastName">
                                     <div class="firstNameLabel personalLabel">First Name</div>
-                                    <div class="firstName" th:text="${client.firstName}"></div>
+                                    <div class="firstName" th:text="${personalClient.firstName}"></div>
                                     <div class="lastNameLabel personalLabel">Last Name</div>
-                                    <div class="lastName" th:text="${client.lastName}"></div>
+                                    <div class="lastName" th:text="${personalClient.lastName}"></div>
                                 </div>
                                 <div class="teleNumbEmail">
                                     <div class="teleNumbLabel personalLabel">Phone</div>
-                                    <div class="teleNumb" th:text="${client.teleNumb}"></div>
+                                    <div class="teleNumb" th:text="${personalClient.teleNumb}"></div>
                                     <div class="emailLabel personalLabel">Email</div>
-                                    <div class="email" th:text="${client.email}"></div>
+                                    <div class="email" th:text="${personalClient.email}"></div>
                                 </div>
                                 <div class="idCardPesel">
                                     <div class="idCardLabel personalLabel">ID Card</div>
                                     <div class="idCard"></div>
                                     <div class="peselLabel personalLabel">PESEL</div>
-                                    <div class="pesel" th:text="${client.pesel}"></div>
+                                    <div class="pesel" th:text="${personalClient.pesel}"></div>
                                 </div>
                             </div>
                             <div class="address">
                                 <div class="cityPostalCode">
                                     <div class="cityLabel addressLabel">City</div>
-                                    <div class="city" th:text="${client.address.city}"></div>
+                                    <div class="city" th:text="${personalClient.address.city}"></div>
                                     <div class="postalCodeLabel addressLabel">Postal Code</div>
-                                    <div class="postalCode" th:text="${client.address.postalCode}"></div>
+                                    <div class="postalCode" th:text="${personalClient.address.postalCode}"></div>
                                 </div>
                                 <div class="streetBuildingNumbLocalNumb">
                                     <div class="streetLabel addressLabel">Street</div>
-                                    <div class="street" th:text="${client.address.street}"></div>
+                                    <div class="street" th:text="${personalClient.address.street}"></div>
                                     <div class="BuildingNumbLocalNumbLabel addressLabel">Building / Local</div>
                                     <div class="BuildingNumbLocalNumb">
-                                        <span th:text="${client.address.BuildingNumb}"></span>
-                                        <span class="localNumb" th:text="${client.address.LocalNumb}"></span>
+                                        <span th:text="${personalClient.address.buildingNumb}"></span>
+                                        <span class="localNumb" th:text="${personalClient.address.localNumb}"></span>
                                     </div>
                                 </div>
                             </div>
@@ -393,7 +474,54 @@
             </ul>
         </div>
         <div id="listCompany">
-            1
+            <ul>
+                <li th:each="companyClient :${companyClients}">
+                    <div class="container" >
+                        <div class="id" th:text="${companyClient.id}"></div>
+                        <div class="labels">
+                            <div class="companyInfoLabel">Personal Info</div>
+                            <div class="addressLabelMain">Address</div>
+                        </div>
+                        <div class="info">
+                            <div class="company">
+                                <div class="companyNameRow">
+                                    <div class="companyNameLabel personalLabel">Name</div>
+                                    <div class="companyName" th:text="${companyClient.name}"></div>
+                                </div>
+                                <div class="companyNIPREGON">
+                                    <div class="companyNIPLabel personalLabel">NIP</div>
+                                    <div class="companyNIP" th:text="${companyClient.NIP}">0213123321</div>
+                                    <div class="companyREGONLabel personalLabel">REGON</div>
+                                    <div class="companyREGON" th:text="${companyClient.REGON}">31232131233</div>
+                                </div>
+                                <div class="companyEmailTeleNumb">
+                                    <div class="companyEmailLabel personalLabel">Email</div>
+                                    <div class="companyEmail" th:text="${companyClient.email}">abcde@gmial.com</div>
+                                    <div class="companyTeleNumbLabel personalLabel" >Phone</div>
+                                    <div class="companyTeleNumb" th:text="${companyClient.teleNumb}"></div>
+                                </div>
+                            </div>
+                            <div class="address">
+                                <div class="cityPostalCode">
+                                    <div class="cityLabel addressLabel">City</div>
+                                    <div class="city" th:text="${companyClient.address.city}"></div>
+                                    <div class="postalCodeLabel addressLabel">Postal Code</div>
+                                    <div class="postalCode" th:text="${companyClient.address.postalCode}"></div>
+                                </div>
+                                <div class="streetBuildingNumbLocalNumb">
+                                    <div class="streetLabel addressLabel">Street</div>
+                                    <div class="street" th:text="${companyClient.address.street}"></div>
+                                    <div class="BuildingNumbLocalNumbLabel addressLabel">Building / Local</div>
+                                    <div class="BuildingNumbLocalNumb">
+                                        <span th:text="${companyClient.address.buildingNumb}"></span>
+                                        <span class="localNumb" th:text="${companyClient.address.localNumb}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
     <script>
