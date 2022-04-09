@@ -19,7 +19,7 @@ public class ClientController {
     @RequestMapping(value = "/clients", method = RequestMethod.GET)
     public String allClients(Model model)
     {
-        model.addAttribute("clients",client.getAllClients());
+        model.addAttribute("clients",client.getAllPersonalClients());
         return "clients";
     }
 }
