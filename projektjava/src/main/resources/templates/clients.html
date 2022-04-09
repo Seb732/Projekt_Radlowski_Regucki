@@ -60,7 +60,7 @@
         }
 
         .container_main {
-            width: 60vw;
+            width: 70vw;
             height: 80vh;
             margin-left: auto;
             margin-right: auto;
@@ -290,7 +290,41 @@
         .localNumb{
             color: black;
         }
+        .button_container {
+            margin-top: 2%;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: 1fr;
+            grid-column-gap: 40px;
+            grid-row-gap: 0px;
+        }
 
+        .personalClientButtonDiv {
+            grid-area: 1 / 1 / 2 / 2;
+
+        }
+
+        .companyClientButtonDiv {
+            grid-area: 1 / 2 / 2 / 3;
+            justify-items:left;
+        }
+        .button{
+            background-color: #6c78cf;
+            color: white;
+            border-radius: 10px;
+        }
+        .personalClientButton{
+            float: right;
+        }
+        .companyClientButton{
+            float: left;
+        }
+        #listPersonal{
+            display: block;
+        }
+        #listCompany{
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -298,64 +332,90 @@
         <a href="#home" id="navbar_logo_normal"><b><i class="fa-solid fa-car-side"></i>Rentaly</b></a>
     </header>
     <div class="container_main">
-        <ul>
-            <li th:each="client : ${clients}">
-                <div class="container" >
-                    <div class="id" th:text="${client.id}"></div>
-                    <div class="labels">
-                        <div class="personalInfoLabel">Personal Info</div>
-                        <div class="addressLabelMain">Address</div>
-                    </div>
-                    <div class="info">
-                        <div class="personal">
-                            <div class="firstNameLastName">
-                                <div class="firstNameLabel personalLabel">First Name</div>
-                                <div class="firstName" th:text="${client.firstName}"></div>
-                                <div class="lastNameLabel personalLabel">Last Name</div>
-                                <div class="lastName" th:text="${client.lastName}"></div>
-                            </div>
-                            <div class="teleNumbEmail">
-                                <div class="teleNumbLabel personalLabel">Phone</div>
-                                <div class="teleNumb" th:text="${client.teleNumb}"></div>
-                                <div class="emailLabel personalLabel">Email</div>
-                                <div class="email" th:text="${client.email}"></div>
-                            </div>
-                            <div class="idCardPesel">
-                                <div class="idCardLabel personalLabel">ID Card</div>
-                                <div class="idCard"></div>
-                                <div class="peselLabel personalLabel">PESEL</div>
-                                <div class="pesel" th:text="${client.pesel}"></div>
-                            </div>
+        <div class="button_container">
+            <div class="personalClientButtonDiv">
+                <button class="personalClientButton button" onclick="hideCompany()">Personal Clients</button>
+            </div>
+            <div class="companyClientButtonDiv">
+                <button class="companyClientButton button" onclick="hidePersonal()">Company Clients</button>
+            </div>
+        </div>
+        <div id="listPersonal">
+            <ul>
+                <li th:each="client : ${clients}">
+                    <div class="container" >
+                        <div class="id" th:text="${client.id}"></div>
+                        <div class="labels">
+                            <div class="personalInfoLabel">Personal Info</div>
+                            <div class="addressLabelMain">Address</div>
                         </div>
-                        <div class="address">
-                            <div class="cityPostalCode">
-                                <div class="cityLabel addressLabel">City</div>
-                                <div class="city" th:text="${client.address.city}"></div>
-                                <div class="postalCodeLabel addressLabel">Postal Code</div>
-                                <div class="postalCode" th:text="${client.address.postalCode}"></div>
+                        <div class="info">
+                            <div class="personal">
+                                <div class="firstNameLastName">
+                                    <div class="firstNameLabel personalLabel">First Name</div>
+                                    <div class="firstName" th:text="${client.firstName}"></div>
+                                    <div class="lastNameLabel personalLabel">Last Name</div>
+                                    <div class="lastName" th:text="${client.lastName}"></div>
+                                </div>
+                                <div class="teleNumbEmail">
+                                    <div class="teleNumbLabel personalLabel">Phone</div>
+                                    <div class="teleNumb" th:text="${client.teleNumb}"></div>
+                                    <div class="emailLabel personalLabel">Email</div>
+                                    <div class="email" th:text="${client.email}"></div>
+                                </div>
+                                <div class="idCardPesel">
+                                    <div class="idCardLabel personalLabel">ID Card</div>
+                                    <div class="idCard"></div>
+                                    <div class="peselLabel personalLabel">PESEL</div>
+                                    <div class="pesel" th:text="${client.pesel}"></div>
+                                </div>
                             </div>
-                            <div class="streetBuildingNumbLocalNumb">
-                                <div class="streetLabel addressLabel">Street</div>
-                                <div class="street" th:text="${client.address.street}"></div>
-                                <div class="BuildingNumbLocalNumbLabel addressLabel">Building / Local</div>
-                                <div class="BuildingNumbLocalNumb">
-                                    <span th:text="${client.address.BuildingNumb}"></span>
-                                    <span class="localNumb" th:text="${client.address.LocalNumb}"></span>
+                            <div class="address">
+                                <div class="cityPostalCode">
+                                    <div class="cityLabel addressLabel">City</div>
+                                    <div class="city" th:text="${client.address.city}"></div>
+                                    <div class="postalCodeLabel addressLabel">Postal Code</div>
+                                    <div class="postalCode" th:text="${client.address.postalCode}"></div>
+                                </div>
+                                <div class="streetBuildingNumbLocalNumb">
+                                    <div class="streetLabel addressLabel">Street</div>
+                                    <div class="street" th:text="${client.address.street}"></div>
+                                    <div class="BuildingNumbLocalNumbLabel addressLabel">Building / Local</div>
+                                    <div class="BuildingNumbLocalNumb">
+                                        <span th:text="${client.address.BuildingNumb}"></span>
+                                        <span class="localNumb" th:text="${client.address.LocalNumb}"></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </li>
-        </ul>
+                </li>
+            </ul>
+        </div>
+        <div id="listCompany">
+            1
+        </div>
     </div>
     <script>
-        var localNumb_array = document.querySelectorAll(".localNumb");
+        const localNumb_array = document.querySelectorAll(".localNumb");
         localNumb_array.forEach(element =>{
             if (element.childNodes.length !== 0){
                 element.innerHTML = "/ " + element.childNodes[0].nodeValue;
             }
         })
+        function hidePersonal(){
+            const listCompany = document.getElementById("listCompany")
+            const listPersonal = document.getElementById("listPersonal")
+            listPersonal.style.display = "none";
+            listCompany.style.display = "block"
+        }
+        function hideCompany(){
+            const listCompany = document.getElementById("listCompany")
+            const listPersonal = document.getElementById("listPersonal")
+            listPersonal.style.display = "block";
+            listCompany.style.display = "none"
+        }
+
     </script>
 </body>
 </html>
