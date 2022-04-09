@@ -25,16 +25,16 @@ public abstract class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Access(javax.persistence.AccessType.FIELD)
     Long id;
+
     @ManyToOne
     @JoinColumn(name = "address_id")
-    @Access(javax.persistence.AccessType.FIELD)
     Address address;
+    @Column
     String teleNumb;
+    @Column
     String email;
     @Column
-    @Access(AccessType.FIELD)
     double balance;
 
     // constructors
@@ -80,7 +80,7 @@ public abstract class Client {
         }
 
     }
-    @Column
+
     public String getTeleNumb(){return this.teleNumb;}
 
     public void setEmail(String email) throws ExceptionWrongEmail {
@@ -91,7 +91,7 @@ public abstract class Client {
             throw new ExceptionWrongEmail("Incorrect email");
         }
     }
-    @Column
+
     public String getEmail(){return this.email;}
 
     public double getBalance() {
