@@ -10,8 +10,12 @@
     <title>Clients</title>
     <style>
         :root {
-            --id_blue: #8faadb;
-            --address_blue: #5a83cf;
+            --personalId_bg: #1572A1;
+            --personalAddress_bg: #EFDAD7;
+            --personalLabel_bg: #6c93ab;
+            --companyId_bg: #1C658C;
+            --companyLabel_bg: #398AB9;
+            --companyAddressLabel_bg: #D8D2CB;
         }
 
         * {
@@ -81,7 +85,15 @@
 
         .id {
             color: white;
-            background-color: var(--address_blue);
+            background-color: var(--personalId_bg);
+            border-radius: 10px 0 0 10px;
+            padding-left: 20%;
+            padding-top: 15%;
+            grid-area: 1 / 1 / 2 / 2;
+        }
+        .idCompany{
+            color: white;
+            background-color: var(--companyId_bg);
             border-radius: 10px 0 0 10px;
             padding-left: 20%;
             padding-top: 15%;
@@ -127,14 +139,14 @@
             grid-template-rows: repeat(3, 1fr);
             grid-column-gap: 0px;
             grid-row-gap: 10px;
-            border-bottom: solid 2px #6c78cf;
+            border-bottom: solid 2px darkgray;
             padding-bottom: 3%;
         }
 
         .personalLabel {
             color: white;
             text-align: center;
-            background-color: var(--address_blue);
+            background-color: var(--personalLabel_bg);
             border-radius: 2px;
             margin-right: 10%;
             margin-left: 15%;
@@ -142,7 +154,23 @@
         .addressLabel{
             color: white;
             text-align: center;
-            background-color: var(--id_blue);
+            background-color: var(--personalAddress_bg);
+            border-radius: 2px;
+            margin-right: 10%;
+            margin-left: 15%;
+        }
+        .companyLabel{
+            color: white;
+            text-align: center;
+            background-color: var(--companyLabel_bg);
+            border-radius: 2px;
+            margin-right: 10%;
+            margin-left: 15%;
+        }
+        .companyAddressLabel{
+            color: white;
+            text-align: center;
+            background-color: var(--companyAddressLabel_bg);
             border-radius: 2px;
             margin-right: 10%;
             margin-left: 15%;
@@ -338,7 +366,7 @@
             grid-template-rows: repeat(3, 1fr);
             grid-column-gap: 0px;
             grid-row-gap: 10px;
-            border-bottom: solid 2px #6c78cf;
+            border-bottom: solid 2px darkgray;
             padding-bottom: 3%;
         }
         .companyNameRow{
@@ -477,41 +505,41 @@
             <ul>
                 <li th:each="companyClient :${companyClients}">
                     <div class="container" >
-                        <div class="id" th:text="${companyClient.id}"></div>
+                        <div class="idCompany" th:text="${companyClient.id}"></div>
                         <div class="labels">
-                            <div class="companyInfoLabel">Personal Info</div>
+                            <div class="companyInfoLabel">Company Info</div>
                             <div class="addressLabelMain">Address</div>
                         </div>
                         <div class="info">
                             <div class="company">
                                 <div class="companyNameRow">
-                                    <div class="companyNameLabel personalLabel">Name</div>
+                                    <div class="companyNameLabel companyLabel">Name</div>
                                     <div class="companyName" th:text="${companyClient.name}"></div>
                                 </div>
                                 <div class="companyNIPREGON">
-                                    <div class="companyNIPLabel personalLabel">NIP</div>
+                                    <div class="companyNIPLabel companyLabel">NIP</div>
                                     <div class="companyNIP" th:text="${companyClient.NIP}">0213123321</div>
-                                    <div class="companyREGONLabel personalLabel">REGON</div>
+                                    <div class="companyREGONLabel companyLabel">REGON</div>
                                     <div class="companyREGON" th:text="${companyClient.REGON}">31232131233</div>
                                 </div>
                                 <div class="companyEmailTeleNumb">
-                                    <div class="companyEmailLabel personalLabel">Email</div>
+                                    <div class="companyEmailLabel companyLabel">Email</div>
                                     <div class="companyEmail" th:text="${companyClient.email}">abcde@gmial.com</div>
-                                    <div class="companyTeleNumbLabel personalLabel" >Phone</div>
+                                    <div class="companyTeleNumbLabel companyLabel" >Phone</div>
                                     <div class="companyTeleNumb" th:text="${companyClient.teleNumb}"></div>
                                 </div>
                             </div>
                             <div class="address">
                                 <div class="cityPostalCode">
-                                    <div class="cityLabel addressLabel">City</div>
+                                    <div class="cityLabel companyAddressLabel">City</div>
                                     <div class="city" th:text="${companyClient.address.city}"></div>
-                                    <div class="postalCodeLabel addressLabel">Postal Code</div>
+                                    <div class="postalCodeLabel companyAddressLabel">Postal Code</div>
                                     <div class="postalCode" th:text="${companyClient.address.postalCode}"></div>
                                 </div>
                                 <div class="streetBuildingNumbLocalNumb">
-                                    <div class="streetLabel addressLabel">Street</div>
+                                    <div class="streetLabel companyAddressLabel">Street</div>
                                     <div class="street" th:text="${companyClient.address.street}"></div>
-                                    <div class="BuildingNumbLocalNumbLabel addressLabel">Building / Local</div>
+                                    <div class="BuildingNumbLocalNumbLabel companyAddressLabel">Building / Local</div>
                                     <div class="BuildingNumbLocalNumb">
                                         <span th:text="${companyClient.address.buildingNumb}"></span>
                                         <span class="localNumb" th:text="${companyClient.address.localNumb}"></span>
