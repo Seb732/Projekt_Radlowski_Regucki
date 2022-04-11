@@ -69,6 +69,12 @@ public class CarController {
         }
     }
 
+    /**
+     * Returns details of car with given vin
+     * @param vin
+     * @param model
+     * @return
+     */
     @GetMapping("/cars/details/{vin}")
     public String summaryCar(@PathVariable String vin, Model model)
     {
@@ -76,15 +82,25 @@ public class CarController {
         return "carDetails";
     }
 
-    // @GetMapping("/cars/edit/{vin}")
+    /**
+     * Returns edit page for car
+     * @param vin
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/cars/edit/{vin}",method = RequestMethod.GET)
     public String editCarForm(@PathVariable String vin, Model model)
     {
-        
         model.addAttribute("car", carServices.getCarByVin(vin).get());
         return "editCar";
     }
 
+    /**
+     * Checks all params and update car, if data not correct then returns error message
+     * @param car
+     * @param model
+     * @return
+     */
     @PostMapping("/cars/edit/{vin}")
     public String saveEditedCar(@ModelAttribute("car") Car car, Model model)
     {

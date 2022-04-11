@@ -1,10 +1,14 @@
 package pl.agh.projektjava.Entities;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 
 import javax.persistence.OneToMany;
@@ -32,8 +36,9 @@ public class Car {
     Status status;
     double longitude;
     double latitude;
-    @OneToMany(mappedBy = "car")
-    Set<Damage> damages;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "car")
+    Set<Damage> damages=new HashSet<Damage>();
+
 
 
     public Car(){}
@@ -151,6 +156,12 @@ public class Car {
     public void setModel(String model) {
         this.model = model;
     }
-    
 
+    public Set<Damage> getDamages() {
+        return this.damages;
+    }
+
+    public void setDamages(Set<Damage> damages) {
+        this.damages = damages;
+    } 
 }

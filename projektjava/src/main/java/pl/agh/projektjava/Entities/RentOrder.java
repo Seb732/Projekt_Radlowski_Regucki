@@ -21,6 +21,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class RentOrder {
     public enum OrderStatus{active,finished}
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
@@ -33,7 +34,12 @@ public class RentOrder {
     @JoinColumn(name = "car_vin")
     Car car;
 
+    @Column
+    @Access(AccessType.FIELD)
     LocalDate rentStartDate;
+    
+    @Column
+    @Access(AccessType.FIELD)
     LocalDate rentEndDate;
 
     @Enumerated(EnumType.STRING)
@@ -67,16 +73,13 @@ public class RentOrder {
         this.rentStartDate = LocalDate.parse(rentStartDate, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
     }
 
-    @Column
-    @Access(AccessType.PROPERTY)
     public LocalDate getRentStartDate() {return rentStartDate;}
 
     public void setRentEndDate(String rentEndDate) {
         this.rentEndDate = LocalDate.parse(rentEndDate, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
     }
     
-    @Column
-    @Access(AccessType.PROPERTY)
+    
     public LocalDate getRentEndDate() {return rentEndDate;}
 
     public void setStatus(OrderStatus status) {this.status = status;}
