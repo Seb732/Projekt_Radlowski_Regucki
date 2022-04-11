@@ -1,6 +1,5 @@
 pl/agh/projektjava/Exceptions/ExceptionWrongVIN.class
 pl/agh/projektjava/Security/UserDetailsServicesImplement.class
-pl/agh/projektjava/AppController.class
 pl/agh/projektjava/Entities/CompanyClient.class
 pl/agh/projektjava/Entities/Validation.class
 pl/agh/projektjava/Entities/RentOrder.class

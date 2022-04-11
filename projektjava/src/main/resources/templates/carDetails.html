@@ -280,6 +280,42 @@
                 async
                 ></script>
             </div>
+            <div id="damage_list" style="text-align: center; border: 1px solid gray; background-color: #f1f7fe; border-radius: 10px;">
+                <h1>Uszkodzenia</h1>
+                <div th:if="${#lists.isEmpty(car.damages)}" style="text-align: center; color: gray;">
+                    <p>Brak uszkodzeń</p>
+                </div>
+                <div th:unless="${#lists.isEmpty(car.damages)}">
+                    <table class = "table table-striped table-bordered">
+                        <thead class = "table-dark">
+                            <tr>
+                                <th> Data</th>
+                                <th> Opis</th>
+                                <th> Nr Wypożyczenia </th>
+                                <th> Akcje </th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            <tr th:each = "dmg: ${car.damages}">
+                                <td th:text = "${dmg.date}"></td>
+                                <td th:text = "${dmg.description}"></td>
+                                <td th:text = "${dmg.rentOrder.id}"></td>
+                                <td>
+                                    <a th:href = "@{/damages/delete/{id}(id=${dmg.id})}"
+                                     class = "btn btn-primary">Edytuj</a>
+                                    
+                                    <a th:href = "@{/students/{id}(id=${dmg.id})}"
+                                     class = "btn btn-danger">Usuń</a>
+                                     
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
     </div>
     <script>
         const vin_array = document.querySelectorAll("#VIN");
