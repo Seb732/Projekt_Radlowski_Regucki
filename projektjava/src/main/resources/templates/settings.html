@@ -118,6 +118,9 @@
         <h1>Ustawienia</h1>
         <div class="users_list" style="background-color: #f1f7fe;width: 70%; border-radius: 10px;border: 1px solid grey;">
             <h2>Uzytkownicy</h2>
+            <a href="/settings/new">
+                <p>Dodaj uzytkownika</p>
+            </a>
             <table class = "table">
                 <thead class = "table-dark">
                     <tr>
@@ -133,14 +136,7 @@
                         <td th:text = "${usr.username}"></td>
                         <td th:text = "${usr.firstName}"></td>
                         <td th:text = "${usr.lastName}"></td>
-                        <!-- <td>
-                            <a th:href = "@{/damages/delete/{id}(id=${dmg.id})}"
-                             class = "btn btn-primary">Edytuj</a>
-                            
-                            <a th:href = "@{/students/{id}(id=${dmg.id})}"
-                             class = "btn btn-danger">Usuń</a>
-                             
-                        </td> -->
+                        <td th:text = "${usr.role}"></td>
                     </tr>
                 </tbody>
             </table>
