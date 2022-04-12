@@ -4,9 +4,147 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <script src="https://kit.fontawesome.com/742ec404dd.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap">
+    <title>Ustawienia</title>
+<style>
+     * {
+  font-family: "Poppins";
+}
+    body{
+        background-color: #dde5f4;
+        margin: 0;
+        height: 100vh;
+    }
+    .header{
+        position: sticky;
+        background-color: #3e4684;
+        height: 70px;
+        margin: 0;
+        display: flex;
+        justify-content: space-between;
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    .header *{
+        color:#e6e9f9;
+    }
+
+    .navbar_menu{
+        display: flex;
+         justify-content: space-between;
+         align-items: center;
+         list-style: none;
+         width: auto;
+         padding: 0;
+         height: 2.5rem;
+         width: 40%;
+    }
+
+    #navbar_logo_normal{
+        display: flex;
+        text-align: center;
+        align-items: center;
+        font-size: 2.5rem;
+        text-decoration: none;
+    }
+
+    .navbar_btn{
+        height: 100%;
+        width: 22%;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        background-color: #6c78cf;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .button{
+        text-decoration: none;
+    }
+
+    #setting{
+        width: 20%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .setting_div{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        height: 100%;
+    }
+
+
+    .setting_btn{
+        width: 70%;
+        height: 2.5rem;
+        background-color: #3e4684;
+        border: 1px solid white;
+        border-radius: 10px;
+    }
+</style>
 </head>
 <body>
-    
+    <header class="header">
+        <a href="/" id="navbar_logo_normal"><b><i class="fa-solid fa-car-side"></i>Rentaly</b></a>
+        <ul class="navbar_menu">
+            <li class="navbar_btn">
+                <a href="/czesc" class="button" >Wypożyczenia</a>
+            </li>
+            <li class="navbar_btn">
+                <a href="/cars" class="button" >Samochody</a>
+            </li>
+            <li class="navbar_btn">
+                <a href="/clients" class="button">Klienci</a>
+            </li>
+        </ul>
+        <div id="setting">
+            <div class="setting_div">
+                <button class="setting_btn">Ustawienia</button>
+            </div>
+            <form class="setting_div" id="logout_form" th:action="@{/logout}" method="post">
+                <button class="setting_btn" id="logout_btn" type="submit">Wyloguj się</button>
+            </form>
+        </div>
+    </header>
+    <div class="container" style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+        <h1>Ustawienia</h1>
+        <div class="users_list" style="background-color: #f1f7fe;width: 70%; border-radius: 10px;border: 1px solid grey;">
+            <h2>Uzytkownicy</h2>
+            <table class = "table">
+                <thead class = "table-dark">
+                    <tr>
+                        <th>Nazwa uzytkownika</th>
+                        <th>Imie</th>
+                        <th>Nazwisko</th>
+                        <th>Rola</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    <tr th:each = "usr: ${users}">
+                        <td th:text = "${usr.username}"></td>
+                        <td th:text = "${usr.firstName}"></td>
+                        <td th:text = "${usr.lastName}"></td>
+                        <!-- <td>
+                            <a th:href = "@{/damages/delete/{id}(id=${dmg.id})}"
+                             class = "btn btn-primary">Edytuj</a>
+                            
+                            <a th:href = "@{/students/{id}(id=${dmg.id})}"
+                             class = "btn btn-danger">Usuń</a>
+                             
+                        </td> -->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </body>
 </html>
