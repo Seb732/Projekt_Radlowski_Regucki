@@ -91,6 +91,22 @@ public class ClientServices {
         return company.getCompanyByREGON(regon);
     }
 
+    /**
+     * Adds client
+     * @param client
+     */
+    public void addClient(Client client)
+    {
+        if(client.getClass()==PersonalClient.class)
+        {
+            personal.save((PersonalClient)client);
+        }
+        else
+        {
+            company.save((CompanyClient)client);
+        }
+    }
+
     
     
 }

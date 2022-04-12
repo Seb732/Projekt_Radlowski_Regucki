@@ -7,6 +7,109 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <header class="header">
+        <a href="/" id="navbar_logo_normal"><b><i class="fa-solid fa-car-side"></i>Rentaly</b></a>
+        <div id="setting">
+            <div class="setting_div">
+                <button class="setting_btn">
+                    <a href="/cars">Wyjdź</a>
+                </button>
+            </div>
+        </div>
+    </header>
+    <div class="container_main">
+        <h1 style="text-align: center;">Nowy klient</h1>
+        <div class="button_container">
+            <div class="personalClientButtonDiv">
+                <button class="personalClientButton button" onclick="hideCompany()">Personal Clients</button>
+            </div>
+            <div class="companyClientButtonDiv">
+                <button class="companyClientButton button" onclick="hidePersonal()">Company Clients</button>
+            </div>
+        </div>
+        <div id="listPersonal">
+            <form th:action="@{/cars/new}" th:object="${cl}" method="POST">
+                <div class="input">
+                    <label><b>Imie</b></label>
+                    <input type="text" name="firstName" th:field="*{firstName}" placeholder="Imie">
+                </div>
+                <div class="input">
+                    <label><b>Nazwisko</b></label>
+                    <input type="text" name="lastName" th:field="*{lastName}" placeholder="Nazwisko">
+                </div>
+                <div class="input">
+                    <label><b>Nr. dowodu</b></label>
+                    <input type="text" name="idCard" th:field="*{idCard}" placeholder="Nr dowodu">
+                </div>
+                <div class="input">
+                    <label><b>Pesel</b></label>
+                    <input type="text" name="pesel" th:field="*{pesel}" placeholder="PESEL">
+                </div>
+                <div class="input">
+                    <label><b>Email</b></label>
+                    <input type="text" name="email" th:field="*{email}" placeholder="email">
+                </div>
+                <div class="input">
+                    <label><b>Nr telefonu</b></label>
+                    <input type="text" name="teleNumb" th:field="*{teleNumb}" placeholder="Nr telefonu">
+                </div>
+                <div id="sub_cont">
+                    <button type="submit">Zapisz</button>
+                </div>
+            </form>
+        </div>
+        <div id="listCompany">
+            <form th:action="@{/cars/new}" th:object="${cl}" method="POST">
+                <div class="input">
+                    <label><b>Imie</b></label>
+                    <input type="text" name="firstName" th:field="*{name}" placeholder="Imie">
+                </div>
+                <div class="input">
+                    <label><b>Nazwisko</b></label>
+                    <input type="text" name="lastName" th:field="*{lastName}" placeholder="Nazwisko">
+                </div>
+                <div class="input">
+                    <label><b>Nr. dowodu</b></label>
+                    <input type="text" name="idCard" th:field="*{idCard}" placeholder="Nr dowodu">
+                </div>
+                <div class="input">
+                    <label><b>Pesel</b></label>
+                    <input type="text" name="pesel" th:field="*{pesel}" placeholder="PESEL">
+                </div>
+                <div class="input">
+                    <label><b>Email</b></label>
+                    <input type="text" name="email" th:field="*{email}" placeholder="email">
+                </div>
+                <div class="input">
+                    <label><b>Nr telefonu</b></label>
+                    <input type="text" name="teleNumb" th:field="*{teleNumb}" placeholder="Nr telefonu">
+                </div>
+                <div id="sub_cont2">
+                    <button type="submit">Zapisz</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        const localNumb_array = document.querySelectorAll(".localNumb");
+        localNumb_array.forEach(element =>{
+            if (element.childNodes.length !== 0){
+                element.innerHTML = "/ " + element.childNodes[0].nodeValue;
+            }
+        })
+        function hidePersonal(){
+            const listCompany = document.getElementById("listCompany")
+            const listPersonal = document.getElementById("listPersonal")
+            listPersonal.style.display = "none";
+            listCompany.style.display = "block"
+        }
+        function hideCompany(){
+            const listCompany = document.getElementById("listCompany")
+            const listPersonal = document.getElementById("listPersonal")
+            listPersonal.style.display = "block";
+            listCompany.style.display = "none"
+        }
+
+    </script>
 </body>
 </html>

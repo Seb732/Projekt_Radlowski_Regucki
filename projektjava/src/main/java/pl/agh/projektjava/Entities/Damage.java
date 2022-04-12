@@ -23,18 +23,14 @@ public class Damage {
     Car car;
     LocalDate date;
     double price;
-    @ManyToOne
-    @JoinColumn(name="rent_id")
-    RentOrder rentOrder;
 
 
     public Damage(){}
-    public Damage(String description, Car car, String date, double price, RentOrder rentOrder){
+    public Damage(String description, Car car, String date, double price){
         setDescription(description);
         setCar(car);
         setDate(date);
         setPrice(price);
-        setRentOrder(rentOrder);
     }
 
     public void setId(Long id) {this.id=id;}
@@ -52,11 +48,5 @@ public class Damage {
     public void setPrice(double price) {this.price = price;}
     public double getPrice() {return price;}
 
-    public RentOrder getRentOrder() {
-        return this.rentOrder;
-    }
-
-    public void setRentOrder(RentOrder rentOrder) {
-        this.rentOrder = rentOrder;
-    }
+   
 }
