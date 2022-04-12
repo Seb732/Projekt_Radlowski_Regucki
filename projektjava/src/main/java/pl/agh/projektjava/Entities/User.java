@@ -11,9 +11,9 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class User {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    String username;
 
     @Column(name = "first_name")
     String firstName;
@@ -31,9 +31,6 @@ public class User {
     String email;
 
     @Column(nullable = false)
-    String username;
-
-    @Column(nullable = false)
     String role;
     
     @Column(nullable = false)
@@ -44,19 +41,12 @@ public class User {
     public User() {
     }
 
-    public User(Long id, String firstName, String lastName, Address address, String teleNumb, String email, String role, String password) {
-        setId(id);setFirstName(firstName);setLastName(lastName);setAddress(address);setTeleNumb(teleNumb);setEmail(email);
+    public User(String firstName, String lastName, Address address, String teleNumb, String email, String role, String password) {
+       setFirstName(firstName);setLastName(lastName);setAddress(address);setTeleNumb(teleNumb);setEmail(email);
         setRole(role);setPassword(password);
     }
 
     // getters and setters
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getFirstName() {
         return this.firstName;

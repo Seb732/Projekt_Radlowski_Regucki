@@ -43,6 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
+            .antMatchers("/settings/**").hasRole("ADMIN")
             .anyRequest().authenticated()
             .and()
             .formLogin().loginPage("/login").permitAll().defaultSuccessUrl("/")

@@ -16,7 +16,6 @@ class UserTest {
     @Test
     public void RegisterNewUser_FieldsGiven_ShouldCreateNewUser() {
         User user = new User();
-        user.setId(1L);
         user.setFirstName("Jan");
         user.setLastName("Kowalski");
         user.setAddress(new Address(1L, "Krakow", "31-152", "Warszawska",
@@ -26,7 +25,6 @@ class UserTest {
         user.setEmail("abcde@gmail.com");
         user.setPassword("Kdsada123");
 
-        Assertions.assertEquals(1L, user.getId());
         Assertions.assertEquals("Jan", user.getFirstName());
         Assertions.assertEquals("Kowalski", user.getLastName());
         assertThat(new Address(1L, "Krakow", "31-152", "Warszawska",
