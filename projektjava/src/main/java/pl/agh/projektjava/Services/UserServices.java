@@ -26,5 +26,10 @@ public class UserServices {
         repo.deleteById(username);
     }
 
+    public void addUser(User user)
+    {
+        repo.save(user);
+    }
+
     
 }

@@ -49,7 +49,7 @@ public class ClientController {
         }
     }
 
-    @PostMapping("/clients/new/personal")
+    @PostMapping("/clients/new/company")
     public String saveCompanyClient(@ModelAttribute("CC") CompanyClient client, Model model)
     {
         try {

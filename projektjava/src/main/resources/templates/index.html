@@ -139,7 +139,7 @@
             </li>
         </ul>
         <div id="setting">
-            <div class="setting_div">
+            <div th:if="${role =='ROLE_ADMIN'}" class="setting_div">
                 <a href="/settings" style="width: 100%;">
                     <button class="setting_btn">Ustawienia</button>
                 </a>
