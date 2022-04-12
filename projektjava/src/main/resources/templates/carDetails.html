@@ -291,7 +291,6 @@
                             <tr>
                                 <th> Data</th>
                                 <th> Opis</th>
-                                <th> Nr Wypożyczenia </th>
                                 <th> Akcje </th>
                             </tr>
                         </thead>
@@ -300,7 +299,6 @@
                             <tr th:each = "dmg: ${car.damages}">
                                 <td th:text = "${dmg.date}"></td>
                                 <td th:text = "${dmg.description}"></td>
-                                <td th:text = "${dmg.rentOrder.id}"></td>
                                 <td>
                                     <a th:href = "@{/damages/delete/{id}(id=${dmg.id})}"
                                      class = "btn btn-primary">Edytuj</a>
