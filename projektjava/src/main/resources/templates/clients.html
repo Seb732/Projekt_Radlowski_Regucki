@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,14 +21,12 @@
         * {
             font-family: "Poppins";
         }
-
-        body {
+        body{
             background-color: #dde5f4;
             margin: 0;
             height: 100vh;
         }
-
-        .header {
+        .header{
             position: sticky;
             background-color: #3e4684;
             height: 70px;
@@ -39,29 +37,68 @@
             padding-left: 10px;
         }
 
-        .header * {
-            color: #e6e9f9;
+        .header *{
+            color:#e6e9f9;
         }
 
-        #navbar_logo_normal {
+        .navbar_menu{
+        display: flex;
+         justify-content: space-between;
+         align-items: center;
+         list-style: none;
+         width: auto;
+         padding: 0;
+         height: 2.5rem;
+         width: 40%;
+    }
+
+
+        #navbar_logo_normal{
             display: flex;
             text-align: center;
             align-items: center;
             font-size: 2.5rem;
             text-decoration: none;
         }
+        .navbar_btn{
+        height: 100%;
+        width: 22%;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        background-color: #6c78cf;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-        .navbar_btn {
-            height: 100%;
-            width: 22%;
-            margin-left: 1rem;
-            margin-right: 1rem;
-            background-color: #6c78cf;
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+    .button{
+        text-decoration: none;
+    }
+
+    #setting{
+        width: 20%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .setting_div{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        height: 100%;
+    }
+
+
+    .setting_btn{
+        width: 70%;
+        height: 2.5rem;
+        background-color: #3e4684;
+        border: 1px solid white;
+        border-radius: 10px;
+    }
 
         .container_main {
             width: 70vw;
@@ -438,8 +475,33 @@
 </head>
 <body>
     <header class="header">
-        <a href="#home" id="navbar_logo_normal"><b><i class="fa-solid fa-car-side"></i>Rentaly</b></a>
+        <a href="/" id="navbar_logo_normal"><b><i class="fa-solid fa-car-side"></i>Rentaly</b></a>
+        <ul class="navbar_menu">
+            <li class="navbar_btn">
+                <a href="/czesc" class="button" >Wypożyczenia</a>
+            </li>
+            <li class="navbar_btn">
+                <a href="/cars" class="button" >Samochody</a>
+            </li>
+            <li class="navbar_btn">
+                <a href="/clients" class="button">Klienci</a>
+            </li>
+        </ul>
+        <div id="setting">
+            <div class="setting_div">
+                <button class="setting_btn">Ustawienia</button>
+            </div>
+            <form class="setting_div" id="logout_form" th:action="@{/logout}" method="post">
+                <button class="setting_btn" id="logout_btn" type="submit">Wyloguj się</button>
+            </form>
+        </div>
     </header>
+    <div class="btn_cont" style="width:100%; display: flex; align-items: center; justify-content: space-between;">
+        <a href="/clients/new" class="button" style="background-color: rgb(23, 182, 23);text-decoration: none; border-radius: 5px; padding: 0.5rem;color: white; border: 1px solid black; margin-top: 1%; margin-left: 2%;">Dodaj klienta</a>
+        <div id="message" th:if="${message}" style="background-color: rgba(23, 182, 23, 0.646);height: 70%; width:20%; border: 1px solid black; border-radius: 5px; margin-right: 1%; margin-top: 1%; text-align: center;">
+            <p th:text="${message}"></p>
+        </div>
+    </div>
     <div class="container_main">
         <div class="button_container">
             <div class="personalClientButtonDiv">

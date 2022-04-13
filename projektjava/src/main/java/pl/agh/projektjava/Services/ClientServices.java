@@ -92,19 +92,17 @@ public class ClientServices {
     }
 
     /**
-     * Adds client
+     * Add personal client
      * @param client
      */
-    public void addClient(Client client)
+    public void addPersonalClient(PersonalClient client)
     {
-        if(client.getClass()==PersonalClient.class)
-        {
-            personal.save((PersonalClient)client);
-        }
-        else
-        {
-            company.save((CompanyClient)client);
-        }
+        personal.save(client);
+    }
+
+    public void addCompanyClient(CompanyClient client)
+    {
+        company.save(client);
     }
 
     

@@ -1,10 +1,143 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <script src="https://kit.fontawesome.com/742ec404dd.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap">
+    <title>Utworz klienta</title>
+<style>
+    * {
+  font-family: "Poppins";
+}
+    body{
+        background-color: #dde5f4;
+        margin: 0;
+        height: 100vh;
+    }
+    .header{
+        position: sticky;
+        background-color: #3e4684;
+        height: 70px;
+        margin: 0;
+        display: flex;
+        justify-content: space-between;
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    .header *{
+        color:#e6e9f9;
+    }
+
+    .navbar_menu{
+        display: flex;
+         justify-content: space-between;
+         align-items: center;
+         list-style: none;
+         width: auto;
+         padding: 0;
+         height: 2.5rem;
+         width: 40%;
+    }
+
+    #navbar_logo_normal{
+        display: flex;
+        text-align: center;
+        align-items: center;
+        font-size: 2.5rem;
+        text-decoration: none;
+    }
+
+    .navbar_btn{
+        height: 100%;
+        width: 22%;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        background-color: #6c78cf;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .button{
+        text-decoration: none;
+    }
+
+    #setting{
+        width: 20%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .setting_btn{
+        width: 70%;
+        height: 2.5rem;
+        background-color: #3e4684;
+        border: 1px solid white;
+        border-radius: 10px;
+    }
+    .setting_div{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        height: 100%;
+    }
+    #setting{
+        width: 20%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .container{
+        width: 100vw;
+        height: 90%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .form{
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        width: 50%;
+        border-radius: 40px;
+    }
+
+    .input{
+        margin-top: 2%;
+        margin-bottom: 2%;
+        margin-left: 5%;
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+    }
+
+    input{
+        border: 1px solid #3e4684;
+        height: 2rem;
+        border-radius: 5px;
+    }
+
+    #sub_cont{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 2%;
+        margin-bottom: 2%;
+    }
+
+    input{
+        font-size: large;
+    }
+
+</style>
 </head>
 <body>
     <header class="header">
@@ -12,13 +145,17 @@
         <div id="setting">
             <div class="setting_div">
                 <button class="setting_btn">
-                    <a href="/cars">Wyjdź</a>
+                    <a href="/clients">Wyjdź</a>
                 </button>
             </div>
         </div>
     </header>
-    <div class="container_main">
-        <h1 style="text-align: center;">Nowy klient</h1>
+    <div class="container">
+        <div class="error_cont" style="width: 100%; height:5rem;display: flex; align-items: center; justify-content: flex-end;">
+            <div class="error" th:if="${error}" style="background-color: red;height: 70%; width:20%; border: 1px solid black; margin-right: 1%;text-align: center;">
+                <p th:text="${error}"></p>
+            </div>
+        </div>
         <div class="button_container">
             <div class="personalClientButtonDiv">
                 <button class="personalClientButton button" onclick="hideCompany()">Personal Clients</button>
@@ -27,62 +164,101 @@
                 <button class="companyClientButton button" onclick="hidePersonal()">Company Clients</button>
             </div>
         </div>
-        <div id="listPersonal">
-            <form th:action="@{/cars/new}" th:object="${cl}" method="POST">
+        <div class="form" id="listPersonal">
+            <h1 style="width: 100%;text-align:center">Nowy klient</h1>
+            <form th:action="@{/clients/new/personal}" method="POST">
                 <div class="input">
                     <label><b>Imie</b></label>
-                    <input type="text" name="firstName" th:field="*{firstName}" placeholder="Imie">
+                    <input type="text" name="firstName" th:field="${person.firstName}" placeholder="Imie">
                 </div>
                 <div class="input">
                     <label><b>Nazwisko</b></label>
-                    <input type="text" name="lastName" th:field="*{lastName}" placeholder="Nazwisko">
+                    <input type="text" name="lastName" th:field="${person.lastName}" placeholder="Nazwisko">
                 </div>
                 <div class="input">
-                    <label><b>Nr. dowodu</b></label>
-                    <input type="text" name="idCard" th:field="*{idCard}" placeholder="Nr dowodu">
+                    <label><b>Nr dowodu</b></label>
+                    <input type="text" name="idCard" th:field="${person.idCard}" placeholder="nr dowodu">
                 </div>
                 <div class="input">
-                    <label><b>Pesel</b></label>
-                    <input type="text" name="pesel" th:field="*{pesel}" placeholder="PESEL">
-                </div>
-                <div class="input">
-                    <label><b>Email</b></label>
-                    <input type="text" name="email" th:field="*{email}" placeholder="email">
+                    <label><b>PESEL</b></label>
+                    <input type="text" name="pesel" th:field="${person.pesel}" placeholder="00000000000">
                 </div>
                 <div class="input">
                     <label><b>Nr telefonu</b></label>
-                    <input type="text" name="teleNumb" th:field="*{teleNumb}" placeholder="Nr telefonu">
+                    <input type="text" name="teleNumb" th:field="${person.teleNumb}" placeholder="000-000-000">
                 </div>
+                <div class="input">
+                    <label><b>Email</b></label>
+                    <input type="text" name="email" th:field="${person.email}" placeholder="abc@abc.pl">
+                </div>
+                <div class="input">
+                    <label><b>Miasto</b></label>
+                    <input type="text" name="city" th:field="${address1.city}" placeholder="miasto">
+                </div>
+                <div class="input">
+                    <label><b>Kod pocztowy</b></label>
+                    <input type="text" name="postalCode" th:field="${address1.postalCode}" placeholder="00-000">
+                </div>
+                <div class="input">
+                    <label><b>Ulica</b></label>
+                    <input type="text" name="street" th:field="${address1.street}" placeholder="ulica">
+                </div>
+                <div class="input">
+                    <label><b>Nr budynku</b></label>
+                    <input type="text" name="buildingNumb" th:field="${address1.buildingNumb}" placeholder="nr budynku">
+                </div>
+                <div class="input">
+                    <label><b>Nr lokalu</b></label>
+                    <input type="text" name="localNumb" th:field="${address1.localNumb}" placeholder="nr lokalu">
+                </div>
+                
                 <div id="sub_cont">
                     <button type="submit">Zapisz</button>
                 </div>
             </form>
         </div>
-        <div id="listCompany">
-            <form th:action="@{/cars/new}" th:object="${cl}" method="POST">
+        <div class="form" id="listCompany">
+            <h1 style="width: 100%;text-align:center">Nowa klient</h1>
+            <form th:action="@{/clients/new/company}" method="POST">
                 <div class="input">
-                    <label><b>Imie</b></label>
-                    <input type="text" name="firstName" th:field="*{name}" placeholder="Imie">
+                    <label><b>Nazwa</b></label>
+                    <input type="text" name="name" th:field="${company.name}" placeholder="Nazwa">
                 </div>
                 <div class="input">
-                    <label><b>Nazwisko</b></label>
-                    <input type="text" name="lastName" th:field="*{lastName}" placeholder="Nazwisko">
+                    <label><b>NIP</b></label>
+                    <input type="text" name="NIP" th:field="${company.NIP}" placeholder="NIP">
                 </div>
                 <div class="input">
-                    <label><b>Nr. dowodu</b></label>
-                    <input type="text" name="idCard" th:field="*{idCard}" placeholder="Nr dowodu">
-                </div>
-                <div class="input">
-                    <label><b>Pesel</b></label>
-                    <input type="text" name="pesel" th:field="*{pesel}" placeholder="PESEL">
-                </div>
-                <div class="input">
-                    <label><b>Email</b></label>
-                    <input type="text" name="email" th:field="*{email}" placeholder="email">
+                    <label><b>REGON</b></label>
+                    <input type="text" name="REGON" th:field="${company.REGON}" placeholder="REGON">
                 </div>
                 <div class="input">
                     <label><b>Nr telefonu</b></label>
-                    <input type="text" name="teleNumb" th:field="*{teleNumb}" placeholder="Nr telefonu">
+                    <input type="text" name="teleNumb" th:field="${company.teleNumb}" placeholder="000-000-000">
+                </div>
+                <div class="input">
+                    <label><b>Email</b></label>
+                    <input type="text" name="email" th:field="${company.email}" placeholder="abc@abc.pl">
+                </div>
+                <div class="input">
+                    <label><b>Miasto</b></label>
+                    <input type="text" name="city" th:field="${address2.city}" placeholder="miasto">
+                </div>
+                <div class="input">
+                    <label><b>Kod pocztowy</b></label>
+                    <input type="text" name="postalCode" th:field="${address2.postalCode}" placeholder="00-000">
+                </div>
+                <div class="input">
+                    <label><b>Ulica</b></label>
+                    <input type="text" name="street" th:field="${address2.street}" placeholder="ulica">
+                </div>
+                <div class="input">
+                    <label><b>Nr budynku</b></label>
+                    <input type="text" name="buildingNumb" th:field="${address2.buildingNumb}" placeholder="nr budynku">
+                </div>
+                <div class="input">
+                    <label><b>Nr lokalu</b></label>
+                    <input type="text" name="localNumb" th:field="${address2.localNumb}" placeholder="nr lokalu">
                 </div>
                 <div id="sub_cont2">
                     <button type="submit">Zapisz</button>
@@ -91,23 +267,18 @@
         </div>
     </div>
     <script>
-        const localNumb_array = document.querySelectorAll(".localNumb");
-        localNumb_array.forEach(element =>{
-            if (element.childNodes.length !== 0){
-                element.innerHTML = "/ " + element.childNodes[0].nodeValue;
-            }
-        })
+
         function hidePersonal(){
             const listCompany = document.getElementById("listCompany")
             const listPersonal = document.getElementById("listPersonal")
             listPersonal.style.display = "none";
-            listCompany.style.display = "block"
+            listCompany.style.display = "flex"
         }
         function hideCompany(){
             const listCompany = document.getElementById("listCompany")
             const listPersonal = document.getElementById("listPersonal")
             listPersonal.style.display = "block";
-            listCompany.style.display = "none"
+            listCompany.style.display = "flex"
         }
 
     </script>

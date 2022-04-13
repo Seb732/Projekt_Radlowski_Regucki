@@ -58,12 +58,7 @@ public class PersonalClient extends Client{
     public String getIdCard(){return this.idCard;}
 
     public void setPesel(String pesel) throws ExceptionWrongPesel {
-        if (Validation.ValPesel(pesel)){
-            this.pesel = pesel;
-        }
-        else{
-            throw new ExceptionWrongPesel("Incorrect pesel");
-        }
+       this.pesel=pesel;
     }
     @Column
     public String getPesel(){return this.pesel;}
