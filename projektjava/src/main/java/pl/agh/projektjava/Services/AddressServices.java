@@ -47,7 +47,7 @@ public class AddressServices {
         {
             if(adr.equals(address))
             {
-                return null;
+                return adr;
             }
         }
         return addressRepo.save(address);
@@ -70,6 +70,25 @@ public class AddressServices {
     public void deleteById(Address address)
     {
         addressRepo.delete(address);
+    }
+
+
+    /**
+     * Function checks if address is already in database. If it is, then returns its entity. If not saves object
+     * @param address
+     * @return
+     */
+    public Address saveIfNotInDB(Address address)
+    {
+        for(Address adr:getAll())
+        {
+            if(address.equals(adr))
+            {
+                return adr;
+            }
+        }
+        saveAddress(address);
+        return address;
     }
 
     

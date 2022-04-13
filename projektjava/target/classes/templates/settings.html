@@ -89,7 +89,14 @@
         border: 1px solid white;
         border-radius: 10px;
     }
+
 </style>
+<script>
+    setTimeout(() => {
+    const box = document.getElementById('message');
+    box.style.visibility = 'hidden';
+    }, 3000); 
+</script>
 </head>
 <body>
     <header class="header">
@@ -115,28 +122,35 @@
         </div>
     </header>
     <div class="container" style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+        <div class="btn_cont" style="width:100%; display: flex; align-items: center; justify-content: space-between;">
+            <a href="/settings/new" class="button" style="background-color: rgb(23, 182, 23);text-decoration: none; border-radius: 5px; padding: 0.5rem;color: white; border: 1px solid black; margin-top: 1%; margin-left: 2%;">Dodaj uzytkownika</a>
+            <div id="message" th:if="${message}" style="background-color: rgba(23, 182, 23, 0.646);height: 70%; width:20%; border: 1px solid black; border-radius: 5px; margin-right: 1%; margin-top: 1%; text-align: center;">
+                <p th:text="${message}"></p>
+            </div>
+        </div>
         <h1>Ustawienia</h1>
-        <div class="users_list" style="background-color: #f1f7fe;width: 70%; border-radius: 10px;border: 1px solid grey;">
+        <div class="users_list" style="background-color: #f1f7fe;width: 70%; border-radius: 10px;border: 1px solid grey;display: flex; flex-direction: column;align-items: center;">
             <h2>Uzytkownicy</h2>
-            <a href="/settings/new">
-                <p>Dodaj uzytkownika</p>
-            </a>
-            <table class = "table">
-                <thead class = "table-dark">
+            <table class = "table" style="padding-bottom: 1%;">
+                <thead class = "table-dark" style="border-bottom: 2px solid grey;">
                     <tr>
-                        <th>Nazwa uzytkownika</th>
+                        <th style="width: 20%;">Nazwa uzytkownika</th>
                         <th>Imie</th>
                         <th>Nazwisko</th>
                         <th>Rola</th>
+                        <th>Akcje</th>
                     </tr>
                 </thead>
                 
                 <tbody>
                     <tr th:each = "usr: ${users}">
-                        <td th:text = "${usr.username}"></td>
-                        <td th:text = "${usr.firstName}"></td>
-                        <td th:text = "${usr.lastName}"></td>
-                        <td th:text = "${usr.role}"></td>
+                        <td th:text = "${usr.username}" style="border-right: 1px solid grey;"></td>
+                        <td th:text = "${usr.firstName}" style="border-right: 1px solid grey;"></td>
+                        <td th:text = "${usr.lastName}" style="border-right: 1px solid grey;"></td>
+                        <td th:text = "${usr.role}" style="border-right: 1px solid grey;"></td>
+                        <td><form th:action= "@{/settings/delete/{username}(username=${usr.username})}" method="post" style="margin-top: 1%; margin-left: 2%; height: 100%; cursor: pointer;">
+                            <button type="submit" style="background-color: rgb(235, 33, 33); border: 1px solid black; border-radius: 5px; color: white; font-size: medium; padding: 0.5rem;">Usuń</button>
+                        </form></td>
                     </tr>
                 </tbody>
             </table>

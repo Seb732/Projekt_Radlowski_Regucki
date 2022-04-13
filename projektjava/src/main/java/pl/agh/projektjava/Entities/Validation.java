@@ -14,6 +14,7 @@ public abstract class Validation {
     public static boolean ValProdYear(String prodYear){return Pattern.compile("^[0-9]{4}$").matcher(prodYear).matches();}
     public static boolean ValVIN(String VIN){return Pattern.compile("^\\w{17}$").matcher(VIN).matches();}
     public static boolean ValRegistNumb(String RegistNumb){return Pattern.compile("^[0-9A-Z]{2,3} [A-Z0-9]{4,5}$").matcher(RegistNumb).matches();}
+    public static boolean ValPostalCode(String postalCode){return Pattern.compile("^[0-9]{2}-[0-9]{3}$").matcher(postalCode).matches();}
 
 
 }

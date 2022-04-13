@@ -1,11 +1,17 @@
 package pl.agh.projektjava.Entities;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import pl.agh.projektjava.Exceptions.ExceptionWrongPostalCode;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+
+import pl.agh.projektjava.Repos.AddressRepo;
 
 
+@EnableJpaRepositories("pl.agh.projektjava.Repos")
 @SpringBootTest
 class AddressTest {
     @Test
@@ -28,4 +34,24 @@ class AddressTest {
         // Exception check
         // Assertions.assertThrows(ExceptionWrongPostalCode.class, () -> address.setPostalCode("abc"));
     }
+
+    /**
+     * Check if equals method works.
+     */
+    @Test
+    public void equalsMethod()
+    {
+        Address ad1=new Address(null, "Tarnów", "33-100", "Gombrowicza", "10", "15");
+        Address ad2=new Address(null, "Tarnów", "33-100", "Gombrowicza", "10", "15");
+        Address ad3=new Address(null, "Tarnów", "33-100", "Gombrowicza", "10", null);
+        Address ad4=new Address(null, "Tarnów", "33-100", "Gombrowicza", "10", "");
+        Address ad5=new Address(null, "Tarnów", "33-100", "Gombrowicza", "10", null);
+        Address ad6=new Address(null, "Tarnów", "33-100", "Gombrowicza", "10", "");
+        assertTrue(ad1.equals(ad2));
+        assertTrue(ad3.equals(ad4));
+        assertTrue(ad3.equals(ad5));
+        assertTrue(ad5.equals(ad6));
+        assertTrue(ad4.equals(ad6));
+    }
+
 }
