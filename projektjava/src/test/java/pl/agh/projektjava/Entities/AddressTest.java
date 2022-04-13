@@ -1,6 +1,5 @@
 package pl.agh.projektjava.Entities;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Assertions;
@@ -8,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import pl.agh.projektjava.Repos.AddressRepo;
 
 
 @EnableJpaRepositories("pl.agh.projektjava.Repos")

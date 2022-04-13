@@ -3,9 +3,9 @@ package pl.agh.projektjava.Entities;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import pl.agh.projektjava.Exceptions.ExceptionWrongEmail;
-import pl.agh.projektjava.Exceptions.ExceptionWrongPassword;
-import pl.agh.projektjava.Exceptions.ExceptionWrongTeleNumb;
+// import pl.agh.projektjava.Exceptions.ExceptionWrongEmail;
+// import pl.agh.projektjava.Exceptions.ExceptionWrongPassword;
+// import pl.agh.projektjava.Exceptions.ExceptionWrongTeleNumb;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.samePropertyValuesAs;
 

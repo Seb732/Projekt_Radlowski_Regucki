@@ -1,6 +1,5 @@
 package pl.agh.projektjava.Controllers;
 
-import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import pl.agh.projektjava.Entities.Address;
-import pl.agh.projektjava.Entities.Client;
 import pl.agh.projektjava.Entities.CompanyClient;
 import pl.agh.projektjava.Entities.PersonalClient;
 import pl.agh.projektjava.Entities.Validation;
