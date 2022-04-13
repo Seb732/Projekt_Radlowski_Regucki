@@ -48,23 +48,13 @@ public class CompanyClient extends Client{
     public String getName(){return this.name;}
 
     public void setNIP(String NIP) throws ExceptionWrongNIP {
-        if (Validation.ValNIP(NIP)){
-            this.NIP = NIP;
-        }
-        else{
-            throw new ExceptionWrongNIP("Incorrect NIP");
-        }
+       this.NIP=NIP;
     }
     @Column
     public String getNIP(){return this.NIP;}
 
     public void setREGON(String REGON) throws ExceptionWrongRegon {
-        if (Validation.ValREGON(REGON)){
-            this.REGON = REGON;
-        }
-        else{
-            throw new ExceptionWrongRegon("Incorrect REGON");
-        }
+       this.REGON=REGON;
     }
     @Column
     public String getREGON(){return this.REGON;}

@@ -70,24 +70,13 @@ public abstract class Client {
 
 
     public void setTeleNumb(String teleNumb) throws ExceptionWrongTeleNumb {
-        if (Validation.ValTeleNumb(teleNumb)){
-            this.teleNumb = teleNumb;
-        }
-        else{
-            throw new ExceptionWrongTeleNumb("Incorrect phone number");
-        }
-
+        this.teleNumb=teleNumb;
     }
 
     public String getTeleNumb(){return this.teleNumb;}
 
     public void setEmail(String email) throws ExceptionWrongEmail {
-        if (Validation.ValEmail(email)){
-            this.email = email;
-        }
-        else{
-            throw new ExceptionWrongEmail("Incorrect email");
-        }
+        this.email=email;
     }
 
     public String getEmail(){return this.email;}
