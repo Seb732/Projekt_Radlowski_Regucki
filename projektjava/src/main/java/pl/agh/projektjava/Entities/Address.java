@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import io.micrometer.core.lang.NonNull;
+
 
 @Entity
 public class Address
@@ -17,14 +19,16 @@ public class Address
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
+    @Column(nullable = false)
     String city;
 
-    @Column(name = "postal_code")
+    @Column(name = "postal_code",nullable = false)
     String postalCode;
 
+    @Column(nullable = false)
     String street;
 
-    @Column(name = "building_numb")
+    @Column(name = "building_numb",nullable = false)
     String buildingNumb;
 
     @Column(name = "local_numb")
@@ -144,16 +148,20 @@ public class Address
                 }
                 return false;
             }
-            else
+            if(this.getLocalNumb().equals("")&&adr.getLocalNumb().equals(""))
             {
-                if(adr.getCity().equals(this.getCity())&&adr.getPostalCode().equals(this.getPostalCode())&&adr.getStreet().equals(this.getStreet())&&adr.getBuildingNumb().equals(this.getBuildingNumb())&&adr.getLocalNumb().equals(this.getLocalNumb()))
+                if(adr.getCity().equals(this.getCity())&&adr.getPostalCode().equals(this.getPostalCode())&&adr.getStreet().equals(this.getStreet())&&adr.getBuildingNumb().equals(this.getBuildingNumb()))
                 {
                     return true;
                 }
                 return false;
             }
+            if(adr.getCity().equals(this.getCity())&&adr.getPostalCode().equals(this.getPostalCode())&&adr.getStreet().equals(this.getStreet())&&adr.getBuildingNumb().equals(this.getBuildingNumb())&&adr.getLocalNumb().equals(this.getLocalNumb()))
+            {
+                return true;
+            }
+            return false;
             
-
         } 
         else {
             return false;

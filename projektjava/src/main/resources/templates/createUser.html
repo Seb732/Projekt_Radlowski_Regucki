@@ -175,6 +175,17 @@
                     <label><b>Nazwisko</b></label>
                     <input type="text" name="lastName" th:field="${user.lastName}" placeholder="Nazwisko">
                 </div>
+                <fieldset style=" display: flex; flex-direction: column; margin-right: 10%;">
+                    <legend><b>Rola</b></legend>
+                    <div>
+                        <input type="radio"  name="role"  th:field="${user.role}" value="ROLE_ADMIN">
+                        <label>Admin</label>
+                    </div>
+                    <div>
+                        <input type="radio"  name="role"  th:field="${user.role}" value="ROLE_USER">
+                        <label>User</label>
+                    </div>
+                </fieldset>
                 <div class="input">
                     <label><b>Email</b></label>
                     <input type="text" name="email" th:field="${user.email}" placeholder="abc@abc.pl">
