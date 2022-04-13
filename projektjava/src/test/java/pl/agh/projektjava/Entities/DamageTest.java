@@ -1,13 +1,10 @@
 package pl.agh.projektjava.Entities;
 
-import org.junit.jupiter.api.Assertions;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.time.LocalDate;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.samePropertyValuesAs;
 
 
 
@@ -16,7 +13,7 @@ class DamageTest {
 
     @Test
     public void RegisterNewDamage_FieldsGiven_ShouldCreateNewDamageObject(){
-        Damage damage = new Damage();
+        // Damage damage = new Damage();
 
         // damage.setId(1L);
         // damage.setDescription("abcd");
