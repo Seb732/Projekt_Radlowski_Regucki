@@ -1,12 +1,453 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+            src="https://kit.fontawesome.com/742ec404dd.js"
+            crossorigin="anonymous"
+    ></script>
+    <script
+            src="https://kit.fontawesome.com/8a53eb5bc5.js"
+            crossorigin="anonymous"
+    ></script>
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+    />
+    <title>Orders</title>
+    <style>
+        :root {
+            --DateLabel_bg: #1572a1;
+            --CarClientLabel_bg: #6c93ab;
+        }
+
+        * {
+            font-family: "Poppins";
+        }
+        body {
+            background-color: #dde5f4;
+            margin: 0;
+            height: 100vh;
+        }
+        .header {
+            position: sticky;
+            background-color: #3e4684;
+            height: 70px;
+            margin: 0;
+            display: flex;
+            justify-content: space-between;
+            padding-right: 10px;
+            padding-left: 10px;
+        }
+
+        .header * {
+            color: #e6e9f9;
+        }
+
+        .navbar_menu {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            list-style: none;
+            width: auto;
+            padding: 0;
+            height: 2.5rem;
+            width: 40%;
+        }
+
+        #navbar_logo_normal {
+            display: flex;
+            text-align: center;
+            align-items: center;
+            font-size: 2.5rem;
+            text-decoration: none;
+        }
+        .navbar_btn {
+            height: 100%;
+            width: 22%;
+            margin-left: 1rem;
+            margin-right: 1rem;
+            background-color: #6c78cf;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        li {
+            list-style: none;
+        }
+        .button {
+            text-decoration: none;
+        }
+
+        #setting {
+            width: 20%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .setting_div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50%;
+            height: 100%;
+        }
+
+        .setting_btn {
+            width: 70%;
+            height: 2.5rem;
+            background-color: #3e4684;
+            border: 1px solid white;
+            border-radius: 10px;
+        }
+        .container_main {
+            width: 60vw;
+            height: 80vh;
+            margin-right: auto;
+            margin-left: auto;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            background-color: #f1f7fe;
+            border: solid 1px gray;
+            margin-top: 5%;
+            border-radius: 10px;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr 1fr 1fr;
+            padding-top: 3%;
+            padding-left: 5%;
+            row-gap: 20%;
+            height: 15vh;
+            width: 40vw;
+        }
+        .DateLabel {
+            color: white;
+            text-align: center;
+            border-radius: 2px;
+            background-color: var(--DateLabel_bg);
+            margin-right: 10%;
+            margin-left: 10%;
+        }
+        .Dates {
+            grid-area: 1 / 1 / 2 / 2;
+            display: grid;
+            grid-template-columns: 0.8fr 1fr 0.8fr 1fr;
+            grid-template-rows: 1fr;
+        }
+        .RentStartDateLabel {
+            grid-area: 1 / 1 / 2 / 2;
+        }
+
+        .RentStartDate {
+            grid-area: 1 / 2 / 2 / 3;
+        }
+
+        .RentEndDateLabel {
+            grid-area: 1 / 3 / 2 / 4;
+        }
+
+        .RentEndDate {
+            grid-area: 1 / 4 / 2 / 5;
+        }
+
+        .ClientCarLabel {
+            color: white;
+            text-align: center;
+            border-radius: 2px;
+            background-color: var(--CarClientLabel_bg);
+            margin-right: 10%;
+            margin-left: 10%;
+        }
+
+        .ClientCar {
+            grid-area: 2 / 1 / 3 / 2;
+            display: grid;
+            grid-template-columns: 0.8fr 1fr 0.8fr 1fr;
+            grid-template-rows: 1fr;
+        }
+        .ClientLabel {
+            grid-area: 1 / 1 / 2 / 2;
+        }
+
+        .Client {
+            grid-area: 1 / 2 / 2 / 3;
+        }
+
+        .CarLabel {
+            grid-area: 1 / 3 / 2 / 4;
+        }
+        .Car {
+            grid-area: 1 / 4 / 2 / 5;
+        }
+
+        .Status {
+            grid-area: 3 / 1 / 4 / 2;
+        }
+        .slider {
+            position: absolute;
+            top: 16vh;
+            right: 10%;
+            height: 15.5vh;
+            background: -webkit-linear-gradient(
+                    left,
+                    #f1f7fe,
+                    rgba(9, 146, 26, 0)
+            );
+            background: -moz-linear-gradient(
+                    left,
+                    #f1f7fe,
+                    rgba(9, 146, 26, 0)
+            );
+            background: -ms-linear-gradient(
+                    left,
+                    #f1f7fe,
+                    rgba(9, 146, 26, 0)
+            );
+            transition: all 1s ease;
+            -webkit-transition: all 1s ease;
+            -moz-transition: all 1s ease;
+            overflow: hidden;
+            width: 0;
+            color: #000;
+            border-radius: 10px;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat(2, 1fr);
+            padding-top: 15px;
+        }
+        .sliderL {
+            position: absolute;
+            top: 16vh;
+            left: 3px;
+            height: 15.5vh;
+            background: -webkit-linear-gradient(
+                    left,
+                    #f1f7fe,
+                    rgba(9, 146, 26, 0)
+            );
+            background: -moz-linear-gradient(
+                    left,
+                    #f1f7fe,
+                    rgba(9, 146, 26, 0)
+            );
+            background: -ms-linear-gradient(
+                    left,
+                    #f1f7fe,
+                    rgba(9, 146, 26, 0)
+            );
+            transition: all 1s ease;
+            -webkit-transition: all 1s ease;
+            -moz-transition: all 1s ease;
+            overflow: hidden;
+            width: 0;
+            color: #000;
+            border-radius: 10px;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat(2, 1fr);
+            padding-top: 15px;
+        }
+
+        .registNumb {
+            padding-left: 7%;
+            grid-area: 1 / 1 / 2 / 2;
+        }
+        .VIN {
+            padding-left: 7%;
+            grid-area: 2 / 1 / 3 / 2;
+        }
+
+        .teleNumbEmail {
+            grid-area: 1 / 1 / 2 / 2;
+            display: grid;
+            grid-template-columns: 0.5fr 1fr 0.5fr 1fr;
+            grid-template-rows: 1fr;
+            height: 2%;
+        }
+        .teleNumbLabel {
+            grid-area: 1 / 1 / 2 / 2;
+        }
+
+        .teleNumb {
+            grid-area: 1 / 2 / 2 / 3;
+        }
+
+        .emailLabel {
+            grid-area: 1 / 3 / 2 / 4;
+        }
+
+        .email {
+            grid-area: 1 / 4 / 2 / 5;
+        }
+        .idCardPesel {
+            grid-area: 2 / 1 / 3 / 2;
+            display: grid;
+            grid-template-columns: 0.5fr 1fr 0.5fr 1fr;
+            grid-template-rows: 1fr;
+            height: 2%;
+        }
+        .idCardLabel {
+            grid-area: 1 / 1 / 2 / 2;
+        }
+
+        .idCard {
+            grid-area: 1 / 2 / 2 / 3;
+        }
+
+        .peselLabel {
+            grid-area: 1 / 3 / 2 / 4;
+        }
+
+        .pesel {
+            grid-area: 1 / 4 / 2 / 5;
+        }
+        .companyNIPREGON{
+            grid-area: 2 / 1 / 3 / 2;
+            display: grid;
+            grid-template-columns: 0.5fr 1fr 0.5fr 1fr;
+            grid-template-rows: 1fr;
+            height: 25.5px;
+        }
+        .companyNIPLabel {
+            grid-area: 1 / 1 / 2 / 2;
+        }
+
+        .companyNIP {
+            grid-area: 1 / 2 / 2 / 3;
+        }
+
+        .companyREGONLabel {
+            grid-area: 1 / 3 / 2 / 4;
+        }
+
+        .companyREGON {
+            grid-area: 1 / 4 / 2 / 5;
+        }
+
+        .Car:hover .slider {
+            background: #f1f7fe;
+            width: 15%;
+            border: solid 1px gray;
+        }
+        .Client:hover .sliderL {
+            background: #f1f7fe;
+            width: 30%;
+            border: solid 1px gray;
+        }
+    </style>
+
 </head>
 <body>
-    
+<header class="header">
+    <a href="/" id="navbar_logo_normal"
+    ><b><i class="fa-solid fa-car-side"></i>Rentaly</b></a
+    >
+    <ul class="navbar_menu">
+        <li class="navbar_btn">
+            <a href="/orders" class="button">Wypożyczenia</a>
+        </li>
+        <li class="navbar_btn">
+            <a href="/cars" class="button">Samochody</a>
+        </li>
+        <li class="navbar_btn">
+            <a href="/clients" class="button">Klienci</a>
+        </li>
+    </ul>
+    <div id="setting">
+        <div class="setting_div">
+            <button class="setting_btn">Ustawienia</button>
+        </div>
+        <form
+                class="setting_div"
+                id="logout_form"
+                th:action="@{/logout}"
+                method="post"
+        >
+            <button class="setting_btn" id="logout_btn" type="submit">
+                Wyloguj się
+            </button>
+        </form>
+    </div>
+</header>
+<div class="container_main">
+    <ul>
+        <li th:each="order: ${orders}">
+            <div class="container" id="test">
+                <div class="Dates">
+                    <div class="RentStartDateLabel DateLabel">
+                        Start Date
+                    </div>
+                    <div class="RentStartDate" th:text="${order.rentStartDate}"></div>
+                    <div class="RentEndDateLabel DateLabel">
+                        End Date
+                    </div>
+                    <div class="RentEndDate" th:text="${order.rentEndDate}"></div>
+                </div>
+                <div class="ClientCar">
+                    <div class="ClientLabel ClientCarLabel">Client</div>
+                    <div class="Client">
+                        <span th:if="${#lists.contains(CompanyIds, order.client.id)}" th:text="${order.client.name}"></span>
+                        <span th:if="${#lists.contains(PersonalIds, order.client.id)}" th:text="${order.client.firstName}"></span>
+                        <span th:if="${#lists.contains(PersonalIds, order.client.id)}" th:text="${order.client.lastName}"></span>
+                        <div class="sliderL" id="sl">
+                            <div class="teleNumbEmail">
+                                <div class="teleNumbLabel DateLabel">Phone</div>
+                                <div class="teleNumb" th:text="${order.client.teleNumb}"></div>
+                                <div class="emailLabel DateLabel">Email</div>
+                                <div class="email" th:text="${order.client.email}"></div>
+                            </div>
+                            <div class="idCardPesel" th:if="${#lists.contains(PersonalIds, order.client.id)}">
+                                <div class="idCardLabel ClientCarLabel">ID Card</div>
+                                <div class="idCard" th:text="${order.client.idCard}"></div>
+                                <div class="peselLabel ClientCarLabel">PESEL</div>
+                                <div class="pesel" th:text="${order.client.pesel}"></div>
+                            </div>
+                            <div class="companyNIPREGON" th:if="${#lists.contains(CompanyIds, order.client.id)}">
+                                <div class="companyNIPLabel ClientCarLabel">NIP</div>
+                                <div class="companyNIP" th:text="${order.client.NIP}"></div>
+                                <div class="companyREGONLabel ClientCarLabel">REGON</div>
+                                <div class="companyREGON" th:text="${order.client.REGON}"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="CarLabel ClientCarLabel">Car</div>
+                    <div class="Car">
+                        <span th:text="${order.car.brand}"></span>
+                        <span th:text="${order.car.model}"></span>
+                        <div class="slider">
+                            <div class="registNumb">
+                                <a><i class="fa-solid fa-car"></i></a
+                                ><span th:text="${order.car.registNumb}"></span>
+                            </div>
+                            <div class="VIN">
+                                <span id="VIN" th:text="${order.car.VIN}"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="Status">
+                    <span>tbd</span>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+<script>
+    const vin_array = document.querySelectorAll("#VIN");
+    vin_array.forEach((element) => {
+        element.innerHTML =
+            '<span style="font-weight: bold">' +
+            "VIN " +
+            "</span>" +
+            element.innerHTML;
+    });
+</script>
 </body>
 </html>
