@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import io.micrometer.core.lang.NonNull;
 
 
 @Entity
@@ -39,10 +38,10 @@ public class Address
 
     @OneToMany(mappedBy = "address")
     Set<Client> clients;
-    
+
     // @OneToMany(mappedBy="address")
     // Set<CompanyClient> companyClients;
-    
+
     // @OneToMany(mappedBy = "address")
     // Set<PersonalClient> personalClients;
 
@@ -116,55 +115,61 @@ public class Address
     }
 
     // methods
-    
+
     @Override
     public boolean equals(Object obj) {
         if(obj.getClass()==Address.class)
         {
             Address adr=(Address) obj;
 
-            // check if local numb is null, because if it is we cannot use method equals()
-            if(this.getLocalNumb()==null&&adr.getLocalNumb()==null)
-            {
-                if(adr.getCity().equals(this.getCity())&&adr.getPostalCode().equals(this.getPostalCode())&&adr.getStreet().equals(this.getStreet())&&adr.getBuildingNumb().equals(this.getBuildingNumb()))
-                {
-                    return true;
-                }
-                return false;
-            }
-            if(this.getLocalNumb()==null&&adr.getLocalNumb().equals(""))
-            {
-                if(adr.getCity().equals(this.getCity())&&adr.getPostalCode().equals(this.getPostalCode())&&adr.getStreet().equals(this.getStreet())&&adr.getBuildingNumb().equals(this.getBuildingNumb()))
-                {
-                    return true;
-                }
-                return false;
-            }
-            if(this.getLocalNumb().equals("")&&adr.getLocalNumb()==null)
-            {
-                if(adr.getCity().equals(this.getCity())&&adr.getPostalCode().equals(this.getPostalCode())&&adr.getStreet().equals(this.getStreet())&&adr.getBuildingNumb().equals(this.getBuildingNumb()))
-                {
-                    return true;
-                }
-                return false;
-            }
-            if(this.getLocalNumb().equals("")&&adr.getLocalNumb().equals(""))
-            {
-                if(adr.getCity().equals(this.getCity())&&adr.getPostalCode().equals(this.getPostalCode())&&adr.getStreet().equals(this.getStreet())&&adr.getBuildingNumb().equals(this.getBuildingNumb()))
-                {
-                    return true;
-                }
-                return false;
-            }
             if(adr.getCity().equals(this.getCity())&&adr.getPostalCode().equals(this.getPostalCode())&&adr.getStreet().equals(this.getStreet())&&adr.getBuildingNumb().equals(this.getBuildingNumb())&&adr.getLocalNumb().equals(this.getLocalNumb()))
             {
                 return true;
             }
             return false;
-            
-        } 
+
+            // check if local numb is null, because if it is we cannot use method equals()
+            // if(this.getLocalNumb()==null&&adr.getLocalNumb()==null)
+            // {
+            //     if(adr.getCity().equals(this.getCity())&&adr.getPostalCode().equals(this.getPostalCode())&&adr.getStreet().equals(this.getStreet())&&adr.getBuildingNumb().equals(this.getBuildingNumb()))
+            //     {
+            //         return true;
+            //     }
+            //     return false;
+            // }
+            // if(this.getLocalNumb()==null&&adr.getLocalNumb().equals(""))
+            // {
+            //     if(adr.getCity().equals(this.getCity())&&adr.getPostalCode().equals(this.getPostalCode())&&adr.getStreet().equals(this.getStreet())&&adr.getBuildingNumb().equals(this.getBuildingNumb()))
+            //     {
+            //         return true;
+            //     }
+            //     return false;
+            // }
+            // if(this.getLocalNumb().equals("")&&adr.getLocalNumb()==null)
+            // {
+            //     if(adr.getCity().equals(this.getCity())&&adr.getPostalCode().equals(this.getPostalCode())&&adr.getStreet().equals(this.getStreet())&&adr.getBuildingNumb().equals(this.getBuildingNumb()))
+            //     {
+            //         return true;
+            //     }
+            //     return false;
+            // }
+            // if(this.getLocalNumb().equals("")&&adr.getLocalNumb().equals(""))
+            // {
+            //     if(adr.getCity().equals(this.getCity())&&adr.getPostalCode().equals(this.getPostalCode())&&adr.getStreet().equals(this.getStreet())&&adr.getBuildingNumb().equals(this.getBuildingNumb()))
+            //     {
+            //         return true;
+            //     }
+            //     return false;
+            // }
+            // if(adr.getCity().equals(this.getCity())&&adr.getPostalCode().equals(this.getPostalCode())&&adr.getStreet().equals(this.getStreet())&&adr.getBuildingNumb().equals(this.getBuildingNumb())&&adr.getLocalNumb().equals(this.getLocalNumb()))
+            // {
+            //     return true;
+            // }
+            // return false;
+
+        }
         else {
             return false;
         }
-    }    
+    }
 }
