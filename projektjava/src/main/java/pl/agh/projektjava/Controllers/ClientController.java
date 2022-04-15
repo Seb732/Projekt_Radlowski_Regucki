@@ -68,6 +68,10 @@ public class ClientController {
             if(Validation.ValTeleNumb(person.getTeleNumb())){}else{throw new ExceptionWrongTeleNumb("Telephone number is not correct");}
             if(Validation.ValEmail(person.getEmail())){}else{throw new ExceptionWrongEmail("Email is not correct");}
             person.setBalance(0.00);
+            
+            if(address.getLocalNumb()=="")
+            {address.setLocalNumb(null);}
+
             person.setAddress(addressServices.saveIfNotInDB(address));
             clientServ.addPersonalClient(person);
             model.addAttribute("message", "Client added") ;
@@ -84,13 +88,19 @@ public class ClientController {
     public String saveCompanyClient(@ModelAttribute("company") CompanyClient company,@ModelAttribute("address2") Address address, Model model)
     {
         try {
+            // Validation
             if(Validation.ValNIP(company.getNIP())){}else{throw new ExceptionWrongNIP("NIP is not correct");}
             if(Validation.ValREGON(company.getREGON())){}else{throw new ExceptionWrongRegon("REGON is not correct");}
             if(Validation.ValTeleNumb(company.getTeleNumb())){}else{throw new ExceptionWrongTeleNumb("Telephone number is not correct");}
             if(Validation.ValEmail(company.getEmail())){}else{throw new ExceptionWrongEmail("Email is not correct");}
-            company.setBalance(0.00);
-            company.setAddress(addressServices.saveIfNotInDB(address));
-            clientServ.addCompanyClient(company);
+            
+            company.setBalance(0.00);   //settings balance to 0
+
+            if(address.getLocalNumb()=="")  
+            {address.setLocalNumb(null);}
+
+            company.setAddress(addressServices.saveIfNotInDB(address));  //saving address and setting to company
+            clientServ.addCompanyClient(company);   //saving company
             model.addAttribute("message", "Client added") ;
             return allClients(model);  
         } catch (Exception e) {

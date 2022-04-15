@@ -90,6 +90,8 @@ public class AppController {
             if(Validation.ValPostalCode(address.getPostalCode())){}else{throw new ExceptionWrongEmail("Postal code is incorrect");}
             
             // sprawdzanie czy adres jest juz zapisany
+            if(address.getLocalNumb()=="")
+            {address.setLocalNumb(null);}
             user.setAddress(addressServices.saveIfNotInDB(address));
 
 
