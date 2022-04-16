@@ -241,7 +241,7 @@
         }
         .sliderL {
             position: absolute;
-            left: 3px;
+            left: 5%;
             height: 15.5vh;
             background: -webkit-linear-gradient(
                     left,
@@ -357,6 +357,14 @@
             width: 23%;
             border: solid 1px gray;
         }
+        #id{
+            background-color: #d9cf16;
+            color: white;
+            margin-left: 2.2%;
+            border-radius: 2px;
+            padding-right: 5px;
+            padding-left: 5px;
+        }
     </style>
 
 </head>
@@ -449,7 +457,8 @@
                     </div>
                 </div>
                 <div class="Status">
-                    <span>tbd</span>
+                    <span id="id">ID:</span>
+                    <span th:text="${order.id}" style="text-decoration: underline"></span>
                 </div>
             </div>
         </li>
