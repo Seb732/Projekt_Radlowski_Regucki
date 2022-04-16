@@ -192,9 +192,8 @@
         }
         .slider {
             position: absolute;
-            top: 16vh;
             right: 10%;
-            height: 15.5vh;
+            height: 15vh;
             background: -webkit-linear-gradient(
                     left,
                     #f1f7fe,
@@ -224,9 +223,8 @@
         }
         .sliderL {
             position: absolute;
-            top: 16vh;
             left: 3px;
-            height: 15.5vh;
+            height: 15vh;
             background: -webkit-linear-gradient(
                     left,
                     #f1f7fe,
@@ -379,7 +377,7 @@
 <div class="container_main">
     <ul>
         <li th:each="order: ${orders}">
-            <div class="container" id="test">
+            <div class="container" id="ctr">
                 <div class="Dates">
                     <div class="RentStartDateLabel DateLabel">
                         Start Date
@@ -421,7 +419,7 @@
                     <div class="Car">
                         <span th:text="${order.car.brand}"></span>
                         <span th:text="${order.car.model}"></span>
-                        <div class="slider">
+                        <div class="slider" id="sr">
                             <div class="registNumb">
                                 <a><i class="fa-solid fa-car"></i></a
                                 ><span th:text="${order.car.registNumb}"></span>
@@ -440,6 +438,14 @@
     </ul>
 </div>
 <script>
+    function getOffset(el) {
+        const rect = el.getBoundingClientRect();
+        return {
+            left: rect.left + window.scrollX,
+            top: rect.top + window.scrollY
+        };
+    }
+
     const vin_array = document.querySelectorAll("#VIN");
     vin_array.forEach((element) => {
         element.innerHTML =
@@ -448,6 +454,14 @@
             "</span>" +
             element.innerHTML;
     });
+    let s_top_pos = 10;
+    const sl_array = document.querySelectorAll("#sl");
+    const sr_array = document.querySelectorAll("#sr");
+    const ctr_array = document.querySelectorAll("#ctr");
+    for (let i = 0; i < ctr_array.length; i++){
+       sl_array[i].style.top = (getOffset(ctr_array[i]).top).toString() + 'px';
+       sr_array[i].style.top = (getOffset(ctr_array[i]).top).toString() + 'px';
+    }
 </script>
 </body>
 </html>
