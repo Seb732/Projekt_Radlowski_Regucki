@@ -1,13 +1,17 @@
 package pl.agh.projektjava.Controllers;
 
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import pl.agh.projektjava.Entities.Address;
+import pl.agh.projektjava.Entities.Client;
 import pl.agh.projektjava.Entities.CompanyClient;
 import pl.agh.projektjava.Entities.PersonalClient;
 import pl.agh.projektjava.Entities.Validation;
@@ -110,6 +114,16 @@ public class ClientController {
             model.addAttribute("address2", address);
             return newClients(model);
         }
+    }
+
+    @PostMapping("/clients/pay/{id}")
+    public String payAll(@PathVariable Long id, Model model)
+    {
+        Client client=clientServ.getById(id).get();
+        client.setBalance(0.00);
+        clientServ.updateClient(client);
+        model.addAttribute("message","All paid");
+        return allClients(model);
     }
 
 }
