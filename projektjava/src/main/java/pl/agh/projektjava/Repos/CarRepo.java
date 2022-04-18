@@ -19,6 +19,9 @@ public interface CarRepo extends CrudRepository<Car,String>
     @Query("SELECT c FROM Car c WHERE c.status='hired'")
     public Iterable<Car> getAllHiredCars();
 
+    @Query("SELECT c FROM Car c WHERE c.status='available'")
+    public Iterable<Car> getAllAvailable();
+
     
     @Query("SELECT a FROM Car as a WHERE a.registNumb=:regist")
     public Optional<Car> getCarByRegistNumb(@Param("regist") String regist);

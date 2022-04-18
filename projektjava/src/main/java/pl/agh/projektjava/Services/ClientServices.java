@@ -43,6 +43,11 @@ public class ClientServices {
         return allClients.findAll();
     }
 
+    public Optional<Client> getById(Long id)
+    {
+        return allClients.findById(id);
+    }
+
     /**
      * Returns all company clients
      * @return

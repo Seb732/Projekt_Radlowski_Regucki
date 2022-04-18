@@ -370,37 +370,34 @@
 
 </head>
 <body>
-<header class="header">
-    <a href="/" id="navbar_logo_normal"
-    ><b><i class="fa-solid fa-car-side"></i>Rentaly</b></a
-    >
-    <ul class="navbar_menu">
-        <li class="navbar_btn">
-            <a href="/orders" class="button">Wypożyczenia</a>
-        </li>
-        <li class="navbar_btn">
-            <a href="/cars" class="button">Samochody</a>
-        </li>
-        <li class="navbar_btn">
-            <a href="/clients" class="button">Klienci</a>
-        </li>
-    </ul>
-    <div id="setting">
-        <div class="setting_div">
-            <button class="setting_btn">Ustawienia</button>
+    <header class="header">
+        <a href="/" id="navbar_logo_normal"><b><i class="fa-solid fa-car-side"></i>Rentaly</b></a>
+        <ul class="navbar_menu">
+            <li class="navbar_btn">
+                <a href="/czesc" class="button" >Wypożyczenia</a>
+            </li>
+            <li class="navbar_btn">
+                <a href="/cars" class="button" >Samochody</a>
+            </li>
+            <li class="navbar_btn">
+                <a href="/clients" class="button">Klienci</a>
+            </li>
+        </ul>
+        <div id="setting">
+            <div class="setting_div">
+                <button class="setting_btn">Ustawienia</button>
+            </div>
+            <form class="setting_div" id="logout_form" th:action="@{/logout}" method="post">
+                <button class="setting_btn" id="logout_btn" type="submit">Wyloguj się</button>
+            </form>
         </div>
-        <form
-                class="setting_div"
-                id="logout_form"
-                th:action="@{/logout}"
-                method="post"
-        >
-            <button class="setting_btn" id="logout_btn" type="submit">
-                Wyloguj się
-            </button>
-        </form>
+    </header>
+    <div class="btn_cont" style="width:100%; display: flex; align-items: center; justify-content: space-between;">
+        <a href="/orders/new" class="button" style="background-color: rgb(23, 182, 23);text-decoration: none; border-radius: 5px; padding: 0.5rem;color: white; border: 1px solid black; margin-top: 1%; margin-left: 2%;">Nowe wypozyczenie</a>
+        <div id="message" th:if="${message}" style="background-color: rgba(23, 182, 23, 0.646);height: 70%; width:20%; border: 1px solid black; border-radius: 5px; margin-right: 1%; margin-top: 1%; text-align: center;">
+            <p th:text="${message}"></p>
+        </div>
     </div>
-</header>
 <div class="container_main">
     <ul>
         <li th:each="order: ${orders}">
