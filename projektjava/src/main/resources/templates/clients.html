@@ -514,7 +514,10 @@
             <ul>
                 <li th:each="personalClient : ${personalClients}">
                     <div class="container" >
-                        <div class="id" th:text="${personalClient.id}"></div>
+                        <div class="id" style="display: flex; flex-direction: column; justify-content: space-between;" >
+                            <span th:text="${personalClient.id}"></span>
+                            <span th:text="${personalClient.balance}"></span>
+                        </div>
                         <div class="labels">
                             <div class="personalInfoLabel">Personal Info</div>
                             <div class="addressLabelMain">Address</div>
@@ -566,7 +569,10 @@
             <ul>
                 <li th:each="companyClient :${companyClients}">
                     <div class="container" >
-                        <div class="idCompany" th:text="${companyClient.id}"></div>
+                        <div class="idCompany"  style="display: flex; flex-direction: column; justify-content: space-between;">
+                            <span th:text="${companyClient.id}"></span>
+                            <span th:text="${companyClient.balance}"></span>
+                        </div>
                         <div class="labels">
                             <div class="companyInfoLabel">Company Info</div>
                             <div class="addressLabelMain">Address</div>
