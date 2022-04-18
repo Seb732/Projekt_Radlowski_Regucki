@@ -110,6 +110,11 @@ public class ClientServices {
         company.save(client);
     }
 
+    public void updateClient(Client client)
+    {
+        allClients.save(client);
+    }
+
     
     
 }

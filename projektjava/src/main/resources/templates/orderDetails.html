@@ -212,128 +212,73 @@
 
 
     <div class="btn_cont" style="width:100%; display: flex; align-items: center; justify-content: space-between;">
-        <form th:action= "@{/cars/delete/{vin}(vin=${car.VIN})}" method="post" style="margin-top: 1%; margin-left: 2%; height: 100%; cursor: pointer;">
-            <button type="submit" style="background-color: rgb(235, 33, 33); border: 1px solid black; border-radius: 5px; color: white; font-size: medium; padding: 0.5rem;">Usuń auto</button>
+        <form th:if="${order.status.toString().equals('active')}" th:action= "@{/orders/end/{id}(id=${order.id})}" method="post" style="margin-top: 1%; margin-left: 2%; height: 100%; cursor: pointer;">
+            <button type="submit" style="background-color: rgb(235, 33, 33); border: 1px solid black; border-radius: 5px; color: white; font-size: medium; padding: 0.5rem;">Zakończ wynajem</button>
         </form>
-        <a th:href= "@{/cars/edit/{vin}(vin=${car.VIN})}" class="button" style="background-color: rgb(23, 182, 23);text-decoration: none; border-radius: 5px; padding: 0.5rem;color: white; border: 1px solid black; margin-top: 1%; margin-right: 2%;">Edytuj auto</a>
+        <div id="message" th:if="${message}" style="background-color: rgba(23, 182, 23, 0.646);height: 70%; width:20%; border: 1px solid black; border-radius: 5px; margin-right: 1%; margin-top: 1%; text-align: center;">
+            <p th:text="${message}"></p>
+        </div>
     </div>
-
     <div class="container_main">
-            <div class="container">
-                <div class="main_inf">
-                    <div class="brand_model_prodYear">
-                        <div class="brand_model">
-                            <span th:text="${car.brand}"></span>
-                            <span th:text="${car.model}"></span>
+        <div class="container" id="ctr" onclick="showBtn()">
+            <div class="Dates">
+                <div class="RentStartDateLabel DateLabel">
+                    Start Date
+                </div>
+                <div class="RentStartDate" th:text="${order.rentStartDate}"></div>
+                <div class="RentEndDateLabel DateLabel">
+                    End Date
+                </div>
+                <div class="RentEndDate" th:text="${order.rentEndDate}"></div>
+            </div>
+            <div class="ClientCar">
+                <div class="ClientLabel ClientCarLabel">Client</div>
+                <div class="Client">
+                    <span th:if="${#lists.contains(CompanyIds, order.client.id)}" th:text="${order.client.name}"></span>
+                    <span th:if="${#lists.contains(PersonalIds, order.client.id)}" th:text="${order.client.firstName}"></span>
+                    <span th:if="${#lists.contains(PersonalIds, order.client.id)}" th:text="${order.client.lastName}"></span>
+                    <div class="sliderL" id="sl">
+                        <div class="teleNumbEmail">
+                            <div class="teleNumbLabel sliderLabel1">Phone</div>
+                            <div class="teleNumb" th:text="${order.client.teleNumb}"></div>
+                            <div class="emailLabel sliderLabel1">Email</div>
+                            <div class="email" th:text="${order.client.email}"></div>
                         </div>
-                        <div class="prodYear" th:text="${car.prodYear}"></div>
+                        <div class="idCardPesel" th:if="${#lists.contains(PersonalIds, order.client.id)}">
+                            <div class="idCardLabel sliderLabel2">ID Card</div>
+                            <div class="idCard" th:text="${order.client.idCard}"></div>
+                            <div class="peselLabel sliderLabel2">PESEL</div>
+                            <div class="pesel" th:text="${order.client.pesel}"></div>
+                        </div>
+                        <div class="companyNIPREGON" th:if="${#lists.contains(CompanyIds, order.client.id)}">
+                            <div class="companyNIPLabel sliderLabel2">NIP</div>
+                            <div class="companyNIP" th:text="${order.client.NIP}"></div>
+                            <div class="companyREGONLabel sliderLabel2">REGON</div>
+                            <div class="companyREGON" th:text="${order.client.REGON}"></div>
+                        </div>
                     </div>
-                    <div class="priceRate" th:text="${car.priceRate}"></div>
                 </div>
-                <div class="details">
-                    <div class="status" th:text="${car.status}"></div>
-                    <div class="spec info">
-                        <a><i class="fa-solid fa-car" ></i>
-                        <p th:text="${car.registNumb}" style="display: inline-block"></p>
-                        </a>
-                        <p id="VIN" th:text="${car.VIN}"></p>
+                <div class="CarLabel ClientCarLabel">Car</div>
+                <div class="Car">
+                    <span th:text="${order.car.brand}"></span>
+                    <span th:text="${order.car.model}"></span>
+                    <div class="slider" id="sr">
+                        <div class="registNumb">
+                            <a><i class="fa-solid fa-car"></i></a
+                            ><span th:text="${order.car.registNumb}"></span>
+                        </div>
+                        <div class="VIN">
+                            <span id="VIN" th:text="${order.car.VIN}"></span>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div id="map_container">
-                <h1 style="height:10%; margin-left: 2%;">Pozycja samochodu</h1>
-                <div id="map"></div>
-                <script th:inline="javascript">
-                    function initMap() {
-                        // Map options
-                        var options={
-                            zoom:12,
-                            center:{lat:/*[[${car.latitude}]]*/,lng:/*[[${car.longitude}]]*/}
-                        }
-            
-                        //new map
-                        var map=new google.maps.Map(document.getElementById('map'),options);
-            
-                        //markers
-            
-                                var iconlink=/*[[@{/icons/car-icon-map.png}]]*/'';
-            
-            
-                                var marker= new google.maps.Marker({
-                                position:{lat:/*[[${car.latitude}]]*/,lng:/*[[${car.longitude}]]*/},
-                                icon: {
-                                    labelOrigin: new google.maps.Point(25,0),
-                                    url: iconlink
-                                },
-                                label: {
-                                    text: [[${car.registNumb}]],
-                                    color: "black",
-                                    fontWeight: "bold"
-                                },
-                                map:map
-                            })
-                    }
-                </script>
-                <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-                <script
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUcs6WNxzNLK5FoGrglvf7ln2m7N2VPpQ&callback=initMap&v=weekly"
-                async
-                ></script>
+            <div class="Status">
+                <span id="id">ID:</span>
+                <span th:text="${order.id}" style="text-decoration: underline"></span>
             </div>
-            <div id="damage_list" style="text-align: center; border: 1px solid gray; background-color: #f1f7fe; border-radius: 10px;">
-                <h1>Uszkodzenia</h1>
-                <div th:if="${#lists.isEmpty(car.damages)}" style="text-align: center; color: gray;">
-                    <p>Brak uszkodzeń</p>
-                </div>
-                <div th:unless="${#lists.isEmpty(car.damages)}">
-                    <table class = "table table-striped table-bordered">
-                        <thead class = "table-dark">
-                            <tr>
-                                <th> Data</th>
-                                <th> Opis</th>
-                                <th> Akcje </th>
-                            </tr>
-                        </thead>
-                        
-                        <tbody>
-                            <tr th:each = "dmg: ${car.damages}">
-                                <td th:text = "${dmg.date}"></td>
-                                <td th:text = "${dmg.description}"></td>
-                                <td>
-                                    <a th:href = "@{/damages/delete/{id}(id=${dmg.id})}"
-                                     class = "btn btn-primary">Edytuj</a>
-                                    
-                                    <a th:href = "@{/students/{id}(id=${dmg.id})}"
-                                     class = "btn btn-danger">Usuń</a>
-                                     
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-            </div>
-
+        </div>
     </div>
-    <script>
-        const vin_array = document.querySelectorAll("#VIN");
-        vin_array.forEach(element => {
-            element.innerHTML = '<span style="font-weight: bold">' + "VIN " + '</span>' + element.innerHTML;
-        })
-        const price_array = document.querySelectorAll(".priceRate");
-        price_array.forEach(element => {
-            element.innerHTML += " zł/day";
-        })
-        const av_array = document.querySelectorAll(".status");
-        av_array.forEach(element => {
-            if (element.childNodes[0].nodeValue === "hired"){
-                element.style = 'color: orange';
-            }
-            else{
-                element.style = 'color: green';
-            }
-        })
-
-    </script>
+    
 </body>
 </html>

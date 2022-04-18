@@ -1,5 +1,7 @@
 package pl.agh.projektjava.Services;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,6 +39,16 @@ public class RentOrderServices {
 
 
     public void saveOrder(RentOrder rentOrder)
+    {
+        repo.save(rentOrder);
+    }
+
+    public Optional<RentOrder> getById(Long id)
+    {
+        return repo.findById(id);
+    }
+
+    public void updateRentOrder(RentOrder rentOrder)
     {
         repo.save(rentOrder);
     }

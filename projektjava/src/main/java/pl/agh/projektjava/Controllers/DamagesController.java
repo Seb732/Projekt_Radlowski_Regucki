@@ -3,6 +3,7 @@ package pl.agh.projektjava.Controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import pl.agh.projektjava.Services.DamageServices;
 
@@ -17,7 +18,7 @@ public class DamagesController {
 
 
 
-    @RequestMapping("/damages/delete/{id}")
+    @RequestMapping(value="/damages/delete/{id}", method = RequestMethod.POST)
     public void deleteDamage(@PathVariable Long id)
     {
         services.deleteDamage(id);
