@@ -34,4 +34,10 @@ public class RentOrderServices {
 
     public Iterable<String> getCompanyClientsIds(){return companyClientRepo.getCompanyClientsIds();}
     public Iterable<String> getPersonalClientsIds(){return personalClientRepo.getPersonalClientsIds();}
+
+
+    public void saveOrder(RentOrder rentOrder)
+    {
+        repo.save(rentOrder);
+    }
 }

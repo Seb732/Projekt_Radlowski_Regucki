@@ -19,7 +19,7 @@ import pl.agh.projektjava.Exceptions.ExceptionWrongTeleNumb;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Client {
+public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,3 +1,4 @@
+
 package pl.agh.projektjava.Entities;
 
 import java.time.LocalDate;
@@ -16,6 +17,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import pl.agh.projektjava.Repos.CarRepo;
+import pl.agh.projektjava.Services.CarServices;
 
 
 @Entity
@@ -48,9 +54,10 @@ public class RentOrder {
     double totalCost;
 
 
+
     // constructors
     public RentOrder(){}
-    public RentOrder(Client client, Car car, String rentStartDate, String rentEndDate, OrderStatus status){
+    public RentOrder(Client client, Car car, LocalDate rentStartDate, LocalDate rentEndDate, OrderStatus status){
         setClient(client);
         setCar(car);
         setRentStartDate(rentStartDate);
@@ -66,21 +73,41 @@ public class RentOrder {
     public void setClient(Client client) {this.client = client;}
     public Client getClient() {return client;}
 
-    public void setCar(Car car) {this.car = car;}
+    public void setCar(Car car) 
+    {
+        this.car = car;
+    }
     public Car getCar() {return car;}
 
-    public void setRentStartDate(String rentStartDate) {
-        this.rentStartDate = LocalDate.parse(rentStartDate, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-    }
+    // public void setRentStartDate(String rentStartDate) {
+    //     this.rentStartDate = LocalDate.parse(rentStartDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    // }
 
-    public LocalDate getRentStartDate() {return rentStartDate;}
+    // public LocalDate getRentStartDate() {return rentStartDate;}
 
-    public void setRentEndDate(String rentEndDate) {
-        this.rentEndDate = LocalDate.parse(rentEndDate, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-    }
+    // public void setRentEndDate(String rentEndDate) {
+    //     this.rentEndDate = LocalDate.parse(rentEndDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    // }
     
     
-    public LocalDate getRentEndDate() {return rentEndDate;}
+    // public LocalDate getRentEndDate() {return rentEndDate;}
+
+    public LocalDate getRentStartDate() {
+        return this.rentStartDate;
+    }
+
+    public void setRentStartDate(LocalDate rentStartDate) {
+        this.rentStartDate = rentStartDate;
+    }
+
+    public LocalDate getRentEndDate() {
+        return this.rentEndDate;
+    }
+
+    public void setRentEndDate(LocalDate rentEndDate) {
+        this.rentEndDate = rentEndDate;
+    }
+
 
     public void setStatus(OrderStatus status) {this.status = status;}
     public OrderStatus getStatus() {return status;}

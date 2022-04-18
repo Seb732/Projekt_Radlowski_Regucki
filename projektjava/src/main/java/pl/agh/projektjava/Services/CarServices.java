@@ -36,6 +36,15 @@ public class CarServices {
     }
 
     /**
+     * Returns all available cars
+     * @return
+     */
+    public Iterable<Car> getAllAvailable()
+    {
+        return carRepo.getAllAvailable();
+    }
+
+    /**
      * Returns car with given registration number
      * @param registNumb
      * @return
