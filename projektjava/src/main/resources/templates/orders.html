@@ -243,7 +243,7 @@
         .sliderL {
             position: absolute;
             left: 5%;
-            height: 18vh;
+            height: fit-content;
             background: -webkit-linear-gradient(
                     left,
                     #f1f7fe,
@@ -366,6 +366,30 @@
             padding-right: 5px;
             padding-left: 5px;
         }
+        #del_btn{
+            background-color: rgb(235, 33, 33);
+            border: 1px solid black;
+            border-radius: 5px;
+            color: white;
+            font-size: medium;
+            padding: 0.5rem;
+            margin-top: 5px;
+            float: left;
+            visibility: hidden;
+            margin-left: 2%;
+        }
+        #edit_btn{
+            background-color: rgb(23, 182, 23);
+            text-decoration: none;
+            border-radius: 5px;
+            padding: 0.5rem;
+            color: white;
+            border: 1px solid black;
+            margin-top: 5px;
+            margin-right: 2%;
+            float: right;
+            visibility: hidden;
+        }
     </style>
 
 </head>
@@ -397,11 +421,11 @@
         <div id="message" th:if="${message}" style="background-color: rgba(23, 182, 23, 0.646);height: 70%; width:20%; border: 1px solid black; border-radius: 5px; margin-right: 1%; margin-top: 1%; text-align: center;">
             <p th:text="${message}"></p>
         </div>
-    </div>
+  </div>
 <div class="container_main">
     <ul>
         <li th:each="order: ${orders}">
-            <div class="container" id="ctr">
+            <div class="container" id="ctr" onclick="showBtn()">
                 <div class="Dates">
                     <div class="RentStartDateLabel DateLabel">
                         Start Date
@@ -481,9 +505,28 @@
     const sl_array = document.querySelectorAll("#sl");
     const sr_array = document.querySelectorAll("#sr");
     const ctr_array = document.querySelectorAll("#ctr");
+    const hght = ctr_array[0].clientHeight - 20;
     for (let i = 0; i < ctr_array.length; i++){
        sl_array[i].style.top = (getOffset(ctr_array[i]).top).toString() + 'px';
        sr_array[i].style.top = (getOffset(ctr_array[i]).top).toString() + 'px';
+       sl_array[i].style.height = hght.toString() + 'px';
+       sr_array[i].style.height = hght.toString() + 'px';
+    }
+    function showBtn(){
+        const delBtn = document.getElementById("del_btn");
+        if (delBtn.style.visibility === 'hidden'){
+            delBtn.style.visibility = 'visible';
+        }
+        else{
+            delBtn.style.visibility = 'hidden';
+        }
+        const editBtn = document.getElementById("edit_btn");
+        if (editBtn.style.visibility === 'hidden'){
+            editBtn.style.visibility = 'visible';
+        }
+        else{
+            editBtn.style.visibility = 'hidden';
+        }
     }
 </script>
 </body>
