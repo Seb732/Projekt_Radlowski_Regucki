@@ -64,7 +64,6 @@ public class RentOrder {
         setRentEndDate(rentEndDate);
         setStatus(status);
     }
-
     // getters and setters
     
     public void setId(Long id){this.id=id;}
