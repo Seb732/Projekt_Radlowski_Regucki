@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import pl.agh.projektjava.Entities.Car;
 import pl.agh.projektjava.Entities.RentOrder;
+import pl.agh.projektjava.Entities.RentOrder.OrderStatus;
 import pl.agh.projektjava.Services.CarServices;
 import pl.agh.projektjava.Services.ClientServices;
 import pl.agh.projektjava.Services.RentOrderServices;
@@ -55,8 +56,9 @@ public class OrderController {
             rentOrder.setCar(carServices.getCarByVin(rentOrder.getCar().getVIN()).get());
             rentOrder.setClient(clientServices.getById(rentOrder.getClient().getId()).get());
             rentOrder.getCar().setStatus(Car.Status.hired);
+            carServices.updateCar(rentOrder.getCar());
             rentOrder.setRentStartDate(LocalDate.now());
-            rentOrder.setStatus(RentOrder.OrderStatus.active);
+            rentOrder.setStatus(OrderStatus.active);
             rentOrderServices.saveOrder(rentOrder);
             model.addAttribute("message","Rent order saved");
             return orders(model);
