@@ -47,4 +47,9 @@ public class RentOrderServices {
     {
         return repo.findById(id);
     }
+
+    public void updateRentOrder(RentOrder rentOrder)
+    {
+        repo.save(rentOrder);
+    }
 }

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/8a53eb5bc5.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap">
+    <title>Car details</title>
+<style>
+    * {
+            font-family: "Poppins";
+        }
+        body{
+            background-color: #dde5f4;
+            margin: 0;
+            margin-bottom: 2%;
+        }
+        .header{
+            position: sticky;
+            background-color: #3e4684;
+            height: 70px;
+            margin: 0;
+            display: flex;
+            justify-content: space-between;
+            padding-right: 10px;
+            padding-left: 10px;
+        }
+
+        .header *{
+            color:#e6e9f9;
+        }
+
+        .navbar_menu{
+        display: flex;
+         justify-content: space-between;
+         align-items: center;
+         list-style: none;
+         width: auto;
+         padding: 0;
+         height: 2.5rem;
+         width: 40%;
+    }
+
+
+        #navbar_logo_normal{
+            display: flex;
+            text-align: center;
+            align-items: center;
+            font-size: 2.5rem;
+            text-decoration: none;
+        }
+        .navbar_btn{
+        height: 100%;
+        width: 22%;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        background-color: #6c78cf;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .button{
+        text-decoration: none;
+    }
+
+    #setting{
+        width: 20%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .setting_div{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        height: 100%;
+    }
+
+
+    .setting_btn{
+        width: 70%;
+        height: 2.5rem;
+        background-color: #3e4684;
+        border: 1px solid white;
+        border-radius: 10px;
+    }
+
+
+    .container_main{
+            width: 60vw;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    #map_container{
+        width: 100%;
+        margin-top: 5%;
+        margin-bottom: 5%;
+        border:1px solid grey;
+        border-radius: 10px;
+        background-color: #f1f7fe;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+    }
+
+    #map {
+        height: 30vh;
+        width: 95%;
+    }
+
+        .container{
+            background-color: #f1f7fe;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: 1fr;
+            grid-column-gap: 0;
+            grid-row-gap: 0;
+            border: solid 1px gray;
+            margin-top: 5%;
+            border-radius: 10px;
+        }
+        li{
+            list-style: none;
+        }
+        .main_inf{
+            grid-area: 1 / 1 / 2 / 2;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat(2, 1fr);
+            grid-column-gap: 0;
+            grid-row-gap: 0;
+        }
+        .details{
+            padding-left: 10%;
+            grid-area: 1 / 2 / 2 / 3;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 0.7fr 1fr;
+            grid-column-gap: 0;
+            grid-row-gap: 0;
+
+        }
+        .brand_model_prodYear{
+            grid-area: 1 / 1 / 2 / 2;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat(2, 1fr);
+            grid-column-gap: 0;
+            grid-row-gap: 0;
+        }
+        .brand_model{
+            padding-left: 10%;
+            padding-top: 5%;
+            font-size: 34px;
+            font-weight: bold;
+            grid-area: 1 / 1 / 2 / 2;
+        }
+        .prodYear{
+            padding-left: 10%;
+            grid-area: 2 / 1 / 3 / 2;
+        }
+        .priceRate{
+            padding-top: 10%;
+            padding-left: 25%;
+            font-size: 24px;
+            grid-area: 2 / 1 / 3 / 2;
+        }
+        .status{
+            padding-top: 10%;
+            font-size: 28px;
+            grid-area: 1 / 1 / 2 / 2;
+        }
+        .spec{
+            padding-top: 10%;
+            grid-area: 2 / 1 / 3 / 2;
+        }
+        .info{
+            display: inline-block;
+        }
+</style>
+</head>
+<body>
+    <header class="header">
+        <a href="/" id="navbar_logo_normal"><b><i class="fa-solid fa-car-side"></i>Rentaly</b></a>
+        <ul class="navbar_menu">
+            <li class="navbar_btn">
+                <a href="/orders" class="button" >Wypożyczenia</a>
+            </li>
+            <li class="navbar_btn">
+                <a href="/cars" class="button" >Samochody</a>
+            </li>
+            <li class="navbar_btn">
+                <a href="/clients" class="button">Klienci</a>
+            </li>
+        </ul>
+        <div id="setting">
+            <div class="setting_div">
+                <button class="setting_btn">Ustawienia</button>
+            </div>
+            <form class="setting_div" id="logout_form" th:action="@{/logout}" method="post">
+                <button class="setting_btn" id="logout_btn" type="submit">Wyloguj się</button>
+            </form>
+        </div>
+    </header>
+
+
+    <div class="btn_cont" style="width:100%; display: flex; align-items: center; justify-content: space-between;">
+        <form th:if="${order.status.toString().equals('active')}" th:action= "@{/orders/end/{id}(id=${order.id})}" method="post" style="margin-top: 1%; margin-left: 2%; height: 100%; cursor: pointer;">
+            <button type="submit" style="background-color: rgb(235, 33, 33); border: 1px solid black; border-radius: 5px; color: white; font-size: medium; padding: 0.5rem;">Zakończ wynajem</button>
+        </form>
+        <div id="message" th:if="${message}" style="background-color: rgba(23, 182, 23, 0.646);height: 70%; width:20%; border: 1px solid black; border-radius: 5px; margin-right: 1%; margin-top: 1%; text-align: center;">
+            <p th:text="${message}"></p>
+        </div>
+    </div>
+    <div class="container_main">
+        <div class="container" id="ctr" onclick="showBtn()">
+            <div class="Dates">
+                <div class="RentStartDateLabel DateLabel">
+                    Start Date
+                </div>
+                <div class="RentStartDate" th:text="${order.rentStartDate}"></div>
+                <div class="RentEndDateLabel DateLabel">
+                    End Date
+                </div>
+                <div class="RentEndDate" th:text="${order.rentEndDate}"></div>
+            </div>
+            <div class="ClientCar">
+                <div class="ClientLabel ClientCarLabel">Client</div>
+                <div class="Client">
+                    <span th:if="${#lists.contains(CompanyIds, order.client.id)}" th:text="${order.client.name}"></span>
+                    <span th:if="${#lists.contains(PersonalIds, order.client.id)}" th:text="${order.client.firstName}"></span>
+                    <span th:if="${#lists.contains(PersonalIds, order.client.id)}" th:text="${order.client.lastName}"></span>
+                    <div class="sliderL" id="sl">
+                        <div class="teleNumbEmail">
+                            <div class="teleNumbLabel sliderLabel1">Phone</div>
+                            <div class="teleNumb" th:text="${order.client.teleNumb}"></div>
+                            <div class="emailLabel sliderLabel1">Email</div>
+                            <div class="email" th:text="${order.client.email}"></div>
+                        </div>
+                        <div class="idCardPesel" th:if="${#lists.contains(PersonalIds, order.client.id)}">
+                            <div class="idCardLabel sliderLabel2">ID Card</div>
+                            <div class="idCard" th:text="${order.client.idCard}"></div>
+                            <div class="peselLabel sliderLabel2">PESEL</div>
+                            <div class="pesel" th:text="${order.client.pesel}"></div>
+                        </div>
+                        <div class="companyNIPREGON" th:if="${#lists.contains(CompanyIds, order.client.id)}">
+                            <div class="companyNIPLabel sliderLabel2">NIP</div>
+                            <div class="companyNIP" th:text="${order.client.NIP}"></div>
+                            <div class="companyREGONLabel sliderLabel2">REGON</div>
+                            <div class="companyREGON" th:text="${order.client.REGON}"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="CarLabel ClientCarLabel">Car</div>
+                <div class="Car">
+                    <span th:text="${order.car.brand}"></span>
+                    <span th:text="${order.car.model}"></span>
+                    <div class="slider" id="sr">
+                        <div class="registNumb">
+                            <a><i class="fa-solid fa-car"></i></a
+                            ><span th:text="${order.car.registNumb}"></span>
+                        </div>
+                        <div class="VIN">
+                            <span id="VIN" th:text="${order.car.VIN}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="Status">
+                <span id="id">ID:</span>
+                <span th:text="${order.id}" style="text-decoration: underline"></span>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

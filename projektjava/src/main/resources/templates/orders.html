@@ -426,62 +426,64 @@
     <ul>
         <li th:each="order: ${orders}">
             <div class="container" id="ctr" onclick="showBtn()">
-                <div class="Dates">
-                    <div class="RentStartDateLabel DateLabel">
-                        Start Date
+                <!-- <a th:href="@{/orders/details/{id}(id=${order.id})}" style="width: 100%; height: 100%; text-decoration: none; color: black;"> -->
+                    <div class="Dates">
+                        <div class="RentStartDateLabel DateLabel">
+                            Start Date
+                        </div>
+                        <div class="RentStartDate" th:text="${order.rentStartDate}"></div>
+                        <div class="RentEndDateLabel DateLabel">
+                            End Date
+                        </div>
+                        <div class="RentEndDate" th:text="${order.rentEndDate}"></div>
                     </div>
-                    <div class="RentStartDate" th:text="${order.rentStartDate}"></div>
-                    <div class="RentEndDateLabel DateLabel">
-                        End Date
-                    </div>
-                    <div class="RentEndDate" th:text="${order.rentEndDate}"></div>
-                </div>
-                <div class="ClientCar">
-                    <div class="ClientLabel ClientCarLabel">Client</div>
-                    <div class="Client">
-                        <span th:if="${#lists.contains(CompanyIds, order.client.id)}" th:text="${order.client.name}"></span>
-                        <span th:if="${#lists.contains(PersonalIds, order.client.id)}" th:text="${order.client.firstName}"></span>
-                        <span th:if="${#lists.contains(PersonalIds, order.client.id)}" th:text="${order.client.lastName}"></span>
-                        <div class="sliderL" id="sl">
-                            <div class="teleNumbEmail">
-                                <div class="teleNumbLabel sliderLabel1">Phone</div>
-                                <div class="teleNumb" th:text="${order.client.teleNumb}"></div>
-                                <div class="emailLabel sliderLabel1">Email</div>
-                                <div class="email" th:text="${order.client.email}"></div>
+                    <div class="ClientCar">
+                        <div class="ClientLabel ClientCarLabel">Client</div>
+                        <div class="Client">
+                            <span th:if="${#lists.contains(CompanyIds, order.client.id)}" th:text="${order.client.name}"></span>
+                            <span th:if="${#lists.contains(PersonalIds, order.client.id)}" th:text="${order.client.firstName}"></span>
+                            <span th:if="${#lists.contains(PersonalIds, order.client.id)}" th:text="${order.client.lastName}"></span>
+                            <div class="sliderL" id="sl">
+                                <div class="teleNumbEmail">
+                                    <div class="teleNumbLabel sliderLabel1">Phone</div>
+                                    <div class="teleNumb" th:text="${order.client.teleNumb}"></div>
+                                    <div class="emailLabel sliderLabel1">Email</div>
+                                    <div class="email" th:text="${order.client.email}"></div>
+                                </div>
+                                <div class="idCardPesel" th:if="${#lists.contains(PersonalIds, order.client.id)}">
+                                    <div class="idCardLabel sliderLabel2">ID Card</div>
+                                    <div class="idCard" th:text="${order.client.idCard}"></div>
+                                    <div class="peselLabel sliderLabel2">PESEL</div>
+                                    <div class="pesel" th:text="${order.client.pesel}"></div>
+                                </div>
+                                <div class="companyNIPREGON" th:if="${#lists.contains(CompanyIds, order.client.id)}">
+                                    <div class="companyNIPLabel sliderLabel2">NIP</div>
+                                    <div class="companyNIP" th:text="${order.client.NIP}"></div>
+                                    <div class="companyREGONLabel sliderLabel2">REGON</div>
+                                    <div class="companyREGON" th:text="${order.client.REGON}"></div>
+                                </div>
                             </div>
-                            <div class="idCardPesel" th:if="${#lists.contains(PersonalIds, order.client.id)}">
-                                <div class="idCardLabel sliderLabel2">ID Card</div>
-                                <div class="idCard" th:text="${order.client.idCard}"></div>
-                                <div class="peselLabel sliderLabel2">PESEL</div>
-                                <div class="pesel" th:text="${order.client.pesel}"></div>
-                            </div>
-                            <div class="companyNIPREGON" th:if="${#lists.contains(CompanyIds, order.client.id)}">
-                                <div class="companyNIPLabel sliderLabel2">NIP</div>
-                                <div class="companyNIP" th:text="${order.client.NIP}"></div>
-                                <div class="companyREGONLabel sliderLabel2">REGON</div>
-                                <div class="companyREGON" th:text="${order.client.REGON}"></div>
+                        </div>
+                        <div class="CarLabel ClientCarLabel">Car</div>
+                        <div class="Car">
+                            <span th:text="${order.car.brand}"></span>
+                            <span th:text="${order.car.model}"></span>
+                            <div class="slider" id="sr">
+                                <div class="registNumb">
+                                    <a><i class="fa-solid fa-car"></i></a
+                                    ><span th:text="${order.car.registNumb}"></span>
+                                </div>
+                                <div class="VIN">
+                                    <span id="VIN" th:text="${order.car.VIN}"></span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="CarLabel ClientCarLabel">Car</div>
-                    <div class="Car">
-                        <span th:text="${order.car.brand}"></span>
-                        <span th:text="${order.car.model}"></span>
-                        <div class="slider" id="sr">
-                            <div class="registNumb">
-                                <a><i class="fa-solid fa-car"></i></a
-                                ><span th:text="${order.car.registNumb}"></span>
-                            </div>
-                            <div class="VIN">
-                                <span id="VIN" th:text="${order.car.VIN}"></span>
-                            </div>
-                        </div>
+                    <div class="Status">
+                        <span id="id">ID:</span>
+                        <span th:text="${order.id}" style="text-decoration: underline"></span>
                     </div>
-                </div>
-                <div class="Status">
-                    <span id="id">ID:</span>
-                    <span th:text="${order.id}" style="text-decoration: underline"></span>
-                </div>
+                <!-- </a> -->
             </div>
         </li>
     </ul>

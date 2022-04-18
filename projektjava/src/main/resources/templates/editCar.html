@@ -186,9 +186,13 @@
                             <label><b>Nr. Rejestracyjny</b></label>
                             <input type="text" name="registNumb" th:field="*{registNumb}" placeholder="Nr. Rejestracyjny">
                         </div>
-                        <div class="input">
+                        <div th:if="${car.status.toString().equals('hired')}" class="input">
                             <label><b>Stawka</b></label>
-                            <input type="number" name="priceRate" th:field="*{priceRate}" placeholder="Stawka">
+                            <input type="number" name="priceRate" th:field="*{priceRate}" placeholder="Stawka" style="color: gray;" readonly>
+                        </div>
+                        <div th:unless="${car.status.toString().equals('hired')}" class="input">
+                            <label><b>Stawka</b></label>
+                            <input type="number" name="priceRate" th:field="*{priceRate}" placeholder="Stawka" >
                         </div>
                         <div class="input" style="display: none;">
                             <label><b>Stawka</b></label>
@@ -205,11 +209,6 @@
                             <div th:each="stat: ${T(pl.agh.projektjava.Entities.Car$Status).values()}">
                                 <input type="radio" id="kobieta" name="status"  th:field="*{status}" th:value="${stat}">
                                 <label th:text="${stat}"></label>
-                            </div>
-                            <!-- <input type="radio" id="mezczyzna" name="status" th:field="*{status}" value="hired">
-                            <label for="mezczyzna">Hired</label>
-                            <input type="radio" id="inne" name="status" th:field="*{status}" value="unavailable">
-                            <label for="inne">Unavailable</label> -->
                         </fieldset>
                     </div>
                 </div>
