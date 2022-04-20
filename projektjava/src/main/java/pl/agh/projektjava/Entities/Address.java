@@ -125,6 +125,7 @@ public class Address
             if(adr.getCity().equals(this.getCity())&&adr.getPostalCode().equals(this.getPostalCode())&&adr.getStreet().equals(this.getStreet())&&adr.getBuildingNumb().equals(this.getBuildingNumb()))
             {
                 if(this.getLocalNumb()==null&&adr.getLocalNumb()==null){return true;}
+                if(adr.getLocalNumb().equals(this.getLocalNumb())){return true;}
                 return false;
             }
             return false;

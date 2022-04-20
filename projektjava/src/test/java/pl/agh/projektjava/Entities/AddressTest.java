@@ -1,5 +1,6 @@
 package pl.agh.projektjava.Entities;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Assertions;
@@ -41,8 +42,10 @@ class AddressTest {
     {
         Address ad1=new Address(1L, "Tarnów", "33-100", "Gombrowicza", "10", null);
         Address ad2=new Address(2L, "Tarnów", "33-100", "Gombrowicza", "10", null);
+        Address ad3=new Address(2L, "Tarnów", "33-100", "Gombrowicza", "10", "15");
 
         assertTrue(ad1.equals(ad2));
+        assertFalse(ad1.equals(ad3));
     }
 
 
