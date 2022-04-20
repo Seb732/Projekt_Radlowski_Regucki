@@ -516,6 +516,7 @@
                     <div class="Status">
                         <span id="id">ID:</span>
                         <span th:text="${order.id}" style="text-decoration: underline"></span>
+                        <span th:text="${order.status}" class="status" style="float: right; padding-right: 10%; font-weight: bold"></span>
                     </div>
                 <!-- </a> -->
             </div>
@@ -538,6 +539,15 @@
             "</span>" +
             element.innerHTML;
     });
+    let status_spans= document.getElementsByClassName("status");
+    for (let i = 0; i < status_spans.length; i++){
+        if (status_spans[i].innerHTML === 'finished'){
+            status_spans[i].style.color = 'red';
+        }
+        if (status_spans[i].innerHTML === 'active'){
+            status_spans[i].style.color = 'green';
+        }
+    }
     const sl_array = document.querySelectorAll("#sl");
     const sr_array = document.querySelectorAll("#sr");
     const ctr_array = document.querySelectorAll("#ctr");
