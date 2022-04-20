@@ -1,6 +1,7 @@
 package pl.agh.projektjava.Security;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -44,6 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
         http
             .authorizeRequests()
             .antMatchers("/settings/**").hasRole("ADMIN")
+            .antMatchers(HttpMethod.POST, "/**").hasAnyRole("ADMIN","USER")
             .anyRequest().authenticated()
             .and()
             .formLogin().loginPage("/login").permitAll().defaultSuccessUrl("/")
