@@ -18,9 +18,7 @@ import pl.agh.projektjava.Entities.Validation;
 import pl.agh.projektjava.Exceptions.ExceptionWrongEmail;
 import pl.agh.projektjava.Exceptions.ExceptionWrongTeleNumb;
 import pl.agh.projektjava.Security.MyUserDetails;
-import pl.agh.projektjava.Services.AddressServices;
-import pl.agh.projektjava.Services.CarServices;
-import pl.agh.projektjava.Services.UserServices;
+import pl.agh.projektjava.Services.*;
 
 @Controller
 public class AppController {
@@ -28,12 +26,15 @@ public class AppController {
     private CarServices carServices;
     private UserServices userServices;
     private AddressServices addressServices;
+    private RentOrderServices rentOrderServices;
+    private ClientServices clientServices;
 
-
-    public AppController(CarServices carServices, UserServices userServices, AddressServices addressServices) {
+    public AppController(CarServices carServices, UserServices userServices, AddressServices addressServices, RentOrderServices rentOrderServices, ClientServices clientServices) {
         this.carServices = carServices;
         this.userServices = userServices;
         this.addressServices=addressServices;
+        this.rentOrderServices = rentOrderServices;
+        this.clientServices = clientServices;
     }
     
 
@@ -51,6 +52,9 @@ public class AppController {
         MyUserDetails user=(MyUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("cars",carServices.getAllHired());
         model.addAttribute("role", user.getRole());
+        model.addAttribute("ActiveOrders", rentOrderServices.getAllActiveOrders());
+        model.addAttribute("PersonalIds", rentOrderServices.getPersonalClientsIds());
+        model.addAttribute("CompanyIds", rentOrderServices.getCompanyClientsIds());
         return "index";
     }
 
