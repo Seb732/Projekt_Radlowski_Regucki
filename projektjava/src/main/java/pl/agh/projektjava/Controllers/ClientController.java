@@ -18,6 +18,7 @@ import pl.agh.projektjava.Entities.Validation;
 import pl.agh.projektjava.Exceptions.ExceptionWrongEmail;
 import pl.agh.projektjava.Exceptions.ExceptionWrongNIP;
 import pl.agh.projektjava.Exceptions.ExceptionWrongPesel;
+import pl.agh.projektjava.Exceptions.ExceptionWrongPostalCode;
 import pl.agh.projektjava.Exceptions.ExceptionWrongRegon;
 import pl.agh.projektjava.Exceptions.ExceptionWrongTeleNumb;
 import pl.agh.projektjava.Services.AddressServices;
@@ -71,6 +72,7 @@ public class ClientController {
             if(Validation.ValPesel(person.getPesel())){}else{throw new ExceptionWrongPesel("Pesel is not correct");}
             if(Validation.ValTeleNumb(person.getTeleNumb())){}else{throw new ExceptionWrongTeleNumb("Telephone number is not correct");}
             if(Validation.ValEmail(person.getEmail())){}else{throw new ExceptionWrongEmail("Email is not correct");}
+            if(Validation.ValPostalCode(address.getPostalCode())){}else{throw new ExceptionWrongPostalCode("Postal code incorrect");}
             person.setBalance(0.00);
             
             if(address.getLocalNumb()=="")
@@ -97,6 +99,7 @@ public class ClientController {
             if(Validation.ValREGON(company.getREGON())){}else{throw new ExceptionWrongRegon("REGON is not correct");}
             if(Validation.ValTeleNumb(company.getTeleNumb())){}else{throw new ExceptionWrongTeleNumb("Telephone number is not correct");}
             if(Validation.ValEmail(company.getEmail())){}else{throw new ExceptionWrongEmail("Email is not correct");}
+            if(Validation.ValPostalCode(address.getPostalCode())){}else{throw new ExceptionWrongPostalCode("Postal code incorrect");}
             
             company.setBalance(0.00);   //settings balance to 0
 
