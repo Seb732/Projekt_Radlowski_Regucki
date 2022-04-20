@@ -54,6 +54,11 @@ public class AppController {
         return "index";
     }
 
+    @GetMapping("")
+    public String toMain()
+    {
+        return "redirect:/";
+    }
 
     // SETTINGS AND USERS
 
