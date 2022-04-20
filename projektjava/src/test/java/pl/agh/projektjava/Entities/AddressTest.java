@@ -39,11 +39,11 @@ class AddressTest {
     @Test
     public void equalsMethod()
     {
-        Address ad1=new Address(null, "Tarnów", "33-100", "Gombrowicza", "10", "15");
-        Address ad2=new Address(null, "Tarnów", "33-100", "Gombrowicza", "10", "15");
+        Address ad1=new Address(1L, "Tarnów", "33-100", "Gombrowicza", "10", null);
+        Address ad2=new Address(2L, "Tarnów", "33-100", "Gombrowicza", "10", null);
 
         assertTrue(ad1.equals(ad2));
-        
     }
+
 
 }

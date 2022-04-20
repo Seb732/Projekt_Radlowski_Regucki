@@ -122,9 +122,10 @@ public class Address
         {
             Address adr=(Address) obj;
 
-            if(adr.getCity().equals(this.getCity())&&adr.getPostalCode().equals(this.getPostalCode())&&adr.getStreet().equals(this.getStreet())&&adr.getBuildingNumb().equals(this.getBuildingNumb())&&adr.getLocalNumb().equals(this.getLocalNumb()))
+            if(adr.getCity().equals(this.getCity())&&adr.getPostalCode().equals(this.getPostalCode())&&adr.getStreet().equals(this.getStreet())&&adr.getBuildingNumb().equals(this.getBuildingNumb()))
             {
-                return true;
+                if(this.getLocalNumb()==null&&adr.getLocalNumb()==null){return true;}
+                return false;
             }
             return false;
 
