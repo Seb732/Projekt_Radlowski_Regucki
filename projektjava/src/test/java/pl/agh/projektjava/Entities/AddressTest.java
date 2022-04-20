@@ -41,15 +41,9 @@ class AddressTest {
     {
         Address ad1=new Address(null, "Tarnów", "33-100", "Gombrowicza", "10", "15");
         Address ad2=new Address(null, "Tarnów", "33-100", "Gombrowicza", "10", "15");
-        Address ad3=new Address(null, "Tarnów", "33-100", "Gombrowicza", "10", null);
-        Address ad4=new Address(null, "Tarnów", "33-100", "Gombrowicza", "10", "");
-        Address ad5=new Address(null, "Tarnów", "33-100", "Gombrowicza", "10", null);
-        Address ad6=new Address(null, "Tarnów", "33-100", "Gombrowicza", "10", "");
+
         assertTrue(ad1.equals(ad2));
-        assertTrue(ad3.equals(ad4));
-        assertTrue(ad3.equals(ad5));
-        assertTrue(ad5.equals(ad6));
-        assertTrue(ad4.equals(ad6));
+        
     }
 
 }
