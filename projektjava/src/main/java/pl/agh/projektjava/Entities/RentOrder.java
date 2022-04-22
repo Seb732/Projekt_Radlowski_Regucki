@@ -111,14 +111,8 @@ public class RentOrder {
     public void setStatus(OrderStatus status) {this.status = status;}
     public OrderStatus getStatus() {return status;}
 
-    public void setTotalCost() {
-        this.totalCost = TimeUnit.DAYS.convert(Math.abs(java.util.Date.from(rentEndDate.atStartOfDay()
-                .atZone(ZoneId.systemDefault())
-                .toInstant()).getTime()
-                        -
-                java.util.Date.from(rentStartDate.atStartOfDay()
-                .atZone(ZoneId.systemDefault())
-                .toInstant()).getTime()
-                ),  TimeUnit.MILLISECONDS) * car.priceRate;}
+    public void setTotalCost(double totalCost) {
+        this.totalCost=totalCost;
+    }
     public double getTotalCost() {return totalCost;}
 }

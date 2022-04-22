@@ -85,7 +85,11 @@ public class OrderController {
         RentOrder rentOrder=rentOrderServices.getById(id).get();
         rentOrder.setRentEndDate(LocalDate.now());
         carServices.updateCar(rentOrder.getCar());
-        rentOrder.getClient().setBalance(rentOrder.getCar().getPriceRate()*(ChronoUnit.DAYS.between(rentOrder.getRentStartDate(), rentOrder.getRentEndDate())+1));
+
+        double cost=rentOrder.getCar().getPriceRate()*(ChronoUnit.DAYS.between(rentOrder.getRentStartDate(), rentOrder.getRentEndDate())+1);
+
+        rentOrder.getClient().setBalance(cost);
+        rentOrder.setTotalCost(cost);
         clientServices.updateClient(rentOrder.getClient());
         rentOrder.getCar().setStatus(Status.available);
         rentOrder.setStatus(OrderStatus.finished);
