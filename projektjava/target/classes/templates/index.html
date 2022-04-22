@@ -276,7 +276,7 @@
         </header>
     <div class="container">
         <div class="cont_main" id="others">
-            <div id="order_label" style="border: #3e4684 solid 5px;">
+            <div id="order_label">
                 <span>Aktywne wypożyczenia</span>
             </div>
             <ul>
@@ -311,6 +311,7 @@
                         </div>
                         <!-- </a> -->
                     </div>
+                    <a style="padding-left: 1%; padding-right: 1%; text-decoration: none; background-color: red;border-radius: 10px;" th:href="@{/orders/end/{id}(id=${order.id})}">Zakończ wynajem</a>
                 </li>
             </ul>
         </div>

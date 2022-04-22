@@ -24,6 +24,8 @@ import pl.agh.projektjava.Exceptions.ExceptionWrongTeleNumb;
 import pl.agh.projektjava.Services.AddressServices;
 import pl.agh.projektjava.Services.ClientServices;
 
+import java.util.Objects;
+
 @Controller
 public class ClientController {
 
@@ -75,7 +77,7 @@ public class ClientController {
             if(Validation.ValPostalCode(address.getPostalCode())){}else{throw new ExceptionWrongPostalCode("Postal code incorrect");}
             person.setBalance(0.00);
             
-            if(address.getLocalNumb()=="")
+            if(Objects.equals(address.getLocalNumb(), ""))
             {address.setLocalNumb(null);}
 
             person.setAddress(addressServices.saveIfNotInDB(address));
@@ -103,7 +105,7 @@ public class ClientController {
             
             company.setBalance(0.00);   //settings balance to 0
 
-            if(address.getLocalNumb()=="")  
+            if(Objects.equals(address.getLocalNumb(), ""))
             {address.setLocalNumb(null);}
 
             company.setAddress(addressServices.saveIfNotInDB(address));  //saving address and setting to company
