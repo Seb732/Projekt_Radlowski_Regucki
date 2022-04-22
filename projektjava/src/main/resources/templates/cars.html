@@ -249,7 +249,13 @@
                 element.style = 'color: orange';
             }
             else{
+                if (element.childNodes[0].nodeValue === "unavailable"){
+                element.style = 'color: red';
+            }
+            else
+            {
                 element.style = 'color: green';
+            }
             }
         })
 

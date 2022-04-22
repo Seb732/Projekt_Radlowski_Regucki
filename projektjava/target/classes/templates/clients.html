@@ -562,7 +562,9 @@
                             </div>
                         </div>
                     </div>
-                    <a style="background-color: green; text-decoration: none; padding-left: 1%; padding-right: 1%;color: white;border-radius: 10px;" th:if="${personalClient.balance}!=0" th:href="@{/clients/pay/{id}(id=${personalClient.id})}">Spłać wszystko</a>
+                    <form th:if="${personalClient.balance}!=0" th:action="@{/clients/pay/{id}(id=${personalClient.id})}" method="post" >
+                        <button type="submit" style="background-color: green; text-decoration: none; padding-left: 1%; padding-right: 1%;color: white;border-radius: 10px;">Spłać wszystko</button>
+                    </form>
                 </li>
             </ul>
         </div>
@@ -616,7 +618,9 @@
                             </div>
                         </div>
                     </div>
-                    <a th:if="${comapnyClient.balance}!=0" th:href="@{/clients/pay/{id}(id=${comapnyClient.id})}">Spłać wszystko</a>
+                    <form th:if="${companyClient.balance}!=0" th:action="@{/clients/pay/{id}(id=${companyClient.id})}" method="post" >
+                        <button type="submit" style="background-color: green; text-decoration: none; padding-left: 1%; padding-right: 1%;color: white;border-radius: 10px;">Spłać wszystko</button>
+                    </form>
                 </li>
             </ul>
         </div>
