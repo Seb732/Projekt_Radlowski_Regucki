@@ -193,6 +193,7 @@
         }
         .ClientLabel {
             grid-area: 1 / 1 / 2 / 2;
+            max-height: 24px;
         }
 
         .Client {
@@ -202,8 +203,6 @@
             overflow:hidden;
             white-space: nowrap;
         }
-
-
 
         .CarLabel {
             grid-area: 1 / 3 / 2 / 4;
@@ -229,6 +228,9 @@
 
         .Status {
             grid-area: 1 / 1 / 2 / 2;
+            display: grid;
+            grid-template-columns: 0.2fr 1fr 0.7fr;
+            grid-template-rows: 1fr;
         }
         .slider {
             position: absolute;
@@ -392,10 +394,13 @@
             width: 28%;
             border: solid 1px gray;
         }
+        #id_part{
+            grid-area: 1 / 1 / 2 / 2;
+        }
         #id{
             background-color: #d9cf16;
             color: white;
-            margin-left: 2.2%;
+
             border-radius: 2px;
             padding-right: 5px;
             padding-left: 5px;
@@ -423,6 +428,24 @@
             margin-right: 2%;
             float: right;
             visibility: hidden;
+        }
+        .totalCostLabel{
+            font-weight: bold;
+        }
+        #status_part{
+            grid-area: 1 / 2 / 2 / 3;
+            text-align: right;
+            margin-right: -14%;
+            padding-right: 2%;
+        }
+        .status_div{
+            font-weight: bold;
+        }
+        #totalCost_part{
+            grid-area: 1 / 3 / 2 / 4;
+            margin-left: 23%;
+            text-align: left;
+
         }
     </style>
 
@@ -514,9 +537,17 @@
                         </div>
                     </div>
                     <div class="Status">
-                        <span id="id">ID:</span>
-                        <span th:text="${order.id}" style="text-decoration: underline"></span>
-                        <span th:text="${order.status}" class="status" style="float: right; padding-right: 10%; font-weight: bold"></span>
+                        <div id="id_part">
+                            <span id="id">ID:</span>
+                            <span th:text="${order.id}" style="text-decoration: underline;"></span>
+                        </div>
+                        <div id="status_part" class="status_div">
+                            <span th:text="${order.status}" class="status"></span>
+                        </div>
+                        <div id="totalCost_part">
+                            <span class="totalCostLabel">Total cost:</span>
+                            <span th:text="${order.totalCost}" class="totalCost"></span>
+                        </div>
                     </div>
                 <!-- </a> -->
             </div>
@@ -539,13 +570,32 @@
             "</span>" +
             element.innerHTML;
     });
-    let status_spans= document.getElementsByClassName("status");
+    const status_spans= document.getElementsByClassName("status");
     for (let i = 0; i < status_spans.length; i++){
         if (status_spans[i].innerHTML === 'finished'){
             status_spans[i].style.color = 'red';
         }
         if (status_spans[i].innerHTML === 'active'){
             status_spans[i].style.color = 'green';
+        }
+    }
+    const totalCost_spans = document.getElementsByClassName("totalCost");
+    const totalCostLabel_spans = document.getElementsByClassName("totalCostLabel")
+    const status_divs = document.getElementsByClassName("status_div");
+    for (let i = 0; i < totalCost_spans.length; i++){
+        if (totalCost_spans[i].innerHTML === '0.0'){
+            totalCost_spans[i].innerHTML = '';
+            totalCostLabel_spans[i].innerHTML = ''
+        }
+        else{
+            let t = parseFloat(totalCost_spans[i].innerHTML);
+            totalCost_spans[i].innerHTML = (t).toLocaleString('pl-PL', {
+                style: 'currency',
+                currency : 'PLN'
+            });
+            status_divs[i].style.borderRight = 'dotted black 1px';
+
+
         }
     }
     const sl_array = document.querySelectorAll("#sl");
@@ -558,6 +608,7 @@
        sl_array[i].style.height = hght.toString() + 'px';
        sr_array[i].style.height = hght.toString() + 'px';
     }
+
     function showBtn(){
         const delBtn = document.getElementById("del_btn");
         if (delBtn.style.visibility === 'hidden'){

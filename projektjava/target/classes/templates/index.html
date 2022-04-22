@@ -122,6 +122,8 @@
     #map {
         height: 90%;
         width: 95%;
+        margin-bottom: 5%;
+        border-radius: 20px;
     }
 
     #others{
@@ -189,6 +191,7 @@
     }
     .ClientLabel {
         grid-area: 1 / 1 / 2 / 2;
+        max-height: 24px;
     }
 
     .Client {
@@ -234,7 +237,7 @@
         padding-right: 5px;
         padding-left: 5px;
     }
-    #order_label{
+    .main_label{
         background-color: #3e4684;
         color: white;
         text-align: center;
@@ -276,7 +279,7 @@
         </header>
     <div class="container">
         <div class="cont_main" id="others">
-            <div id="order_label">
+            <div class="main_label">
                 <span>Aktywne wypożyczenia</span>
             </div>
             <ul>
@@ -318,7 +321,9 @@
             </ul>
         </div>
         <div class="cont_main" id="map_container">
-            <h1 style="height:10%; margin:0;">Wypożyczone samochody</h1>
+            <div class="main_label" style="width: 100%; margin-bottom: 5%">
+                <span>Wypożyczone samochody</span>
+            </div>
             <div id="map"></div>
             <script th:inline="javascript">
                 function initMap() {
