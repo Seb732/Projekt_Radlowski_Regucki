@@ -197,13 +197,34 @@
 
         .Client {
             grid-area: 1 / 2 / 2 / 3;
+            text-overflow: ellipsis;
+            word-break: break-all;
+            overflow:hidden;
+            white-space: nowrap;
         }
+
+
 
         .CarLabel {
             grid-area: 1 / 3 / 2 / 4;
+            overflow: visible;
+            white-space: normal;
+            height:min-content;
+            max-height: 24px;
+
         }
         .Car {
             grid-area: 1 / 4 / 2 / 5;
+            text-overflow: ellipsis;
+            word-break: break-all;
+            overflow:hidden;
+            white-space: nowrap;
+            max-height: 24px;
+        }
+        .Car:hover{
+            overflow: visible;
+            white-space: normal;
+            height:min-content;
         }
 
         .Status {
@@ -211,7 +232,7 @@
         }
         .slider {
             position: absolute;
-            right: 10%;
+            right: 8%;
             height: 18vh;
             background: -webkit-linear-gradient(
                     left,
@@ -238,11 +259,11 @@
             display: grid;
             grid-template-columns: 1fr;
             grid-template-rows: repeat(2, 1fr);
-            padding-top: 15px;
+            padding-top: 2%;
         }
         .sliderL {
             position: absolute;
-            left: 5%;
+            left: 1%;
             height: fit-content;
             background: -webkit-linear-gradient(
                     left,
@@ -269,22 +290,24 @@
             display: grid;
             grid-template-columns: 1fr;
             grid-template-rows: repeat(2, 1fr);
-            padding-top: 15px;
+            padding-top: 2%;
         }
 
         .registNumb {
             padding-left: 7%;
             grid-area: 1 / 1 / 2 / 2;
+            min-width: max-content;
         }
         .VIN {
             padding-left: 7%;
             grid-area: 2 / 1 / 3 / 2;
+            min-width: max-content;
         }
 
         .teleNumbEmail {
             grid-area: 1 / 1 / 2 / 2;
             display: grid;
-            grid-template-columns: 0.7fr 1fr 0.7fr 1fr;
+            grid-template-columns: 0.7fr 0.85fr 0.7fr 0.85fr;
             grid-template-rows: 1fr;
             height: 2%;
         }
@@ -302,13 +325,23 @@
 
         .email {
             grid-area: 1 / 4 / 2 / 5;
+            text-overflow: ellipsis;
+            word-break: break-all;
+            overflow:hidden;
+            white-space: nowrap;
+            max-height: 24px;
+        }
+        .email:hover{
+            overflow: visible;
+            white-space: normal;
         }
         .idCardPesel {
             grid-area: 2 / 1 / 3 / 2;
             display: grid;
-            grid-template-columns: 0.7fr 1fr 0.7fr 1fr;
+            grid-template-columns: 0.7fr 0.85fr 0.7fr 0.85fr;
             grid-template-rows: 1fr;
             height: 2%;
+
         }
         .idCardLabel {
             grid-area: 1 / 1 / 2 / 2;
@@ -328,9 +361,10 @@
         .companyNIPREGON{
             grid-area: 2 / 1 / 3 / 2;
             display: grid;
-            grid-template-columns: 0.7fr 1fr 0.7fr 1fr;
+            grid-template-columns: 0.7fr 0.85fr 0.7fr 0.85fr;
             grid-template-rows: 1fr;
             height: 2%;
+
         }
         .companyNIPLabel {
             grid-area: 1 / 1 / 2 / 2;
@@ -355,7 +389,7 @@
         }
         .Client:hover .sliderL {
             background: #f1f7fe;
-            width: 23%;
+            width: 28%;
             border: solid 1px gray;
         }
         #id{
@@ -398,7 +432,7 @@
         <a href="/" id="navbar_logo_normal"><b><i class="fa-solid fa-car-side"></i>Rentaly</b></a>
         <ul class="navbar_menu">
             <li class="navbar_btn">
-                <a href="/czesc" class="button" >Wypożyczenia</a>
+                <a href="/orders" class="button" >Wypożyczenia</a>
             </li>
             <li class="navbar_btn">
                 <a href="/cars" class="button" >Samochody</a>
@@ -482,6 +516,7 @@
                     <div class="Status">
                         <span id="id">ID:</span>
                         <span th:text="${order.id}" style="text-decoration: underline"></span>
+                        <span th:text="${order.status}" class="status" style="float: right; padding-right: 10%; font-weight: bold"></span>
                     </div>
                 <!-- </a> -->
             </div>
@@ -504,10 +539,19 @@
             "</span>" +
             element.innerHTML;
     });
+    let status_spans= document.getElementsByClassName("status");
+    for (let i = 0; i < status_spans.length; i++){
+        if (status_spans[i].innerHTML === 'finished'){
+            status_spans[i].style.color = 'red';
+        }
+        if (status_spans[i].innerHTML === 'active'){
+            status_spans[i].style.color = 'green';
+        }
+    }
     const sl_array = document.querySelectorAll("#sl");
     const sr_array = document.querySelectorAll("#sr");
     const ctr_array = document.querySelectorAll("#ctr");
-    const hght = ctr_array[0].clientHeight - 20;
+    const hght = ctr_array[0].clientHeight - 30;
     for (let i = 0; i < ctr_array.length; i++){
        sl_array[i].style.top = (getOffset(ctr_array[i]).top).toString() + 'px';
        sr_array[i].style.top = (getOffset(ctr_array[i]).top).toString() + 'px';
