@@ -276,7 +276,7 @@
         </header>
     <div class="container">
         <div class="cont_main" id="others">
-            <div id="order_label" style="border: #3e4684 solid 5px;">
+            <div id="order_label">
                 <span>Aktywne wypożyczenia</span>
             </div>
             <ul>
@@ -311,6 +311,9 @@
                         </div>
                         <!-- </a> -->
                     </div>
+                    <form th:action="@{/orders/end/{id}(id=${order.id})}" method="post">
+                        <button type="submit" style="box-shadow: none; color:white; padding-left: 1%; padding-right: 1%; text-decoration: none; background-color: red;border-radius: 10px;">Zakończ wynajem</button>
+                    </form>
                 </li>
             </ul>
         </div>

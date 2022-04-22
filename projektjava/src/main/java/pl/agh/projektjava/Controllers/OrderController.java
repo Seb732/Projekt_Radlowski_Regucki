@@ -92,7 +92,7 @@ public class OrderController {
         carServices.updateCar(rentOrder.getCar());
         rentOrderServices.updateRentOrder(rentOrder);
         model.addAttribute("message", "Rent finished");
-        return showRentDetails(id, model);
+        return orders(model);
     }
 
 }

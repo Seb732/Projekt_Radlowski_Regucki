@@ -204,11 +204,16 @@
                         </div>
                     </div>
                     <div id="right" style="width: 30%;" >
-                        <fieldset style=" display: flex; flex-direction: column; margin-right: 10%;">
+                        <fieldset th:unless="${car.status.toString().equals('hired')}" style=" display: flex; flex-direction: column; margin-right: 10%;">
                             <legend><b>Status pojazdu</b></legend>
-                            <div th:each="stat: ${T(pl.agh.projektjava.Entities.Car$Status).values()}">
+                            <!-- <div th:each="stat: ${T(pl.agh.projektjava.Entities.Car$Status).values()}">
                                 <input type="radio" id="kobieta" name="status"  th:field="*{status}" th:value="${stat}">
                                 <label th:text="${stat}"></label>
+                            </div> -->
+                            <input type="radio" name="status"  th:field="*{status}" th:value="${T(pl.agh.projektjava.Entities.Car$Status).available}" >
+                            <label >Dostępny</label>
+                            <input type="radio" name="status"  th:field="*{status}" th:value="${T(pl.agh.projektjava.Entities.Car$Status).unavailable}" >
+                            <label>Niedostępny</label>
                         </fieldset>
                     </div>
                 </div>

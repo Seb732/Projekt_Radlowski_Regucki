@@ -311,6 +311,9 @@
                         </div>
                         <!-- </a> -->
                     </div>
+                    <form th:action="@{/orders/end/{id}(id=${order.id})}" method="post">
+                        <button type="submit" style="box-shadow: none; color:white; padding-left: 1%; padding-right: 1%; text-decoration: none; background-color: red;border-radius: 10px;">Zakończ wynajem</button>
+                    </form>
                 </li>
             </ul>
         </div>
