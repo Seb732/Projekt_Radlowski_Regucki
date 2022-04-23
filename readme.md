@@ -13,7 +13,7 @@ Projekt korzysta z:
 
 # Wskazówki
 * Aby uruchomić projekt w terminalu należy wpisać komendę `mvn spring:boot:run` a następnie w przeglądarce wejść pod adres `localhost:8080`.
-* Strona dostępna jest również pod publicznym adresem IP `http://104.198.56.5:8080/` dzięki maszynie wirtualnej Google Cloud
+* Strona dostępna jest również pod publicznym adresem `https://rentaly-backend.oa.r.appspot.com` dzięki App Engine w usłudze Google Cloud Platform
 
 * Możesz uruchomić `mvn test` na terminalu, aby uruchomić testy przy uzyciu Maven
 
