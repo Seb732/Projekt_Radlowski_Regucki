@@ -191,7 +191,9 @@
         </ul>
         <div id="setting">
             <div class="setting_div">
-                <button class="setting_btn">Ustawienia</button>
+                <a href="/settings" style="width: 100%;">
+                    <button class="setting_btn">Ustawienia</button>
+                </a>
             </div>
             <form class="setting_div" id="logout_form" th:action="@{/logout}" method="post">
                 <button class="setting_btn" id="logout_btn" type="submit">Wyloguj się</button>
