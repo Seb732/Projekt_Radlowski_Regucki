@@ -86,6 +86,6 @@ public class Client {
     }
 
     public void setBalance(double balance) {
-        this.balance = balance;
+        this.balance += balance;
     }
 }
