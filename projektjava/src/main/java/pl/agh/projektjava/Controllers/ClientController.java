@@ -125,7 +125,7 @@ public class ClientController {
     public String payAll(@PathVariable Long id, Model model)
     {
         Client client=clientServ.getById(id).get();
-        client.setBalance(0.00);
+        client.setBalance(-1*(client.getBalance()));
         clientServ.updateClient(client);
         model.addAttribute("message","All paid");
         return allClients(model);
